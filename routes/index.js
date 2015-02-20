@@ -1,5 +1,5 @@
 /**INCLUDE**/
- var express = require('express');
+var express = require('express');
    var router = express.Router();
    var MongoClient = require('mongodb').MongoClient;
    var mongo = require('mongodb');
@@ -36,10 +36,10 @@ function isConnect (req,res, next){
 router.get('/', function(req,res){
  	console.log(req.session.nom);
  	if(req.session.connect ==true){
- 		res.render('index',{nom:req.session.nom, prenom: req.session.prenom });
+ 		res.render('index.vash',{nom:req.session.nom, prenom: req.session.prenom });
  	}
  	else{
- 		res.render('index');
+ 		res.render('index.vash');
  	}
  });
 
@@ -99,9 +99,10 @@ router.get('/signup', function(req,res){
 router.post('/signup',function(req,res){
   var Id = guid();
   req.body.UserId = Id;
-    console.log( req.body);
+  console.log( req.body);
   users.insert(req.body, function(err,rep) {
     if(err) {
+        console.log(err);
       res.status(500);
     } else {
       if(!rep)
@@ -134,7 +135,6 @@ router.get('/myprofil', isConnect,function(req,res){
   })
  }); 
 router.post('/updateImage', function(req, res){
-    res.body
   users.update(
   {UserId: req.session.UserId}, // query
   {$set:{imageSrc:req.files.fileToUpload.name}}, 
@@ -143,6 +143,7 @@ router.post('/updateImage', function(req, res){
   });
  });
 router.post('/updateDesc', function(req, res){
+  console.log(req.body.desc);
   users.update(
   {UserId: req.session.UserId}, // query
   {$set:{desc:req.body.desc}}, 

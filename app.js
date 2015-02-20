@@ -25,9 +25,9 @@ onFileUploadComplete: function (file) {
 }
 }));
 
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views/');
 app.set('view engine', 'vash');
-app.engine('.vash', require('vash').renderFile);
+//app.engine('vash', require('vash').renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
