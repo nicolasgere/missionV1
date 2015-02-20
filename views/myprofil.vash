@@ -6,7 +6,7 @@
     <title>Unify | Welcome...</title>
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
-    <script type="text/javascript" src="assets/js/custom.js"></script>
+    <script type="text/javascript" src="/customJs/myprofil.js"></script>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
  </script>
  <div class="wrapper">
     <div class="header">
-     @html.include('shared/layout', model)
+     @html.include('shared/menu', model)
  </div>
  <div class="profile">    
     <div class="container content">

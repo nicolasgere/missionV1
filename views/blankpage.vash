@@ -9,10 +9,9 @@
 
 <body>
 <div class="wrapper">
-                   @html.include('shared/layout', model)
-   <div class="container content">
+                   @html.include('shared/menu', model)
+	   
            <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
-    </div>
     @html.include('shared/foot', model)
 </div>
 </body>

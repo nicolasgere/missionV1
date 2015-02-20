@@ -1,6 +1,10 @@
+
+
 <div class="header">
+        <!-- Topbar -->
         <div class="topbar">
             <div class="container">
+                <!-- Topbar Navigation -->
                 <ul class="loginbar pull-right">
                     <li class="languagesSelector">
                         <i class="fa fa-globe"></i>
@@ -26,10 +30,15 @@
                    <li><a href="login">Login</a></li>
                    }
                 </ul>
+                <!-- End Topbar Navigation -->
             </div>
         </div>
+        <!-- End Topbar -->
+    
+        <!-- Navbar -->
         <div class="navbar navbar-default mega-menu" role="navigation">
             <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                         <span class="sr-only">Toggle navigation</span>

@@ -4,132 +4,107 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
     <title>AlloChef | Welcome...</title>
+    
+    @html.include('shared/head', model)
+   
 
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
 
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">    
-    <link rel="stylesheet" href="assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
-    <!--[if lt IE 9]><link rel="stylesheet" href="css/sky-forms-ie8.css"><![endif]-->
-
-    <!-- CSS Page Style -->    
-    <link rel="stylesheet" href="assets/css/pages/page_search.css">
-
-    <!-- CSS Theme -->    
-    <link rel="stylesheet" href="assets/css/theme-colors/red.css">
-
-    <!-- CSS Customization -->
-    <link rel="stylesheet" href="assets/css/custom.css">
 </head> 
 
 <body>
-<div class="wrapper">
-    <!--=== Header ===-->    
-                   @html.include('shared/layout', model)
-    
-    <!--=== End Header ===-->    
+    <div class="wrapper">
+        <!--=== Header ===-->    
+        @html.include('shared/menu', model)
+        <!--=== Search Block ===-->
 
-    <!--=== Search Block ===-->
-    <div class="search-block parallaxBg">
-        <div class="container">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Discover <span class="color-green">new</span> things</h1>
+        <div class="search-block parallaxBg">
+            <div class="container">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1>Discover <span class="color-green">new</span> things</h1>
 
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search food for new tast...">
-                    <span class="input-group-btn">
-                        <button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-
-            </div>
-        </div>    
-    </div><!--/container-->     
-    <!--=== End Search Block ===-->
-
-    <!--=== Content ===-->
-    <div class="container content">
-        <div class="one-page-inner one-default">
-            <div class="container content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1>Decouvrer une cuisine proche de chez vous   </h1>                        
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus..</p>
-                        <p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p><br>
-                        <a class="btn-u btn-u-red one-page-btn"><i class="fa fa-bolt"></i> Comment sa marche</a>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search food for new tast...">
+                        <span class="input-group-btn">
+                            <button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+                        </span>
                     </div>
-                    <div class="col-md-6">
-                        <div class="section-block">
-                    <div class="text-center">
-                        <i class="rounded icon-custom icon-sm icon-bg-darker line-icon icon-graph"></i>
-                        <h2>Popular Search</h2>  
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis. <a href="#">View more</a></p>
-                    </div>    
-                    
-                    </br>
-                    
-                    <div class="clearfix"></div>
 
-                    <div class="section-block-info">
-                        <ul class="list-inline tags-v1">
-                            <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#MiamMiam</a></li>
-                            <li><a href="#">#Salade</a></li>
-                             <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#MiamMiam</a></li>
-                            <li><a href="#">#Salade</a></li>
-                             <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#MiamMiam</a></li>
-                            <li><a href="#">#Salade</a></li>
-                             <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#MiamMiam</a></li>
-                            <li><a href="#">#Salade</a></li>
-                             <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#MiamMiam</a></li>
-                            <li><a href="#">#Salade</a></li>
-                             <li><a href="#">#Lasagne</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Pizza</a></li>
-                            <li><a href="#">#Salade</a></li>
-                        </ul>                            
-                    </div>
                 </div>
+            </div>    
+        </div><!--/container-->     
+        <!--=== End Search Block ===-->
+
+        <!--=== Content ===-->
+        <div class="container content">
+            <div class="one-page-inner one-default">
+                <div class="container content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Decouvrer une cuisine proche de chez vous   </h1>                        
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus..</p>
+                            <p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p><br>
+                            <a class="btn-u btn-u-red one-page-btn"><i class="fa fa-bolt"></i> Comment sa marche</a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="section-block">
+                                <div class="text-center">
+                                    <i class="rounded icon-custom icon-sm icon-bg-darker line-icon icon-graph"></i>
+                                    <h2>Popular Search</h2>  
+                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis. <a href="#">View more</a></p>
+                                </div>    
+                               </div>  
+                            </br>
+
+                            <div class="clearfix"></div>
+
+                            <div class="section-block-info">
+                                <ul class="list-inline tags-v1">
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#MiamMiam</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#MiamMiam</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#MiamMiam</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#MiamMiam</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#MiamMiam</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                    <li><a href="#">#Lasagne</a></li>
+                                    <li><a href="#">#Pate</a></li>
+                                    <li><a href="#">#Soupe</a></li>
+                                    <li><a href="#">#Pizza</a></li>
+                                    <li><a href="#">#Salade</a></li>
+                                </ul>                            
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Top Categories -->
-     
+
         <!-- End Top Categories -->
     </div><!--/container-->     
     <!--=== End Content ===-->
@@ -146,9 +121,9 @@
                 <div class="grid-block-v2-info rounded-bottom">
                     <h3><a href="#">Yaourt</a></h3>
                     <ul class="list-inline margin-bottom-5">
-                                <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
-                            </ul>
+                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                    </ul>
                     <p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
                     <ul class="list-inline star-vote">
                         <li><i class="color-green fa fa-star"></i></li>
@@ -167,9 +142,9 @@
                 <div class="grid-block-v2-info rounded-bottom">
                     <h3><a href="#">Test</a></h3>
                     <ul class="list-inline margin-bottom-5">
-                                <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
-                            </ul>
+                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                    </ul>
                     <p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
                     <ul class="list-inline star-vote">
                         <li><i class="color-green fa fa-star"></i></li>
@@ -188,9 +163,9 @@
                 <div class="grid-block-v2-info rounded-bottom">
                     <h3><a href="#">Lasagne</a></h3>
                     <ul class="list-inline margin-bottom-5">
-                                <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
-                            </ul>
+                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                    </ul>
                     <p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
                     <ul class="list-inline star-vote">
                         <li><i class="color-green fa fa-star"></i></li>
@@ -206,91 +181,68 @@
 
     <!--=== Footer ==-->
 
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">                     
-                        <p>
-                            2014 &copy; All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                        </p>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="col-md-6">
-                        <ul class="footer-socials list-inline">
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                                    <i class="fa fa-skype"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Social Links -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">                     
+                    <p>
+                        2014 &copy; All Rights Reserved.
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                    </p>
                 </div>
-            </div> 
-        </div><!--/copyright-->
-    </div>     
-    <!--=== End Footer Version 1 ===-->
+
+                <!-- Social Links -->
+                <div class="col-md-6">
+                    <ul class="footer-socials list-inline">
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                                <i class="fa fa-skype"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                                <i class="fa fa-dribbble"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Social Links -->
+            </div>
+        </div> 
+    </div><!--/copyright-->
+</div>     
+<!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapepr-->
 
-<!-- JS Global Compulsory -->           
-<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-<!-- JS Implementing Plugins -->
-<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
-<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-<!-- JS Customization -->
-<script type="text/javascript" src="assets/js/custom.js"></script>
-<!-- JS Page Level -->           
-<script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();
-        App.initCounter();
-        App.initParallaxBg();
-        OwlCarousel.initOwlCarousel();              
-    });
-</script>
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>    
-<![endif]-->
+    <![endif]-->
 
 </body>
 </html> 
