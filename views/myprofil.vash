@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Unify | Welcome...</title>
+    @html.include('shared/head', model)
+    <!--ICI FICHIER JS PERSO-->
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+</head>
+<body>
+
+ <script>
+ var desc1 = "@model.desc";
+ </script>
+ <div class="wrapper">
+    <div class="header">
+     @html.include('shared/layout', model)
+ </div>
+ <div class="profile">    
+    <div class="container content">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div class="col-md-3 md-margin-bottom-40">
+                <img class="img-responsive profile-img margin-bottom-20" src="assets/img/team/5.jpg" alt="">
+
+                <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                    <li class="list-group-item">
+                        <a href="profile.html"><i class="fa fa-bar-chart-o"></i> Overall</a>
+                    </li>
+                    <li class="list-group-item active">
+                        <a href="profile_me.html"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="profile_users.html"><i class="fa fa-group"></i> Users</a>
+                    </li>                                        
+                    <li class="list-group-item">
+                        <a href="profile_projects.html"><i class="fa fa-cubes"></i> My Projects</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="profile_comments.html"><i class="fa fa-comments"></i> Comments</a>
+                    </li>                                        
+                    <li class="list-group-item">
+                        <a href="profile_history.html"><i class="fa fa-history"></i> History</a>
+                    </li>                                       
+                    <li class="list-group-item">
+                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Settings</a>
+                    </li> 
+                </ul>   
+            </div>
+            <!--End Left Sidebar-->
+
+
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <div class="profile-bio">
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img class="img-responsive md-margin-bottom-10" src="imgProfil/@model.imageSrc" alt="" style ="width: 308px;height: 256px;">
+
+                                <div class="fileUpload btn btn-primary">
+                                    
+                                    <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <span>Remplacer</span>
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
+                                     <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
+                                 </form>
+                             </div>
+                         </div>
+                         <div class="col-md-7">
+                            <h2>@model.nom @model.prenom</h2>
+                            <span><strong>Ville:</strong> Montreal</span>
+                            <hr>
+                            <div data-bind="visible: !descIsModif()">
+                                <p data-bind="text:desc"></p>
+                                
+                            </div>
+                            <div data-bind="visible: descIsModif">
+                               <form class="sky-form">
+                                  <fieldset style="padding:0px">
+                                    <section>
+                                        <label class="textarea textarea-resizable">
+                                            <textarea rows="3" data-bind="value:descTemp"></textarea>
+                                        </label>
+                                    </section>
+                                </fieldset>
+
+                            </form> </div>
+                            <button class="btn-u" data-bind="visible:!descIsModif(),click:descModif">Modifié</button>
+                            <button class="btn-u" data-bind="visible:descIsModif,click:descEnreg">Enregistrer</button>
+
+
+
+                        </div>
+                    </div>    
+                </div><!--/end row-->
+
+                <div class="row">
+                    <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
+                        <h1>Plat en vedette</h1>
+                        <ul class="row grid-block-v2">        
+                            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/mockup/img1.jpg" alt="">
+                                    <div class="easy-block-v1-badge rgba-red" style="">10$ </div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Yaourt</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                                    </ul>
+                                    <p >Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
+                                </div>
+                            </li>
+                            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/mockup/img2.jpg" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Plat  Principale</div>                    
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Test</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="row grid-block-v2">        
+
+
+                            <li class="col-md-4 col-sm-12">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Ici pour rajouter</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modal Sample</button>
+
+                                </div>
+                            </li>
+                            <li class="col-md-4 col-sm-12">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/mockup/img4.jpg" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Dessert - Pattiserie</div>
+                                </div>  
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Ici pour ajouter un plat</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
+                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
+                                    </ul>
+                                    <p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!--Social Icons v3-->
+                    <div class="panel panel-profile">
+                        <div class="panel-heading   -h">
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Users Comments</h2>
+                            <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                        </div>
+                        <div class="panel-body margin-bottom-50">
+                            <div class="media media-v2">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <strong><a href="#">Eva Nelson</a></strong> EvaNelson
+                                        <small>About an hour ago</small>
+                                    </h4>
+                                    <ul class="list-inline star-vote" style="margin-left:5px">
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li> 
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star-half-o"></i></li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
+                                    <ul class="list-inline results-list pull-left">
+                                        <li><a href="#">25 Likes</a></li>
+                                        <li><a href="#">10 Share</a></li>
+                                    </ul>    
+                                    <ul class="list-inline pull-right">
+                                        <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                        <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><!--/end media media v2--> 
+                            <div class="media media-v2 margin-bottom-20">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object rounded-x" src="assets/img/testimonials/img3.jpg" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <strong><a href="#">Frank Lennon</a></strong> FLennon 
+                                        <small>4 hours ago</small>
+                                    </h4>
+                                    <ul class="list-inline star-vote" style="margin-left:5px">
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li> 
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star-half-o"></i></li>
+                                    </ul>
+                                    <p>I'm incredibly excited to announce that I am joining the amazing <a href="#">Unify</a> team. To be in touch with the latest update, Sign up and get your own Account page fee free :) Like mine: <a href="#">http://www.unify.com/flennon</a></p>
+                                    <ul class="list-inline results-list pull-left">
+                                        <li><a href="#">5 Likes</a></li>
+                                        <li><a href="#">1 Share</a></li>
+                                    </ul>
+                                    <ul class="list-inline pull-right">
+                                        <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                        <li><a href="   #"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                    </ul>
+
+                                    <div class="clearfix"></div>
+
+
+                                </div>    
+                            </div><!--/end media media v2-->
+                            <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
+                        </div>
+                    </div>
+                    <!--End Social Icons v3-->
+
+                    <!--Skills-->
+
+                    <!--End Skills-->            
+                </div><!--/end row-->    
+
+
+            </div>
+            <!--End Profile Body-->
+        </div>
+    </div><!--/end row-->
+</div><!--/container-->    
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Ajout d'un plat</h4>
+            </div>
+            <div class="modal-body">
+                <form class="sky-form">
+                  <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="label">Nom du plat</label>
+                            <label class="input">
+                                <input type="text" data-bind="value:newName" >
+                            </label>
+                        </section>  
+                        <section class="col col-4">
+                            <label class="label">Prix pour une part</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-tag"></i>
+                                <input type="text" name="subject" id="subject" data-bind="value:newPrice">
+                            </label>
+                        </section>
+                    </div>
+
+
+                    <section>
+                        <label class="label">Image</label>
+                        <label for="file" class="input input-file">
+                            <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly="">
+                        </label>
+                    </section>                  
+                    <section>
+                        <label class="label">Categorie</label>
+                        <label class="select">
+                            <select>
+                                <option value="0">Entre</option>
+                                <option value="1">Plat</option>
+                                <option value="2">Dessert</option>
+                                <option value="3">Autre</option>
+                            </select>
+                            <i></i>
+                        </label>
+                    </section>
+                    <section>
+                        <label class="label">Textarea resizable</label>
+                        <label class="textarea textarea-resizable">
+                            <textarea rows="3"></textarea>
+                        </label>
+                    </section>
+
+                </fieldset>
+                <form>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Close</button>
+                    <button class="btn-u" type="button">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Reg Block-->
+</div>
+<!--=== End Search Block ===-->
+
+<!--=== Content ===-->
+
+<!-- Top Categories -->
+
+<!-- End Top Categories -->
+</div><!--/container-->     
+<!--=== End Content ===-->
+
+<!--=== Container Part ===-->
+
+<!--=== Container Part ===-->
+
+<!--=== Container Part ===-->
+
+
+<!--=== Footer Version 1 ===-->
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">                     
+                <p>
+                    2014 &copy; All Rights Reserved.
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                </p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="col-md-6">
+                <ul class="footer-socials list-inline">
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                            <i class="fa fa-skype"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Social Links -->
+        </div>
+    </div> 
+</div><!--/copyright-->
+</div>     
+<!--=== End Footer Version 1 ===-->
+</div><!--/End Wrapepr-->
+
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  var test = "@model.nom";
+});
+</script>
+<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>    
+    <![endif]-->
+
+</body>
+</html> 
+<style>
+.fileUpload {
+    position: absolute;
+    overflow: hidden;
+    background: #e74c3c;
+    border: 0px;
+    margin: 10px;
+    top: 200px;
+    left: 120px;
+}
+.fileUpload:hover {
+    background: #c0392b;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    background-color: #e74c3c;
+    filter: alpha(opacity=0);
+}
+</style>

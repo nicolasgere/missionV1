@@ -1,0 +1,111 @@
+script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
+
+h1 Modifier/Suprimer un professionnel
+div
+      a(href="",onclick='suprimer()') Supprimer 
+      br
+      br
+      label(for='specialite') specialite:&nbsp;
+      input(type="text", id="specialite")
+      br
+      label(for='nom') nom:&nbsp;
+      input(type="text", id="nom")
+      br
+      label(for='prenom') prenom:&nbsp;
+      input(type="text", id="prenom")
+      br
+      label(for='sexe') sexe:&nbsp;
+      <label><input type="radio" name="sexe" value="1" id="Homme">Homme</label>
+      <label><input type="radio" name="sexe" value="2" id="Femme">Femme</label>
+              
+            
+script.
+  var ajouter = function (data){
+  $("#nom").val(data.nom);
+  $("#prenom").val(data.prenom);
+  $("#specialite").val(data.specialite);
+  var $radios = $('input:radio[name=sexe]');
+  $radios.filter('[value='+data.sexe+']').prop('checked', true);
+  }
+
+  var modifier = function(data){
+  var specialite = $("#specialite").val();
+  var nom = $("#nom").val();
+  var prenom = $("#prenom").val();
+  var sexe = $("input:radio[name ='sexe']:checked").val();  
+  $.ajax({
+   dataType:"json",
+   type: "PUT",
+   url: "/pros/" + "#{id}",
+   data: {'specialite':specialite, 'nom':nom,'prenom':prenom,'sexe':sexe},
+   statusCode: {
+    400: function() {
+      alert('Erreur format de donnée');
+    },
+    500: function() {
+      alert('Erreur serveur');
+    },
+    200: function(data) {
+      alert("Ressource modifié");
+     }
+   }
+   });
+  }
+  var suprimer = function(data){
+  var r = confirm("Voulez vous le supprimer?");
+  if (r == true) {
+     $.ajax({	
+   dataType:"json",
+   type: "DELETE",
+   url: "/pros/" + "#{id}",
+    statusCode: {
+    400: function() {
+      alert('Id non valable');
+    },
+    500: function() {
+      alert('Erreur serveur');
+    },
+    200: function(data) {
+     
+      location.href = '/';
+    }
+   }
+   });
+   }
+  }
+  
+  $( "#specialite" ).change(function() {
+  modifier(); 
+  });
+  $( "#nom" ).change(function() {
+  modifier(); 
+  });
+  $( "#prenom" ).change(function() {
+  modifier(); 
+  });
+  $( "#sexe" ).change(function() {
+  modifier(); 
+  });
+  $('input[type=radio]').change(function() {
+    modifier();
+    });
+  $.ajax({
+   dataType:"json",
+   type: "GET",
+   url: "/pros/" + "#{id}",
+   statusCode: {
+    400: function() {
+      alert('Erreur format de donnée');
+    },
+    500: function() {
+      alert('Erreur serveur');
+    },
+    200: function(data) {
+      ajouter(data);
+    }
+   }
+  });
+
+
+  
+ 
