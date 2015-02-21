@@ -20,7 +20,7 @@
  <div class="profile">    
     <div class="container content">
         <div class="row">
-            <!--Left Sidebar-->
+            <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
                 <img class="img-responsive profile-img margin-bottom-20" src="assets/img/team/5.jpg" alt="">
 
@@ -48,20 +48,18 @@
                     </li> 
                 </ul>   
             </div>
-            <!--End Left Sidebar-->
+            <!--End Left MENU-->
 
 
             <div class="col-md-9">
                 <!--Profile Body-->
                 <div class="profile-body">
                     <div class="profile-bio">
-
                         <div class="row">
                             <div class="col-md-5">
                                 <img class="img-responsive md-margin-bottom-10" src="imgProfil/@model.imageSrc" alt="" style ="width: 308px;height: 256px;">
 
                                 <div class="fileUpload btn btn-primary">
-                                    
                                     <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
                                      <span>Remplacer</span>
                                      <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
@@ -95,45 +93,14 @@
 
                         </div>
                     </div>    
-                </div><!--/end row-->
-
+                </div>
+          
+                <!-- MENU-->
                 <div class="row">
                     <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
                         <h1>Plat en vedette</h1>
                         <ul class="row grid-block-v2">        
-                            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/mockup/img1.jpg" alt="">
-                                    <div class="easy-block-v1-badge rgba-red" style="">10$ </div>
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Yaourt</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
-                                    </ul>
-                                    <p >Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
-                                </div>
-                            </li>
-                            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/mockup/img2.jpg" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Plat  Principale</div>                    
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Test</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="row grid-block-v2">        
-
-
-                            <li class="col-md-4 col-sm-12">
+                            <li class="col-md-4 col-sm-12"  data-bind="visible:!meal1()">
                                 <div class="easy-block-v1">
                                     <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
                                     <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
@@ -142,28 +109,122 @@
                                     <h3><a href="#">Ici pour rajouter</a></h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
-                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modal Sample</button>
+                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(1)" data-target="#myModal">Ajouter</button>
+
 
                                 </div>
                             </li>
-                            <li class="col-md-4 col-sm-12">
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal1,with:meal1">
                                 <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/mockup/img4.jpg" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Dessert - Pattiserie</div>
-                                </div>  
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                                </div>
                                 <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Ici pour ajouter un plat</a></h3>
+                                    <h3 data-bind="text:name"></h3>
                                     <ul class="list-inline margin-bottom-5">
-                                        <li>By <a class="color-green" href="#">Edward Rooster</a></li>
-                                        <li><i class="fa fa-clock-o"></i> Jan 02, 2013</li>
                                     </ul>
-                                    <p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
+                                    <p data-bind="text:description"></p>
+                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
+                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
+
                                 </div>
                             </li>
+                         <li class="col-md-4 col-sm-12"  data-bind="visible:!meal2()">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Ici pour rajouter</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(2)" data-target="#myModal">Ajouter</button>
+
+                                </div>
+                            </li>
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal2,with:meal2">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
+                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
+
+
+                                </div>
+                            </li>
+                             
+                        </ul>
+                        <ul class="row grid-block-v2" data-bind="visible:meal2()&&meal1()">        
+                            <li class="col-md-4 col-sm-12"  data-bind="visible:!meal3()">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Ici pour rajouter</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(3)" data-target="#myModal">Ajouter</button>
+
+                                </div>
+                            </li>
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal3,with:meal3">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
+                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
+
+
+                                </div>
+                            </li>
+                         <li class="col-md-4 col-sm-12"  data-bind="visible:!meal4()">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3><a href="#">Ici pour rajouter</a></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(4)" data-target="#myModal">Ajouter</button>
+
+                                </div>
+                            </li>
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                                </div>
+                                <div class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
+                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
+
+
+                                </div>
+                            </li>
+                             
                         </ul>
                     </div>
                 </div>
 
+                <!-- COMMENT-->
                 <div class="row">
                     <!--Social Icons v3-->
                     <div class="panel panel-profile">
@@ -240,15 +301,14 @@
                     <!--Skills-->
 
                     <!--End Skills-->            
-                </div><!--/end row-->    
-
-
+                </div>
             </div>
-            <!--End Profile Body-->
+           
         </div>
-    </div><!--/end row-->
-</div><!--/container-->    
+    </div>
+</div>   
 </div>
+                <!-- MODAL-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -257,7 +317,7 @@
                 <h4 id="myModalLabel" class="modal-title">Ajout d'un plat</h4>
             </div>
             <div class="modal-body">
-                <form class="sky-form">
+                <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
                   <fieldset>
                     <div class="row">
                         <section class="col col-6">
@@ -274,39 +334,45 @@
                             </label>
                         </section>
                     </div>
-
-
-                    <section>
-                        <label class="label">Image</label>
-                        <label for="file" class="input input-file">
-                            <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly="">
-                        </label>
-                    </section>                  
+                 
                     <section>
                         <label class="label">Categorie</label>
                         <label class="select">
-                            <select>
-                                <option value="0">Entre</option>
-                                <option value="1">Plat</option>
-                                <option value="2">Dessert</option>
-                                <option value="3">Autre</option>
-                            </select>
+                             <select data-bind="options: availableCat,
+                       value: newCategory,
+                       optionsCaption: 'Choose...'"></select>
                             <i></i>
                         </label>
                     </section>
+
                     <section>
-                        <label class="label">Textarea resizable</label>
-                        <label class="textarea textarea-resizable">
-                            <textarea rows="3"></textarea>
+                        <label class="label">Description</label>
+                        <label class="textarea textarea-resizable" >
+                            <textarea rows="3" data-bind="value: newDescription"></textarea>
                         </label>
                     </section>
-
-                </fieldset>
-                <form>
+                        </fieldset>
+                </form>
+                 <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" >
+                  <fieldset>
+                      <section>
+                        <label class="label">Image</label>
+                        <label for="file" class="input input-file">
+                           <form id="imgForm2" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <div class="button">
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:newImage">Browse</div>
+                                     <input type="submit" data-bind="value:newImage" name="submit">
+                                 </form>      
+                        </label>
+                    </section>              
+                       </fieldset>
+                  </form>
+               
+                   
                 </div>
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Close</button>
-                    <button class="btn-u" type="button">Save changes</button>
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annulé</button>
+                    <button class="btn-u" type="button" data-bind="click:createMeal">Créer</button>
                 </div>
             </div>
         </div>
@@ -314,93 +380,10 @@
 
     <!--End Reg Block-->
 </div>
-<!--=== End Search Block ===-->
-
-<!--=== Content ===-->
-
-<!-- Top Categories -->
-
-<!-- End Top Categories -->
 </div><!--/container-->     
-<!--=== End Content ===-->
-
-<!--=== Container Part ===-->
-
-<!--=== Container Part ===-->
-
-<!--=== Container Part ===-->
-
-
-<!--=== Footer Version 1 ===-->
-
-<div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">                     
-                <p>
-                    2014 &copy; All Rights Reserved.
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                </p>
-            </div>
-
-            <!-- Social Links -->
-            <div class="col-md-6">
-                <ul class="footer-socials list-inline">
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                            <i class="fa fa-skype"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                            <i class="fa fa-pinterest"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                            <i class="fa fa-dribbble"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- End Social Links -->
-        </div>
-    </div> 
-</div><!--/copyright-->
+     @html.include('shared/foot', model)
 </div>     
-<!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapepr-->
-
-
-<script type="text/javascript">
-jQuery(document).ready(function() {
-  var test = "@model.nom";
-});
-</script>
-<!--[if lt IE 9]>
-    <script src="assets/plugins/respond.js"></script>
-    <script src="assets/plugins/html5shiv.js"></script>    
-    <![endif]-->
 
 </body>
 </html> 
@@ -414,8 +397,32 @@ jQuery(document).ready(function() {
     top: 200px;
     left: 120px;
 }
+.fileUpload2 {
+    position: absolute;
+    overflow: hidden;
+    background: #e74c3c;
+    border: 0px;
+    margin: 10px;
+    top: 550px;
+    left: 165px;
+}
 .fileUpload:hover {
     background: #c0392b;
+}
+.fileUpload2:hover {
+    background: #c0392b;
+}
+.fileUpload2 input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    background-color: #e74c3c;
+    filter: alpha(opacity=0);
 }
 
 .fileUpload input.upload {

@@ -26,7 +26,7 @@
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster">
     <link rel="stylesheet" href="assets/css/style.css">
 
 
@@ -48,4 +48,4 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>

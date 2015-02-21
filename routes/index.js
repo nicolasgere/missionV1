@@ -4,12 +4,13 @@ var express = require('express');
    var MongoClient = require('mongodb').MongoClient;
    var mongo = require('mongodb');
    var BSON = mongo.BSONPure;
-   var db = require('./db.js');
    var Validator = require('jsonschema').Validator;
    var v = new Validator();
    var Mongolian = require("mongolian");
    var db = new Mongolian("mongodb://nicolasgere:090790tfc@ds062097.mongolab.com:62097/allochef");
    var users = db.collection("users");
+   var meals = db.collection("meals");
+
 
 function isConnect (req,res, next){
  	if(req.session.connect ==true){
@@ -130,7 +131,6 @@ router.post('/signup',function(req,res){
 router.get('/myprofil', isConnect,function(req,res){
   console.log(req.session.UserId);
   users.findOne({UserId:req.session.UserId},function(err,rep){
-         console.log(rep);
     res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc});
   })
  }); 
@@ -151,6 +151,61 @@ router.post('/updateDesc', function(req, res){
    res.send("ok");
   });});
 
+
+router.post('/createMeal', function(req, res){
+  var data = req.body;
+   var Id = guid();
+  data.UserId = req.session.UserId;
+  data.MealId = Id;
+    meals.insert(data, function(err,rep) {
+    if(err) {
+        console.log(err);
+      res.status(500);
+    } else {
+      if(!rep)
+      {
+        res.status(204);
+      }
+      else
+      {
+        res.send("ok");
+
+      }
+    }
+  });
+  });
+
+router.post('/loadImage', function(req, res){
+   res.send(req.files.fileToUpload.name);
+
+});
+
+/**meal**/
+router.get('/getMeal', isConnect,function(req,res){
+  console.log(req.session.UserId);
+  meals.find({UserId:req.session.UserId}).toArray(function (err, array) {
+    console.log(array);
+    res.send(array);
+  })
+ }); 
+router.post('/deleteMeal', function(req,res){
+  console.log(req.body.id);
+  meals.remove({MealId:req.body.id, UserId:req.session.UserId} , function(err,rep) {
+    if(err) {
+      res.status(500);
+    } else {
+      if(!rep)
+      {
+        console.log("PAS BON LOG");
+        res.status(204);
+      }
+      else
+      {
+       res.send("ok");
+      }
+    }
+  });
+ });
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){
   res.render('blankpage',{});
