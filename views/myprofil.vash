@@ -7,7 +7,7 @@
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
     <script type="text/javascript" src="/customJs/myprofil.js"></script>
-    <script src="//yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+    <script src="assets/js/yui-min.js"></script>
 
 <script src="/assets/js/cropbox-min.js"></script>
 <script type="text/javascript">
