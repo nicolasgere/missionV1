@@ -3,7 +3,8 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Unify | Welcome...</title>
+    <title> AlloChef | Welcome...</title>
+    <link rel="shortcut icon" href="/imgIll/favicon.ico"/>
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
     <script type="text/javascript" src="/customJs/mysettings.js"></script>
@@ -176,10 +177,10 @@ YUI.add('crop-box', function (Y) {
                     Remplacer</button>
                              <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                                 <li class="list-group-item active">
-                                    <a href="profile_me.html"><i class="fa fa-user"></i> Mon Profile</a>
+                                    <a href="mysettings"><i class="fa fa-user"></i> Mon Profile</a>
                                 </li>
                                 <li class="list-group-item ">
-                                    <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
+                                    <a href="myprofil"><i class="fa fa-cubes"></i> Mes plats</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
@@ -192,13 +193,12 @@ YUI.add('crop-box', function (Y) {
                         <!--End Left MENU-->
 
 
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="margin-bottom:210px">
                             <div class="profile-body margin-bottom-20">
                         <div class="tab-v1">
                             <ul class="nav nav-justified nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#profile">Edit Profile</a></li>
                                 <li><a data-toggle="tab" href="#passwordTab">Change Password</a></li>
-                                <li><a data-toggle="tab" href="#payment">Payment Options</a></li>
                                 <li><a data-toggle="tab" href="#settings">Notification Settings</a></li>
                             </ul>          
                             <div class="tab-content">
@@ -234,7 +234,7 @@ YUI.add('crop-box', function (Y) {
                                         <dd>
                                               <span data-bind="text:desc, visible:editDesc">
                                             </span>
-                                            <textarea rows="3" data-bind="value:desc,visible:!editDesc()"></textarea>
+                                            <textarea style="width: 95%;" rows="3" data-bind="value:desc,visible:!editDesc()"></textarea>
                                             <span>
                                                 <a class="pull-right" href="#" data-bind="click:changeDesc">
                                                     <i class="fa fa-pencil"></i>
@@ -294,16 +294,6 @@ YUI.add('crop-box', function (Y) {
                                     <br>
                                     <form class="sky-form" id="sky-form4" action="" novalidate="novalidate">
                                         <dl class="dl-horizontal">
-                                            <dt>Username</dt>
-                                            <dd>
-                                                <section>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" placeholder="Username" name="username">
-                                                        <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
-                                                    </label>
-                                                </section>
-                                            </dd>
                                             <dt>Email address</dt>
                                             <dd>
                                                 <section>
@@ -342,73 +332,6 @@ YUI.add('crop-box', function (Y) {
                                         </section>
                                         <button type="button" class="btn-u btn-u-default">Cancel</button>
                                         <button class="btn-u" type="submit">Save Changes</button>
-                                    </form>    
-                                </div>
-
-                                <div id="payment" class="profile-edit tab-pane fade">
-                                    <h2 class="heading-md">Manage your Payment Settings</h2>
-                                    <p>Below are the payment options for your account.</p>
-                                    <br>
-                                    <form class="sky-form" id="sky-form" action="" novalidate="novalidate">
-                                        <!--Checkout-Form-->
-                                        <section>
-                                            <div class="inline-group">
-                                                <label class="radio"><input type="radio" checked="" name="radio-inline"><i class="rounded-x"></i>Visa</label>
-                                                <label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
-                                                <label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>PayPal</label>
-                                            </div>
-                                        </section>                  
-
-                                        <section>
-                                            <label class="input">
-                                                <input type="text" name="name" placeholder="Name on card">
-                                            </label>
-                                        </section>
-                                        
-                                        <div class="row">
-                                            <section class="col col-10">
-                                                <label class="input">
-                                                    <input type="text" name="card" id="card" placeholder="Card number">
-                                                </label>
-                                            </section>
-                                            <section class="col col-2">
-                                                <label class="input">
-                                                    <input type="text" name="cvv" id="cvv" placeholder="CVV2">
-                                                </label>
-                                            </section>
-                                        </div>                                        
-                                        
-                                        <div class="row">
-                                            <label class="label col col-4">Expiration date</label>
-                                            <section class="col col-5">
-                                                <label class="select">
-                                                    <select name="month">
-                                                        <option disabled="" selected="" value="0">Month</option>
-                                                        <option value="1">January</option>
-                                                        <option value="1">February</option>
-                                                        <option value="3">March</option>
-                                                        <option value="4">April</option>
-                                                        <option value="5">May</option>
-                                                        <option value="6">June</option>
-                                                        <option value="7">July</option>
-                                                        <option value="8">August</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">October</option>
-                                                        <option value="11">November</option>
-                                                        <option value="12">December</option>
-                                                    </select>
-                                                    <i></i>
-                                                </label>
-                                            </section>
-                                            <section class="col col-3">
-                                                <label class="input">
-                                                    <input type="text" placeholder="Year" id="year" name="year">
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <button type="button" class="btn-u btn-u-default">Cancel</button>
-                                        <button class="btn-u" type="submit">Save Changes</button>
-                                        <!--End Checkout-Form-->
                                     </form>    
                                 </div>
 

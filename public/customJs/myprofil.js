@@ -118,7 +118,9 @@ $.ajax( {
 	type: 'POST',
 	data:dataM,
 	success: function(data){
-		dataM.img=data;
+		dataM.img=data.img;
+		dataM.MealId=data.mealId;
+
 		self.cible(new meal(dataM));
 		self.newPrice("");
 		self.newCategory(null);

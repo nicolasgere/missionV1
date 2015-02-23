@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Unify | Welcome...</title>
+    <title>Allochef | Mes plats...</title>
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
     <script type="text/javascript" src="/customJs/myprofil.js"></script>
@@ -119,10 +119,11 @@ YUI.add('crop-box', function (Y) {
                     sh = parseInt(this.image.height);
                     sw = parseInt(this.image.width);
 
+                console.log(dw);
                 canvas.width = width;
                 canvas.height = height;
                 var context = canvas.getContext("2d");
-                context.drawImage(this.image, 0, 0, sw, sh, dx, dy, dw, dh);
+                context.drawImage(this.image, 0, 0, sw, sh, dx-4, dy+28, dw , dh);
                 var imageData = canvas.toDataURL('image/jpeg');
 
                 return imageData;
@@ -163,7 +164,6 @@ YUI.add('crop-box', function (Y) {
 
             <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
-                        <h1>Mon profil</h1>
 
                    <img class="img-responsive profile-img margin-bottom-20" src="imgProfil/@model.imageSrc" alt=""  >
 <!--
@@ -176,7 +176,7 @@ YUI.add('crop-box', function (Y) {
                              </div>-->
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                     <li class="list-group-item">
-                        <a href="profile_me.html"><i class="fa fa-user"></i> Mon Profile</a>
+                        <a href="mysettings"><i class="fa fa-user"></i> Mon Profile</a>
                     </li>
                     <li class="list-group-item active">
                         <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
@@ -193,7 +193,41 @@ YUI.add('crop-box', function (Y) {
 
 
             <div class="col-md-9">
-                <div class="row">
+                <div class="row" data-bind="visible:!meal1()">
+                    <div class="one-page-inner one-default">
+            <div class="container content">
+                <div class="row"  style="margin-bottom:80px">
+                    <div class="col-md-4">
+                        <h1>Vous aussi, partager votre cuisine</h1>                        
+                        <p>Vous voulez vous aussi faire partager votre cuisine au gens, que vous soyez le maitre de la pizza au saumon ou que le potage au 
+                            légume a aucun secret pour vous. Cela vous permettra egalement d'arrondir vos fins de mois tout en pratiquant une des vos activite favorie, la cuisine</p>
+                
+                        <a class="btn-u one-page-btn" data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-cutlery"></i>&nbsp;Créer mon premier plat</a>
+                    </div>
+                    <div class="col-md-4">
+                         <ul class="row grid-block-v2">        
+                            <li class="col-md-12 col-sm-12" >
+                             <div class="easy-block-v1">
+                                    <img class="img-responsive" src="/imgPlat/03de02e5-d264-141b-6de8-e63499497341.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">Exemple</div>
+                                </div>
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                    <h3>Lasagne au boeuf</h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p>Add another quarter of the meat mixture and top with 150 ml (2/3 cup) cheese. Cover with a layer of noodles. Cover with the vegetables and 150 ml (2/3 cup) cheese. Cover with a layer of noodles. Add another 1/4 of the meat mixture and 150 ml (2/3 cup cheese). Finish with a layer of noodles and the remaining meat mixture and cheese</p>
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div class="row"  data-bind="visible:meal1">
                     <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
                         <h1>Mes plats <button style="margin-left:46%" class="btn-u btn-brd btn-brd-hover rounded-3x btn-u-red btn-u-xs" type="button"  data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-plus-square-o"></i> Ajouter</button></h1> 
                         <ul class="row grid-block-v2">        
