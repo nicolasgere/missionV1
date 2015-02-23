@@ -7,6 +7,146 @@
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
     <script type="text/javascript" src="/customJs/myprofil.js"></script>
+    <script src="//yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+
+<script src="/assets/js/cropbox-min.js"></script>
+<script type="text/javascript">
+
+YUI.add('crop-box', function (Y) {
+    Y.CropBox = Y.Base.create('crop-box', Y.Base, [],
+        {
+            initializer: function (options)
+            {
+                this.options = options;
+                this.state = {};
+                this.render();
+            },
+            render: function ()
+            {
+                var self = this;
+                this.imageBox = Y.one(this.options.imageBox);
+                this.thumbBox = this.imageBox.one(this.options.thumbBox);
+                this.spinner = this.imageBox.one(this.options.spinner);
+
+                this.initObject();
+                return this;
+            },
+            initObject: function()
+            {
+                var self = this;
+                this.spinner.show();
+
+                this.image = new Image();
+                this.image.onload = function() {
+                    self.spinner.hide();
+                    self.setBackground();
+
+                    //event handler
+                    self.imageBox.on('mousedown', self.imgMouseDown, self);
+                    self.imageBox.on('mousemove', self.imgMouseMove, self);
+                    self.mouseup = Y.one('body').on('mouseup', self.imgMouseUp, self);
+
+                    Y.UA.gecko > 0?
+                        self.imageBox.on('DOMMouseScroll', self.zoomImage, self):
+                        self.imageBox.on('mousewheel', self.zoomImage, self);
+                };
+                this.image.src = this.options.imgSrc;
+            },
+            setBackground: function()
+            {
+                if(!this.ratio) this.ratio = 1;
+
+                var w =  parseInt(this.image.width)*this.ratio;
+                var h =  parseInt(this.image.height)*this.ratio;
+
+                var pw = (this.imageBox.get('clientWidth') - w) / 2;
+                var ph = (this.imageBox.get('clientHeight') - h) / 2;
+
+                this.imageBox.setAttribute('style',
+                    'background-image: url(' + this.image.src + '); ' +
+                    'background-size: ' + w +'px ' + h + 'px; ' +
+                    'background-position: ' + pw + 'px ' + ph + 'px; ' +
+                    'background-repeat: no-repeat');
+            },
+            imgMouseDown: function(e)
+            {
+                e.stopImmediatePropagation();
+                this.state.dragable = true;
+                this.state.mouseX = e.clientX;
+                this.state.mouseY = e.clientY;
+            },
+            imgMouseMove: function(e)
+            {
+                e.stopImmediatePropagation();
+                if (this.state.dragable)
+                {
+                    var x = e.clientX - this.state.mouseX;
+                    var y = e.clientY - this.state.mouseY;
+
+                    var bg = this.imageBox.getStyle('backgroundPosition').split(' ');
+
+                    var bgX = x + parseInt(bg[0]);
+                    var bgY = y + parseInt(bg[1]);
+
+                    this.imageBox.setStyle('backgroundPosition', bgX +'px ' + bgY + 'px');
+
+                    this.state.mouseX = e.clientX;
+                    this.state.mouseY = e.clientY;
+                }
+            },
+            imgMouseUp: function(e)
+            {
+                e.stopImmediatePropagation();
+                this.state.dragable = false;
+            },
+            zoomImage: function(e)
+            {
+                e.wheelDelta > 0? this.ratio*=1.1 : this.ratio*=0.9;
+                this.setBackground();
+            },
+            getAvatar: function ()
+            {
+                var self = this,
+                    width = this.thumbBox.get('clientWidth'),
+                    height = this.thumbBox.get('clientHeight'),
+                    canvas = document.createElement("canvas"),
+                    dim = this.imageBox.getStyle('backgroundPosition').split(' '),
+                    size = this.imageBox.getStyle('backgroundSize').split(' '),
+                    dx = parseInt(dim[0]) - this.imageBox.get('clientWidth')/2 + width/2,
+                    dy = parseInt(dim[1]) - this.imageBox.get('clientHeight')/2 + height/2,
+                    dw = parseInt(size[0]);
+                    dh = parseInt(size[1]);
+                    sh = parseInt(this.image.height);
+                    sw = parseInt(this.image.width);
+
+                canvas.width = width;
+                canvas.height = height;
+                var context = canvas.getContext("2d");
+                context.drawImage(this.image, 0, 0, sw, sh, dx, dy, dw, dh);
+                var imageData = canvas.toDataURL('image/jpeg');
+
+                return imageData;
+            },
+            zoomIn: function ()
+            {
+                this.ratio*=1.1;
+                this.setBackground();
+            },
+            zoomOut: function ()
+            {
+                this.ratio*=0.9;
+                this.setBackground();
+            },
+            destructor: function ()
+            {
+                if (this.mouseup) this.mouseup.detach()
+            }
+        });
+}, '1.0',
+{
+    requires: [ 'node', 'base' ]
+});
+</script>
 </head>
 <body>
 
@@ -20,31 +160,32 @@
  <div class="profile">    
     <div class="container content">
         <div class="row">
+
             <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20" src="assets/img/team/5.jpg" alt="">
+                        <h1>Mon profil</h1>
 
+                   <img class="img-responsive profile-img margin-bottom-20" src="imgProfil/@model.imageSrc" alt=""  >
+<!--
+                                <div class="fileUpload btn btn-primary">
+                                    <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <span>Remplacer</span>
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
+                                     <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
+                                 </form>
+                             </div>-->
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                     <li class="list-group-item">
-                        <a href="profile.html"><i class="fa fa-bar-chart-o"></i> Overall</a>
+                        <a href="profile_me.html"><i class="fa fa-user"></i> Mon Profile</a>
                     </li>
                     <li class="list-group-item active">
-                        <a href="profile_me.html"><i class="fa fa-user"></i> Profile</a>
+                        <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="profile_users.html"><i class="fa fa-group"></i> Users</a>
+                        <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
                     </li>                                        
                     <li class="list-group-item">
-                        <a href="profile_projects.html"><i class="fa fa-cubes"></i> My Projects</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="profile_comments.html"><i class="fa fa-comments"></i> Comments</a>
-                    </li>                                        
-                    <li class="list-group-item">
-                        <a href="profile_history.html"><i class="fa fa-history"></i> History</a>
-                    </li>                                       
-                    <li class="list-group-item">
-                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Settings</a>
+                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglage</a>
                     </li> 
                 </ul>   
             </div>
@@ -52,171 +193,71 @@
 
 
             <div class="col-md-9">
-                <!--Profile Body-->
-                <div class="profile-body">
-                    <div class="profile-bio">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <img class="img-responsive md-margin-bottom-10" src="imgProfil/@model.imageSrc" alt="" style ="width: 308px;height: 256px;">
-
-                                <div class="fileUpload btn btn-primary">
-                                    <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
-                                     <span>Remplacer</span>
-                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
-                                     <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
-                                 </form>
-                             </div>
-                         </div>
-                         <div class="col-md-7">
-                            <h2>@model.nom @model.prenom</h2>
-                            <span><strong>Ville:</strong> Montreal</span>
-                            <hr>
-                            <div data-bind="visible: !descIsModif()">
-                                <p data-bind="text:desc"></p>
-                                
-                            </div>
-                            <div data-bind="visible: descIsModif">
-                               <form class="sky-form">
-                                  <fieldset style="padding:0px">
-                                    <section>
-                                        <label class="textarea textarea-resizable">
-                                            <textarea rows="3" data-bind="value:descTemp"></textarea>
-                                        </label>
-                                    </section>
-                                </fieldset>
-
-                            </form> </div>
-                            <button class="btn-u" data-bind="visible:!descIsModif(),click:descModif">Modifié</button>
-                            <button class="btn-u" data-bind="visible:descIsModif,click:descEnreg">Enregistrer</button>
-
-
-
-                        </div>
-                    </div>    
-                </div>
-          
-                <!-- MENU-->
                 <div class="row">
                     <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
-                        <h1>Plat en vedette</h1>
+                        <h1>Mes plats <button style="margin-left:46%" class="btn-u btn-brd btn-brd-hover rounded-3x btn-u-red btn-u-xs" type="button"  data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-plus-square-o"></i> Ajouter</button></h1> 
                         <ul class="row grid-block-v2">        
-                            <li class="col-md-4 col-sm-12"  data-bind="visible:!meal1()">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Ici pour rajouter</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                    </ul>
-                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(1)" data-target="#myModal">Ajouter</button>
-
-
-                                </div>
-                            </li>
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal1,with:meal1">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
-                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                             <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
-                                <div class="grid-block-v2-info rounded-bottom">
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
                                     <h3 data-bind="text:name"></h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
                                     <p data-bind="text:description"></p>
-                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
-                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
-
-                                </div>
-                            </li>
-                         <li class="col-md-4 col-sm-12"  data-bind="visible:!meal2()">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Ici pour rajouter</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                    </ul>
-                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(2)" data-target="#myModal">Ajouter</button>
-
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal2,with:meal2">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
-                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                               <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
-                                <div class="grid-block-v2-info rounded-bottom">
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
                                     <h3 data-bind="text:name"></h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
                                     <p data-bind="text:description"></p>
-                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
-                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
-
-
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
                                 </div>
                             </li>
                              
                         </ul>
                         <ul class="row grid-block-v2" data-bind="visible:meal2()&&meal1()">        
-                            <li class="col-md-4 col-sm-12"  data-bind="visible:!meal3()">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Ici pour rajouter</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                    </ul>
-                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(3)" data-target="#myModal">Ajouter</button>
-
-                                </div>
-                            </li>
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal3,with:meal3">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
-                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
+                                  <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
-                                <div class="grid-block-v2-info rounded-bottom">
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
                                     <h3 data-bind="text:name"></h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
                                     <p data-bind="text:description"></p>
-                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
-                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
-
-
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
                                 </div>
                             </li>
-                         <li class="col-md-4 col-sm-12"  data-bind="visible:!meal4()">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" src="assets/img/blog/30.jpg" style="height: 240px;" alt="">
-                                    <div class="easy-block-v1-badge rgba-red">Pas de plat</div>
+                                <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
+                               <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
-                                <div class="grid-block-v2-info rounded-bottom">
-                                    <h3><a href="#">Ici pour rajouter</a></h3>
-                                    <ul class="list-inline margin-bottom-5">
-                                    </ul>
-                                    <button class="btn-u" data-toggle="modal" data-bind="click:changeCible(4)" data-target="#myModal">Ajouter</button>
-
-                                </div>
-                            </li>
-                            <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
-                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgProfil/'+ realImage()}">
-                                    <div class="easy-block-v1-badge rgba-red"data-bind="text:category()+ ' - ' + price()+'$'"></div>
-                                </div>
-                                <div class="grid-block-v2-info rounded-bottom">
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
                                     <h3 data-bind="text:name"></h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
                                     <p data-bind="text:description"></p>
-                                    <button class="btn-u" data-toggle="modal" data-target="#myModal">Modifier</button>
-                                    <button class="btn-u btn-u-default" data-bind="click:supprimer" type="button">Supprimer</button>
-
-
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
                                 </div>
                             </li>
                              
@@ -225,77 +266,7 @@
                 </div>
 
                 <!-- COMMENT-->
-                <div class="row">
-                    <!--Social Icons v3-->
-                    <div class="panel panel-profile">
-                        <div class="panel-heading   -h">
-                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Users Comments</h2>
-                            <a href="#"><i class="fa fa-cog pull-right"></i></a>
-                        </div>
-                        <div class="panel-body margin-bottom-50">
-                            <div class="media media-v2">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <strong><a href="#">Eva Nelson</a></strong> EvaNelson
-                                        <small>About an hour ago</small>
-                                    </h4>
-                                    <ul class="list-inline star-vote" style="margin-left:5px">
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star"></i></li> 
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star-half-o"></i></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
-                                    <ul class="list-inline results-list pull-left">
-                                        <li><a href="#">25 Likes</a></li>
-                                        <li><a href="#">10 Share</a></li>
-                                    </ul>    
-                                    <ul class="list-inline pull-right">
-                                        <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                        <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div><!--/end media media v2--> 
-                            <div class="media media-v2 margin-bottom-20">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object rounded-x" src="assets/img/testimonials/img3.jpg" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <strong><a href="#">Frank Lennon</a></strong> FLennon 
-                                        <small>4 hours ago</small>
-                                    </h4>
-                                    <ul class="list-inline star-vote" style="margin-left:5px">
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star"></i></li> 
-                                        <li><i class="color-green fa fa-star"></i></li>
-                                        <li><i class="color-green fa fa-star-half-o"></i></li>
-                                    </ul>
-                                    <p>I'm incredibly excited to announce that I am joining the amazing <a href="#">Unify</a> team. To be in touch with the latest update, Sign up and get your own Account page fee free :) Like mine: <a href="#">http://www.unify.com/flennon</a></p>
-                                    <ul class="list-inline results-list pull-left">
-                                        <li><a href="#">5 Likes</a></li>
-                                        <li><a href="#">1 Share</a></li>
-                                    </ul>
-                                    <ul class="list-inline pull-right">
-                                        <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                        <li><a href="   #"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                    </ul>
-
-                                    <div class="clearfix"></div>
-
-
-                                </div>    
-                            </div><!--/end media media v2-->
-                            <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
-                        </div>
-                    </div>
+              
                     <!--End Social Icons v3-->
 
                     <!--Skills-->
@@ -355,8 +326,163 @@
                 </form>
                  <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" >
                   <fieldset>
-                      <section>
+                      <!--<section>
                         <label class="label">Image</label>
+                        <label for="file" class="input input-file">
+                           <form id="imgForm2" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <div class="button">
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:newImage">Browse</div>
+                                     <input type="submit" data-bind="value:newImage" name="submit">
+                                 </form>      
+                        </label>
+                    </section>  -->
+  <style type="text/css">.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 100%;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 38%;
+    left: 35%;
+    width: 360px;
+    height: 240px;
+    margin-top: -100px;
+    margin-left: -100px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 300px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 300px;
+    background: rgba(0,0,0,0.7);
+}</style>
+    <section>
+                            <label class="label">Choisir une photo</label>
+                            <label for="file" class="input input-file">
+                                <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value.substring(12)" data-bind="value:nomImage">Charger</div><input type="text" readonly="">
+                            </label>
+                        </section>
+    <div class="action" data-bind="visible:nomImage">
+
+        <input type="button" id="btnZoomIn" style="margin-left:18%" value="+" >
+        <input type="button" id="btnZoomOut" value="-">
+    </div>
+    <div class="imageBox" data-bind="visible:false">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+    
+    <div class="cropped">
+
+    </div>
+<script type="text/javascript">
+        var cropper;
+
+    YUI().use('node', 'crop-box', function(Y){
+        var options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: ''
+        }
+        Y.one('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = new Y.CropBox(options);
+            }
+            reader.readAsDataURL(this.get('files')._nodes[0]);
+            this.get('files')._nodes = [];
+        })
+        Y.one('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        Y.one('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    })
+</script>
+                       </fieldset>
+                  </form>
+               
+                   
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annulé</button>
+                    <button class="btn-u" type="button" data-bind="click:createMeal">Créer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Modifier d'un plat</h4>
+            </div>
+            <div class="modal-body">
+                <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
+                  <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="label">Nom du plat</label>
+                            <label class="input">
+                                <input type="text" data-bind="value:newName" >
+                            </label>
+                        </section>  
+                        <section class="col col-4">
+                            <label class="label">Prix pour une part</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-tag"></i>
+                                <input type="text" name="subject" id="subject" data-bind="value:newPrice">
+                            </label>
+                        </section>
+                    </div>
+                 
+                    <section>
+                        <label class="label">Categorie</label>
+                        <label class="select">
+                             <select data-bind="options: availableCat,
+                       value: newCategory,
+                       optionsCaption: 'Choose...'"></select>
+                            <i></i>
+                        </label>
+                    </section>
+
+                    <section>
+                        <label class="label">Description</label>
+                        <label class="textarea textarea-resizable" >
+                            <textarea rows="3" data-bind="value: newDescription"></textarea>
+                        </label>
+                    </section>
+                        </fieldset>
+                </form>
+                <!--
+                 <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" >
+                  <fieldset>
+                      <section>
+                        <label class="label">Nouvelle image si besoin</label>
                         <label for="file" class="input input-file">
                            <form id="imgForm2" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
                                      <div class="button">
@@ -366,13 +492,11 @@
                         </label>
                     </section>              
                        </fieldset>
-                  </form>
-               
-                   
+                  </form> -->
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annulé</button>
-                    <button class="btn-u" type="button" data-bind="click:createMeal">Créer</button>
+                    <button class="btn-u" type="button" data-bind="click:updateMeal">Enregistrer</button>
                 </div>
             </div>
         </div>

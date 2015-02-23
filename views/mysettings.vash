@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Unify | Welcome...</title>
+    @html.include('shared/head', model)
+    <!--ICI FICHIER JS PERSO-->
+    <script type="text/javascript" src="/customJs/mysettings.js"></script>
+<script src="//yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+
+<script src="/assets/js/cropbox-min.js"></script>
+<script type="text/javascript">
+
+YUI.add('crop-box', function (Y) {
+    Y.CropBox = Y.Base.create('crop-box', Y.Base, [],
+        {
+            initializer: function (options)
+            {
+                this.options = options;
+                this.state = {};
+                this.render();
+            },
+            render: function ()
+            {
+                var self = this;
+                this.imageBox = Y.one(this.options.imageBox);
+                this.thumbBox = this.imageBox.one(this.options.thumbBox);
+                this.spinner = this.imageBox.one(this.options.spinner);
+
+                this.initObject();
+                return this;
+            },
+            initObject: function()
+            {
+                var self = this;
+                this.spinner.show();
+
+                this.image = new Image();
+                this.image.onload = function() {
+                    self.spinner.hide();
+                    self.setBackground();
+
+                    //event handler
+                    self.imageBox.on('mousedown', self.imgMouseDown, self);
+                    self.imageBox.on('mousemove', self.imgMouseMove, self);
+                    self.mouseup = Y.one('body').on('mouseup', self.imgMouseUp, self);
+
+                    Y.UA.gecko > 0?
+                        self.imageBox.on('DOMMouseScroll', self.zoomImage, self):
+                        self.imageBox.on('mousewheel', self.zoomImage, self);
+                };
+                this.image.src = this.options.imgSrc;
+            },
+            setBackground: function()
+            {
+                if(!this.ratio) this.ratio = 1;
+
+                var w =  parseInt(this.image.width)*this.ratio;
+                var h =  parseInt(this.image.height)*this.ratio;
+
+                var pw = (this.imageBox.get('clientWidth') - w) / 2;
+                var ph = (this.imageBox.get('clientHeight') - h) / 2;
+
+                this.imageBox.setAttribute('style',
+                    'background-image: url(' + this.image.src + '); ' +
+                    'background-size: ' + w +'px ' + h + 'px; ' +
+                    'background-position: ' + pw + 'px ' + ph + 'px; ' +
+                    'background-repeat: no-repeat');
+            },
+            imgMouseDown: function(e)
+            {
+                e.stopImmediatePropagation();
+                this.state.dragable = true;
+                this.state.mouseX = e.clientX;
+                this.state.mouseY = e.clientY;
+            },
+            imgMouseMove: function(e)
+            {
+                e.stopImmediatePropagation();
+                if (this.state.dragable)
+                {
+                    var x = e.clientX - this.state.mouseX;
+                    var y = e.clientY - this.state.mouseY;
+
+                    var bg = this.imageBox.getStyle('backgroundPosition').split(' ');
+
+                    var bgX = x + parseInt(bg[0]);
+                    var bgY = y + parseInt(bg[1]);
+
+                    this.imageBox.setStyle('backgroundPosition', bgX +'px ' + bgY + 'px');
+
+                    this.state.mouseX = e.clientX;
+                    this.state.mouseY = e.clientY;
+                }
+            },
+            imgMouseUp: function(e)
+            {
+                e.stopImmediatePropagation();
+                this.state.dragable = false;
+            },
+            zoomImage: function(e)
+            {
+                e.wheelDelta > 0? this.ratio*=1.1 : this.ratio*=0.9;
+                this.setBackground();
+            },
+            getAvatar: function ()
+            {
+                var self = this,
+                    width = this.thumbBox.get('clientWidth'),
+                    height = this.thumbBox.get('clientHeight'),
+                    canvas = document.createElement("canvas"),
+                    dim = this.imageBox.getStyle('backgroundPosition').split(' '),
+                    size = this.imageBox.getStyle('backgroundSize').split(' '),
+                    dx = parseInt(dim[0]) - this.imageBox.get('clientWidth')/2 + width/2,
+                    dy = parseInt(dim[1]) - this.imageBox.get('clientHeight')/2 + height/2,
+                    dw = parseInt(size[0]);
+                    dh = parseInt(size[1]);
+                    sh = parseInt(this.image.height);
+                    sw = parseInt(this.image.width);
+
+                canvas.width = width;
+                canvas.height = height;
+                var context = canvas.getContext("2d");
+                context.drawImage(this.image, 0, 0, sw, sh, dx, dy, dw, dh);
+                var imageData = canvas.toDataURL('image/jpeg');
+
+                return imageData;
+            },
+            zoomIn: function ()
+            {
+                this.ratio*=1.1;
+                this.setBackground();
+            },
+            zoomOut: function ()
+            {
+                this.ratio*=0.9;
+                this.setBackground();
+            },
+            destructor: function ()
+            {
+                if (this.mouseup) this.mouseup.detach()
+            }
+        });
+}, '1.0',
+{
+    requires: [ 'node', 'base' ]
+});
+</script>
+</head>
+<body>
+
+   <script>
+   var nom = "@model.nom";
+   var prenom = "@model.prenom";
+   var desc = "@model.desc";
+   var email = "@model.email";
+   var ville = "@model.ville";
+   var arron = "@model.arron";
+   </script>
+   <div class="wrapper">
+    <div class="header">
+       @html.include('shared/menu', model)
+   </div>
+   <di
+   v class="profile">    
+    <div class="container content">
+        <div class="row">
+
+            <!--Left MENU-->
+            <div class="col-md-3 md-margin-bottom-40">
+                <img class="img-responsive profile-img margin-bottom-20" id="imgProfil" src="imgProfil/@model.imageSrc" alt=""  >
+                <button type="button" class="btn-u" style="position: absolute;top: 170px;left: 100px;" data-toggle="modal" data-target="#updateModal">
+
+                    Remplacer</button>
+                             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                                <li class="list-group-item active">
+                                    <a href="profile_me.html"><i class="fa fa-user"></i> Mon Profile</a>
+                                </li>
+                                <li class="list-group-item ">
+                                    <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
+                                </li>                                        
+                                <li class="list-group-item">
+                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglage</a>
+                                </li> 
+                            </ul>   
+                        </div>
+                        <!--End Left MENU-->
+
+
+                        <div class="col-md-9">
+                            <div class="profile-body margin-bottom-20">
+                        <div class="tab-v1">
+                            <ul class="nav nav-justified nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#profile">Edit Profile</a></li>
+                                <li><a data-toggle="tab" href="#passwordTab">Change Password</a></li>
+                                <li><a data-toggle="tab" href="#payment">Payment Options</a></li>
+                                <li><a data-toggle="tab" href="#settings">Notification Settings</a></li>
+                            </ul>          
+                            <div class="tab-content">
+                                <div id="profile" class="profile-edit tab-pane fade in active">
+                                    <h2 class="heading-md">Gerer vos informations</h2>
+                                    <br>
+                                    <dl class="dl-horizontal">
+                                        <dt><strong>Votre nom </strong></dt>
+                                        <dd>
+                                             <span data-bind="text:nom, visible:editNom">
+                                            </span>
+                                            <input type="text" data-bind="value:nom,visible:!editNom()">
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeNom">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Votre prénom </strong></dt>
+                                        <dd>
+                                            <span data-bind="text:prenom, visible:editPrenom">
+                                            </span>
+                                            <input type="text" data-bind="value:prenom,visible:!editPrenom()">
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changePrenom">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Votre description</strong></dt>
+                                        <dd>
+                                              <span data-bind="text:desc, visible:editDesc">
+                                            </span>
+                                            <textarea rows="3" data-bind="value:desc,visible:!editDesc()"></textarea>
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeDesc">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Votre adresse mail</strong></dt>
+                                        <dd>
+                                            <span data-bind="text:email, visible:editEmail">
+                                            </span>
+                                            <input type="text" data-bind="value:email,visible:!editEmail()">
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeEmail">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Votre ville</strong></dt>
+                                        <dd>
+                                            <span data-bind="text:ville, visible:editVille">
+                                            </span>
+                                            <input type="text"  list="list" data-bind="value:ville,visible:!editVille()">
+                                            <datalist id="list">
+                                    <option value="Montréal"></option>
+                                    <option value="Laval"></option>
+                                    <option value="Longeuil"></option>
+                                </datalist>
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeVille">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        <dt><strong>Votre arrondissement </strong></dt>
+                                        <dd>
+                                            <span data-bind="text:arron, visible:editArron">
+                                            </span>
+                                            <input type="text" data-bind="value:arron,visible:!editArron()">
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeArron">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                    </dl>
+                                    <button type="button" class="btn-u btn-u-default">Cancel</button>
+                                    <button type="button" class="btn-u" data-bind="click:save">Save Changes</button>
+                                </div>
+
+                                <div id="passwordTab" class="profile-edit tab-pane fade">
+                                    <h2 class="heading-md">Manage your Security Settings</h2>
+                                    <p>Change your password.</p>
+                                    <br>
+                                    <form class="sky-form" id="sky-form4" action="" novalidate="novalidate">
+                                        <dl class="dl-horizontal">
+                                            <dt>Username</dt>
+                                            <dd>
+                                                <section>
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-user"></i>
+                                                        <input type="text" placeholder="Username" name="username">
+                                                        <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
+                                                    </label>
+                                                </section>
+                                            </dd>
+                                            <dt>Email address</dt>
+                                            <dd>
+                                                <section>
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-envelope"></i>
+                                                        <input type="email" placeholder="Email address" name="email">
+                                                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                                    </label>
+                                                </section>
+                                            </dd>
+                                            <dt>Enter your password</dt>
+                                            <dd>
+                                                <section>
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-lock"></i>
+                                                        <input type="password" id="password" name="password" placeholder="Password">
+                                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                                    </label>
+                                                </section>
+                                            </dd>
+                                            <dt>Confirm Password</dt>
+                                            <dd>
+                                                <section>
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-lock"></i>
+                                                        <input type="password" name="passwordConfirm" placeholder="Confirm password">
+                                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                                    </label>
+                                                </section>
+                                            </dd>    
+                                        </dl>
+                                        <label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Remember password</label>
+                                        <br>
+                                        <section>
+                                            <label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
+                                        </section>
+                                        <button type="button" class="btn-u btn-u-default">Cancel</button>
+                                        <button class="btn-u" type="submit">Save Changes</button>
+                                    </form>    
+                                </div>
+
+                                <div id="payment" class="profile-edit tab-pane fade">
+                                    <h2 class="heading-md">Manage your Payment Settings</h2>
+                                    <p>Below are the payment options for your account.</p>
+                                    <br>
+                                    <form class="sky-form" id="sky-form" action="" novalidate="novalidate">
+                                        <!--Checkout-Form-->
+                                        <section>
+                                            <div class="inline-group">
+                                                <label class="radio"><input type="radio" checked="" name="radio-inline"><i class="rounded-x"></i>Visa</label>
+                                                <label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
+                                                <label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>PayPal</label>
+                                            </div>
+                                        </section>                  
+
+                                        <section>
+                                            <label class="input">
+                                                <input type="text" name="name" placeholder="Name on card">
+                                            </label>
+                                        </section>
+                                        
+                                        <div class="row">
+                                            <section class="col col-10">
+                                                <label class="input">
+                                                    <input type="text" name="card" id="card" placeholder="Card number">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <input type="text" name="cvv" id="cvv" placeholder="CVV2">
+                                                </label>
+                                            </section>
+                                        </div>                                        
+                                        
+                                        <div class="row">
+                                            <label class="label col col-4">Expiration date</label>
+                                            <section class="col col-5">
+                                                <label class="select">
+                                                    <select name="month">
+                                                        <option disabled="" selected="" value="0">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="1">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                    <i></i>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <input type="text" placeholder="Year" id="year" name="year">
+                                                </label>
+                                            </section>
+                                        </div>
+                                        <button type="button" class="btn-u btn-u-default">Cancel</button>
+                                        <button class="btn-u" type="submit">Save Changes</button>
+                                        <!--End Checkout-Form-->
+                                    </form>    
+                                </div>
+
+                                <div id="settings" class="profile-edit tab-pane fade">
+                                    <h2 class="heading-md">Manage your Notifications.</h2>
+                                    <p>Below are the notifications you may manage.</p>
+                                    <br>
+                                    <form class="sky-form" id="sky-form" action="">
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Email notification</label>
+                                        <hr>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification when a user comments on my blog</label>
+                                        <hr>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification for the latest update</label>
+                                        <hr>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification when a user sends me message</label>
+                                        <hr>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Receive our monthly newsletter</label>
+                                        <hr>    
+                                        <button type="button" class="btn-u btn-u-default">Reset</button>
+                                        <button class="btn-u" type="submit">Save Changes</button>
+                                    </form>    
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                     
+                    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Modifier ma photo de profil</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+               <style type="text/css">.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 268px;
+    height: 212px;
+    margin-top: -100px;
+    margin-left: -100px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 300px;
+    background: rgba(0,0,0,0.7);
+}</style>
+<div class="container" style="margin-left:14%">
+    <div class="action">
+        <input type="file" id="file" style="float:left; width: 250px">
+        <input type="button" id="btnZoomIn" value="+" style="margin-left:8%" >
+        <input type="button" id="btnZoomOut" value="-">
+    </div>
+    <div class="imageBox" data-bind="visible:false">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+    
+    <div class="cropped">
+
+    </div>
+</div>
+<script type="text/javascript">
+        var cropper;
+
+    YUI().use('node', 'crop-box', function(Y){
+        var options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: ''
+        }
+        Y.one('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = new Y.CropBox(options);
+            }
+            reader.readAsDataURL(this.get('files')._nodes[0]);
+            this.get('files')._nodes = [];
+        })
+        Y.one('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        Y.one('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    })
+</script>
+
+</body>
+                <div class="modal-footer" style="margin-top:30px">
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annulé</button>
+                    <button class="btn-u" type="button" data-bind="click:test">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            <!--Profile Body-->
+             <!--    <div class="profile-body">
+                    <div class="profile-bio">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img class="img-responsive md-margin-bottom-10" src="imgProfil/@model.imageSrc" alt="" style ="width: 308px;height: 256px;">
+
+                                <div class="fileUpload btn btn-primary">
+                                    <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <span>Remplacer</span>
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
+                                     <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
+                                 </form>
+                             </div>
+                         </div>
+                         <div class="col-md-7">
+                            <h2>@model.nom @model.prenom</h2>
+                            <span><strong>Ville:</strong> Montreal</span>
+                            <hr>
+                            <div data-bind="visible: !descIsModif()">
+                                <p data-bind="text:desc"></p>
+                                
+                            </div>
+                            <div data-bind="visible: descIsModif">
+                               <form class="sky-form">
+                                  <fieldset style="padding:0px">
+                                    <section>
+                                        <label class="textarea textarea-resizable">
+                                            <textarea rows="3" data-bind="value:descTemp"></textarea>
+                                        </label>
+                                    </section>
+                                </fieldset>
+
+                            </form> </div>
+                            <button class="btn-u" data-bind="visible:!descIsModif(),click:descModif">Modifié</button>
+                            <button class="btn-u" data-bind="visible:descIsModif,click:descEnreg">Enregistrer</button>
+
+</div>   
+</div>
+<!--End Reg Block-->
+</div>
+</div><!--/container-->     
+@html.include('shared/foot', model)
+</div>
+     </div>
+</div><!--/End Wrapepr-->
+
+</body>
+</html> 
+<style>
+.fileUpload {
+    position: absolute;
+    overflow: hidden;
+    background: #e74c3c;
+    border: 0px;
+    margin: 10px;
+    top: 200px;
+    left: 120px;
+}
+.fileUpload2 {
+    position: absolute;
+    overflow: hidden;
+    background: #e74c3c;
+    border: 0px;
+    margin: 10px;
+    top: 550px;
+    left: 165px;
+}
+.fileUpload:hover {
+    background: #c0392b;
+}
+.fileUpload2:hover {
+    background: #c0392b;
+}
+.fileUpload2 input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    background-color: #e74c3c;
+    filter: alpha(opacity=0);
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    background-color: #e74c3c;
+    filter: alpha(opacity=0);
+}
+</style>

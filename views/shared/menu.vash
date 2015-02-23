@@ -44,8 +44,8 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-bars"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html" style="margin-top: 7px;padding-left: 50px;font-family: 'Lobster', cursive;font-size: 35px;font-weight: 400;color: #e75967;">
-                        AlloChef
+                    <a class="navbar-brand" href="index.html" style="margin-top: -16px;padding-left: 50px;font-family: 'Lobster', cursive;font-size: 35px;font-weight: 400;color: #e75967; padding-bottom:0px">
+                           <img src="assets/img/logo.png" style="width:50px;vertical-align: text-bottom"><span style="color:#9B9393">Allo</span>Chef
                     </a>
                 </div>
 
