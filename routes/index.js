@@ -167,7 +167,7 @@ router.post('/createMeal', function(req, res){
       }
       else
       {
-        res.send(Id+"."+req.body.ext);
+        res.send({img:Id+"."+req.body.ext,mealId:Id});
 
       }
     }
