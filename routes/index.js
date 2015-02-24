@@ -37,7 +37,7 @@ var guid = (function() {
 router.get('/', function(req,res){
   console.log(req.session.nom);
   if(req.session.connect ==true){
-   res.render('index.vash',{nom:req.session.nom, prenom: req.session.prenom });
+   res.render('index.vash',{username:req.session.username});
  }
  else{
    res.render('index.vash');
@@ -73,6 +73,7 @@ router.post('/login', function(req,res){
      req.session.nom = rep.nom;
      req.session.prenom = rep.prenom;
      req.session.email = rep.email;
+     req.session.username = rep.username;
      console.log(rep);
      req.session.UserId = rep.UserId;
      res.redirect('/');
@@ -117,6 +118,7 @@ router.post('/signup',function(req,res){
         req.session.nom = rep.nom;
         req.session.prenom = rep.prenom;
         req.session.email = rep.email;
+        req.session.userName = rep.userName;
         req.session.UserId = rep.UserId;
         res.status(300);
         res.redirect('/');
@@ -131,7 +133,7 @@ router.post('/signup',function(req,res){
 router.get('/myprofil', isConnect,function(req,res){
   console.log(req.session.UserId);
   users.findOne({UserId:req.session.UserId},function(err,rep){
-    res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc});
+    res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc, username:rep.username});
   })
 }); 
 router.post('/createMeal', function(req, res){
@@ -143,6 +145,7 @@ router.post('/createMeal', function(req, res){
   data.name = req.body.name;
   data.UserId = req.session.UserId;
   data.MealId = Id;
+  data.username =  req.session.username; 
   data.img =  Id + "." + req.body.ext;
   console.log(req.body.ext)
 
@@ -221,7 +224,7 @@ router.get('/mysettings', isConnect,function(req,res){
   console.log(req.session.UserId);
   users.findOne({UserId:req.session.UserId},function(err,rep){
     console.log(rep);
-    res.render('mysettings', {nom:rep.nom, prenom: rep.prenom , email:rep.email, imageSrc:rep.imageSrc, desc:rep.desc,ville:rep.ville,arron:rep.arron});
+    res.render('mysettings', {nom:rep.nom, prenom: rep.prenom , email:rep.email, imageSrc:rep.imageSrc, desc:rep.desc,ville:rep.ville,arron:rep.arron,username:rep.username});
   })
 }); 
 
@@ -248,9 +251,34 @@ router.post('/updateSettings', function(req, res){
    res.send("ok");
  });});
 
+
+router.get('/search', function(req,res){
+  res.render('search',{});
+});
+
+router.post('/search', function(req,res){
+  if(req.body.arrayRequeste){
+   var arrayRequeste = req.body.arrayRequeste;
+   var dataToFind = [];
+
+  arrayRequeste.forEach(function(item){
+  dataToFind.push({ name: new RegExp(item, 'i')  });
+  })
+  console.log(dataToFind);
+   meals.find({ $or:dataToFind }).toArray(function (err, array) {
+    console.log(array);
+    res.send(array);
+  })
+ }else{
+  meals.find().toArray(function (err, array) {
+    console.log(array);
+    res.send(array);
+ });
+}});
+
+
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){
   res.render('blankpage',{});
 });
-
 module.exports = router;
