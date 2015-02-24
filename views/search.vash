@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>BlankPage</title>
+    @html.include('shared/head', model)
+    <link rel="stylesheet" href="assets/css/pages/page_job.css">
+    <script type="text/javascript" src="/customJs/search.js"></script>
+</head> 
+
+<body>
+<div class="wrapper">
+                   @html.include('shared/menu', model) 
+                   <div class="job-img-inputs">
+            <div class="container">
+                <div class="row" style="margin-top:10px">
+                    <div class="col-sm-4 md-margin-bottom-10" >
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <input type="text" placeholder="Qu'est ce que vous mangerez bien?" class="form-control" data-bind="value:recherche">
+                        </div>
+                    </div>    
+                    <div class="col-sm-4 md-margin-bottom-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" placeholder="Où cherchez vous?" class="form-control" data-bind="value:ville">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn-u btn-block" data-bind="click:load"> Rechercher</button>
+                    </div>
+                </div>
+                <div class="row high-rated margin-bottom-20 margin-top-20">
+
+            <!-- Easy Block --> 
+             <div data-bind="foreach:allMeal">  
+             <div class="col-md-3 col-sm-6 md-margin-bottom-40">
+                <div class="easy-block-v1">
+                    <div class="easy-block-v1-badge rgba-red"  data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
+                    <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img alt="" data-bind="attr:{src: 'imgPlat/'+ image}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-h">
+                        <h3 data-bind="text:name"></h3>
+                        <ul class="list-inline star-vote">
+
+                            <li><i class="" data-bind="css: getClass(1)"></i></li>
+                            <li><i class="" data-bind="css: getClass(2)"></i></li>
+                            <li><i class="" data-bind="css: getClass(3)"></i></li>
+                            <li><i class="" data-bind="css: getClass(4)"></i></li>
+                            <li><i class="" data-bind="css: getClass(5)"></i></li>
+                        </ul>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><span class="color-green">Chef:</span> <a href="#"  data-bind="attr:{href: 'test'}"><span data-bind="text:username"></span></a></li>
+                        <li><span class="color-green">Description:</span> <span data-bind="text:description"></span></li>
+                    </ul>    
+                    <a class="btn-u btn-u-sm" href="#">View More</a>
+                </div>
+            </div>             
+          
+                </div>  
+
+            </div>
+            <!-- End Easy Block -->
+            
+            <!-- Easy Block -->
+            
+            <!-- End Easy Block -->
+        </div>
+            </div> 
+
+        </div>
+
+
+	   
+           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
+    @html.include('shared/foot', model)
+</div>
+</body>
+</html> 

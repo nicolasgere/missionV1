@@ -20,8 +20,8 @@
                     <li class="topbar-devider"></li>   
                     <li><a href="page_faq.html">Help</a></li>  
                     <li class="topbar-devider"></li>  
-                    @if(model.nom){ 
-                    <li><a href="myprofil">@model.nom @model.prenom</a>
+                    @if(model.username){ 
+                    <li><a href="myprofil">@model.username</a>
                     <li class="topbar-devider"></li>   
                     </li>
                      <li><a href="Disconnect">Disconnect</a></li>

@@ -21,12 +21,14 @@
                         <h2>Register a new account</h2>
                         <p>Already Signed Up? Click <a href="login" class="color-green">Sign In</a> to login your account.</p>                    
                     </div>
+                    <label>User name</label>
+                    <input type="text" class="form-control margin-bottom-20" name ="username" id="username">
 
                     <label>First Name</label>
                     <input type="text" class="form-control margin-bottom-20" name ="prenom" id="prenom">
                    
                     <label>Last Name</label>
-                    <input type="text" class="form-control margin-bottom-20" name="nom" id ="prenom">
+                    <input type="text" class="form-control margin-bottom-20" name="nom" id ="nom">
                    
                     <label>Email Address <span class="color-red">*</span></label>
                     <input type="text" class="form-control margin-bottom-20"name="email" id ="email">
