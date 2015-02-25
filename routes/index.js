@@ -263,7 +263,7 @@ router.post('/search', function(req,res){
 
   arrayRequeste.forEach(function(item){
   dataToFind.push({ name: new RegExp(item, 'i')  });
-  })
+  });
   console.log(dataToFind);
    meals.find({ $or:dataToFind }).toArray(function (err, array) {
     console.log(array);
@@ -275,7 +275,20 @@ router.post('/search', function(req,res){
     res.send(array);
  });
 }});
-
+router.get('/profil/:id', function(req,res){
+  var model = {};
+  console.log(req.params.id);
+   meals.findOne({MealId:req.params.id},function(err,rep){
+    model.meal = rep;
+    users.findOne({UserId:rep.UserId},function(err,rep2){
+    model.user = rep2;
+    res.render('profil', model);
+   })
+  })
+  /* users.findOne({UserId:req.session.UserId},function(err,rep){
+    res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc, username:rep.username});
+  })*/
+});
 
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){
