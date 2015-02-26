@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Confirmation</title>
+    @html.include('shared/head', model)
+</head> 
+
+<body>
+<div class="wrapper">
+                   @html.include('shared/menu', model)
+			<div class="container content">
+                   <div class="col-md-12">
+
+	   <div class="alert alert-success fade in margin-bottom-40">
+                    <h4>Commande confirmer</h4>
+                    Votre commande a bien etait confirmer
+                   <div class="col-md-12">
+
+                </div>
+
+                </div>
+           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
+    @html.include('shared/foot', model)
+</div>
+</body>
+</html> 

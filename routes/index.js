@@ -10,6 +10,7 @@ var Mongolian = require("mongolian");
 var db = new Mongolian("mongodb://nicolasgere:090790tfc@ds062097.mongolab.com:62097/allochef");
 var users = db.collection("users");
 var meals = db.collection("meals");
+var vash = require('vash');
 
 
 function isConnect (req,res, next){
@@ -118,7 +119,7 @@ router.post('/signup',function(req,res){
         req.session.nom = rep.nom;
         req.session.prenom = rep.prenom;
         req.session.email = rep.email;
-        req.session.userName = rep.userName;
+        req.session.username = rep.userName;
         req.session.UserId = rep.UserId;
         res.status(300);
         res.redirect('/');
@@ -261,10 +262,10 @@ router.post('/search', function(req,res){
    var arrayRequeste = req.body.arrayRequeste;
    var dataToFind = [];
 
-  arrayRequeste.forEach(function(item){
-  dataToFind.push({ name: new RegExp(item, 'i')  });
+   arrayRequeste.forEach(function(item){
+    dataToFind.push({ name: new RegExp(item, 'i')  });
   });
-  console.log(dataToFind);
+   console.log(dataToFind);
    meals.find({ $or:dataToFind }).toArray(function (err, array) {
     console.log(array);
     res.send(array);
@@ -273,22 +274,21 @@ router.post('/search', function(req,res){
   meals.find().toArray(function (err, array) {
     console.log(array);
     res.send(array);
- });
+  });
 }});
 router.get('/profil/:id', function(req,res){
   var model = {};
   console.log(req.params.id);
-   meals.findOne({MealId:req.params.id},function(err,rep){
+  meals.findOne({MealId:req.params.id},function(err,rep){
     model.meal = rep;
     users.findOne({UserId:rep.UserId},function(err,rep2){
-    model.user = rep2;
-    res.render('profil', model);
-   })
+      model.user = rep2;
+      console.log(rep2);
+      res.render('profil', model);
+    })
   })
-  /* users.findOne({UserId:req.session.UserId},function(err,rep){
-    res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc, username:rep.username});
-  })*/
 });
+
 
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){
