@@ -2,13 +2,14 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var config = require('./config')
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes = require('./routes/index');
 var multer  = require('multer');
 var Mongolian = require("mongolian");
-var db = new Mongolian("mongodb://nicolasgere:090790tfc@ds062097.mongolab.com:62097/allochef");
+var db = new Mongolian(config.mongoDb);
 var command = db.collection("command");
 var users = db.collection("users");
 var sendgrid  = require('sendgrid')("nicolasgere", "090790tfc");
@@ -16,8 +17,7 @@ var sendgrid  = require('sendgrid')("nicolasgere", "090790tfc");
 // create reusable transporter object using SMTP transport
 
 var app = express();
-app.use(session({secret: 'supernova', saveUninitialized: true, resave: true}));
-
+app.use(session({secret: 'unechainesecreteici', saveUninitialized: true, resave: true}));
 
 // view engine setup
 app.use(multer({ dest: './public/imgProfil',
@@ -91,7 +91,7 @@ app.get('/confirme/:id', function(req,res){
             sendgrid.send(mailOptions2, function(err, json) {
               if (err) { return console.error(err); }
               console.log(json);
-              res.redirect('/');
+             res.render("confirm",{});
             });
 
           });
