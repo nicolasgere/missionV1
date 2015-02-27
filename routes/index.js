@@ -121,7 +121,7 @@ router.post('/signup',function(req,res){
         req.session.nom = rep.nom;
         req.session.prenom = rep.prenom;
         req.session.email = rep.email;
-        req.session.username = rep.userName;
+        req.session.username = rep.username;
         req.session.UserId = rep.UserId;
         res.status(300);
         res.redirect('/');
@@ -249,7 +249,7 @@ router.post('/test', function(req, res){
 router.post('/updateSettings', function(req, res){
   users.update(
   {UserId: req.session.UserId}, // query
-  {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,emai: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
+  {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
   function(err,rep) {
    res.send("ok");
  });});
