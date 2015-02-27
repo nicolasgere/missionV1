@@ -7,22 +7,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes = require('./routes/index');
 var multer  = require('multer');
-var nodemailer = require('nodemailer');
 var Mongolian = require("mongolian");
 var db = new Mongolian("mongodb://nicolasgere:090790tfc@ds062097.mongolab.com:62097/allochef");
 var command = db.collection("command");
 var users = db.collection("users");
+var sendgrid  = require('sendgrid')("nicolasgere", "090790tfc");
 
-
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: 'nicolas.gerelm@gmail.com',
-    pass: 'transit90'
-  }
-});
 // create reusable transporter object using SMTP transport
 
 var app = express();
@@ -46,10 +36,6 @@ onFileUploadComplete: function (file) {
 
 app.set('views', __dirname + '/views/');
 app.set('view engine', 'vash');
-//app.engine('vash', require('vash').renderFile);
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 
 app.use(cookieParser());
@@ -63,64 +49,59 @@ app.post('/newCommand', function(req,res){
   data.id = guid();
   data.confirmationId = guid();
   data.isValide = false;
-  command.insert(data,function(err,rep){
+  command.insert(data,function(err,rep){ 
    console.log(rep);
    app.render('emailConfirm',data, function(err, html){
     var mailOptions = {
-    from: '<nicolas.gerelm@gmail.com>', 
+      from: 'no_reply@allochef.net', 
     to: data.email, // list of receivers
     subject: 'Confirmation commande', // Subject line
     html:  html// html body
   };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-      console.log(error);
-    }else{
-      console.log('Message sent: ' + info.response);
-      res.redirect('/');
-    }
+  sendgrid.send(mailOptions, function(err, json) {
+    if (err) { return console.error(err); }
+    console.log(json);
+    res.redirect('/');
   });
 });
  });
 });
+
 
 app.get('/confirme/:id', function(req,res){
   var data = req.params.id;
-  console.log(req.params);
   command.findOne({confirmationId:data},function(err,rep){
-  command.update({confirmationId:data},{$set:{isValide:true, confirmationId:"confirmer"}},function(err,rep3){
+    command.update({confirmationId:data},{$set:{isValide:true, confirmationId:"confirmer"}},function(err,rep3){
+      if(rep){
+        users.findOne({username:rep.chef}, function(err,rep2){
+            var data1 = {};
+            data1.user = rep2;
+            data1.mail = rep;
+            console.log(data1);
+            app.render('emailCommand',data1, function(err, html){
+              console.log(err);
+              console.log(html);
+              var mailOptions2 = {
+                from: 'no_reply@allochef.net',
+              replyto:rep.email, // sender address
+              to: rep2.email, // list of receivers
+              subject: 'Nouvelle commande', // Subject line
+              html:  html// html body
+            };
+            sendgrid.send(mailOptions2, function(err, json) {
+              if (err) { return console.error(err); }
+              console.log(json);
+              res.redirect('/');
+            });
 
-    if(rep){
-      users.findOne({username:rep.chef}, function(err,rep2){
-        if(rep2){
-       
-  app.render('emailCommand',data, function(err, html){
-    console.log(rep2); 
-     var mailOptions2 = {
-    from: '<nicolas.gerelm@gmail.com>',
-    replyTo:rep.email, // sender address
-    to: rep2.email, // list of receivers
-    subject: 'Nouvelle commande', // Subject line
-    html:  html// html body
-  };
-    transporter.sendMail(mailOptions2, function(error, info){
-      if(error){
-        console.log(error);
+          });
+
+           });
       }else{
-        console.log('Message sent: ' + info.response);
-      }
-    });
-  });
-  res.render("confirm",{});}
-  });
-
-
-    }else{
-     res.render("confirm",{});
-   }
- });
-  })
+       res.render("confirm",{});
+     }
+   });
+})
 });
 
 
