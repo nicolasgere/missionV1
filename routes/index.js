@@ -1,4 +1,5 @@
 /**INCLUDE**/
+var config = require('../config')
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
@@ -7,10 +8,11 @@ var BSON = mongo.BSONPure;
 var Validator = require('jsonschema').Validator;
 var v = new Validator();
 var Mongolian = require("mongolian");
-var db = new Mongolian("mongodb://nicolasgere:090790tfc@ds062097.mongolab.com:62097/allochef");
+var db = new Mongolian(config.mongoDb);
 var users = db.collection("users");
 var meals = db.collection("meals");
 var vash = require('vash');
+
 
 
 function isConnect (req,res, next){
