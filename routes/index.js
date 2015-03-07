@@ -322,10 +322,15 @@ router.get('/profil/:id', function(req,res){
     })
   })
 });
+
 /**NOTE CHEF**/
 router.get('/note/:id', function(req, res){
-  console.log(req.params.id);
-  res.render('note',{id:req.params.id});
+  var model = {};
+  users.findOne({UserId:req.params.id},function(err,rep){
+    model.user = rep;
+    console.log(rep);
+    res.render('note', model);
+  });  
 });
 
 /**PAGE BLANCHE DE TEST**/
