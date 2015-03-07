@@ -152,7 +152,6 @@ YUI.add('crop-box', function (Y) {
 <body>
 
  <script>
- var desc1 = "@model.desc";
  </script>
  <div class="wrapper">
     <div class="header">
@@ -176,7 +175,7 @@ YUI.add('crop-box', function (Y) {
                              </div>-->
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                     <li class="list-group-item">
-                        <a href="mysettings"><i class="fa fa-user"></i> Mon Profile</a>
+                        <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                     </li>
                     <li class="list-group-item active">
                         <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
@@ -185,7 +184,7 @@ YUI.add('crop-box', function (Y) {
                         <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
                     </li>                                        
                     <li class="list-group-item">
-                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglage</a>
+                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
                     </li> 
                 </ul>   
             </div>
@@ -198,27 +197,25 @@ YUI.add('crop-box', function (Y) {
             <div class="container content">
                 <div class="row"  style="margin-bottom:80px">
                     <div class="col-md-4">
-                        <h1>Vous aussi, partager votre cuisine</h1>                        
-                        <p>Vous voulez vous aussi faire partager votre cuisine au gens, que vous soyez le maitre de la pizza au saumon ou que le potage au 
-                            légume a aucun secret pour vous. Cela vous permettra egalement d'arrondir vos fins de mois tout en pratiquant une des vos activite favorie, la cuisine</p>
+                        <h1>Partager votre cuisine</h1>                        
+                        <p>Vous désirez faire découvrir votre cuisine à la communauté ? <br>Joignez l'utile à l'agréable, et mettez en ligne votre premier plat ici !</br></p>
                 
                         <a class="btn-u one-page-btn" data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-cutlery"></i>&nbsp;Créer mon premier plat</a>
                     </div>
                     <div class="col-md-4">
                          <ul class="row grid-block-v2">        
                             <li class="col-md-12 col-sm-12" >
-                             <div class="easy-block-v1">
-                                    <img class="img-responsive" src="/imgPlat/03de02e5-d264-141b-6de8-e63499497341.jpg" style="height: 240px;" alt="">
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="/imgIll/illustration1.jpg" style="height: 240px;" alt="">
                                     <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">Exemple</div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">
-                                    <h3>Lasagne au boeuf</h3>
+                                    <h3>Quiche lorraine</h3>
                                     <ul class="list-inline margin-bottom-5">
                                     </ul>
-                                    <p>Add another quarter of the meat mixture and top with 150 ml (2/3 cup) cheese. Cover with a layer of noodles. Cover with the vegetables and 150 ml (2/3 cup) cheese. Cover with a layer of noodles. Add another 1/4 of the meat mixture and 150 ml (2/3 cup cheese). Finish with a layer of noodles and the remaining meat mixture and cheese</p>
+                                    <p>Une délicieuse quiche lorraine avec ses lardons, et gratinée par du fromage suisse pour un repas gourmand et rapide !</p>
                                     <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
                                     <a href="#" style=" position: absolute;left: 200px;top: 450px;"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
- 
                                 </div>
                             </li>
                         </ul>
@@ -319,7 +316,7 @@ YUI.add('crop-box', function (Y) {
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 id="myModalLabel" class="modal-title">Ajout d'un plat</h4>
+                <h4 id="myModalLabel" class="modal-title">Ajoutez un plat</h4>
             </div>
             <div class="modal-body">
                 <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
@@ -332,7 +329,7 @@ YUI.add('crop-box', function (Y) {
                             </label>
                         </section>  
                         <section class="col col-4">
-                            <label class="label">Prix pour une part</label>
+                            <label class="label">Prix pour une portion</label>
                             <label class="input">
                                 <i class="icon-append fa fa-tag"></i>
                                 <input type="text" name="subject" id="subject" data-bind="value:newPrice">
@@ -341,7 +338,7 @@ YUI.add('crop-box', function (Y) {
                     </div>
                  
                     <section>
-                        <label class="label">Categorie</label>
+                        <label class="label">Catégorie</label>
                         <label class="select">
                              <select data-bind="options: availableCat,
                        value: newCategory,
@@ -461,7 +458,7 @@ YUI.add('crop-box', function (Y) {
                    
                 </div>
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annulé</button>
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annuler</button>
                     <button class="btn-u" type="button" data-bind="click:createMeal">Créer</button>
                 </div>
             </div>
@@ -473,7 +470,7 @@ YUI.add('crop-box', function (Y) {
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 id="myModalLabel" class="modal-title">Modifier d'un plat</h4>
+                <h4 id="myModalLabel" class="modal-title">Modifier un plat</h4>
             </div>
             <div class="modal-body">
                 <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
@@ -486,7 +483,7 @@ YUI.add('crop-box', function (Y) {
                             </label>
                         </section>  
                         <section class="col col-4">
-                            <label class="label">Prix pour une part</label>
+                            <label class="label">Prix pour une portion</label>
                             <label class="input">
                                 <i class="icon-append fa fa-tag"></i>
                                 <input type="text" name="subject" id="subject" data-bind="value:newPrice">
@@ -495,7 +492,7 @@ YUI.add('crop-box', function (Y) {
                     </div>
                  
                     <section>
-                        <label class="label">Categorie</label>
+                        <label class="label">Catégorie</label>
                         <label class="select">
                              <select data-bind="options: availableCat,
                        value: newCategory,
@@ -529,7 +526,7 @@ YUI.add('crop-box', function (Y) {
                   </form> -->
                 </div>
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annulé</button>
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annuler</button>
                     <button class="btn-u" type="button" data-bind="click:updateMeal">Enregistrer</button>
                 </div>
             </div>

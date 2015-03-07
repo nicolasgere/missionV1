@@ -3,10 +3,10 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Inscription</title>
+    <title>Connexion</title>
 
     @html.include('shared/head', model)
-
+</head>
 
 <body>
     <div class="wrapper">
@@ -17,37 +17,37 @@
                 <!--Reg Block-->
                 <div class="reg-block">
                     <div class="reg-block-header">
-                        <h2>Sign In</h2>
+                        <h2>Se connecter</h2>
                         <ul class="social-icons text-center">
                             <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
                             <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
                             <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
                             <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
                         </ul>
-                        <p>Don't Have Account? Click <a class="color-green" href="signup">Sign Up</a> to registration.</p>            
+                        <p>Pas encore membre ? Cliquer sur <a class="color-green" href="signup">S'inscrire</a> pour créer un compte.</p>            
                     </div>
                     <form class="reg-page" role="form" action="login" method="post" id="login-form" autocomplete="off">
 
                         <div class="input-group margin-bottom-20">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input type="text" class="form-control" placeholder="Email" id="email" name="email">
+                            <input type="text" class="form-control" placeholder="Courriel" id="email" name="email">
                         </div>
                         <div class="input-group margin-bottom-20">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="text" class="form-control" placeholder="Password" id="key" name="key">
+                            <input type="text" class="form-control" placeholder="Mot de passe" id="key" name="key">
                         </div>
                         <hr>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> 
-                                <p>Always stay signed in</p>
+                                <p>Rester connecté(e)</p>
                             </label>            
                         </div>
 
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <button type="submit" class="btn-u btn-block">Log In</button>
+                                <button type="submit" class="btn-u btn-block">Se connecter</button>
                             </div>
                         </div>
                     </form>

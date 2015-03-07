@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>AlloChef | Welcome...</title>
+    <title>AlloChef | Bienvenue...</title>
     @html.include('shared/head', model)
 </head> 
 
@@ -18,28 +18,28 @@
                 <form class="reg-page" role="form" action="/signup" method="post" id="login-form" autocomplete="off">
                     <div class="reg-header">
 
-                        <h2>Register a new account</h2>
-                        <p>Already Signed Up? Click <a href="login" class="color-green">Sign In</a> to login your account.</p>                    
+                        <h2>S'inscrire</h2>
+                        <p>Déjà membre ? Cliquez sur <a href="login" class="color-green">Se connecter</a> pour vous accéder à votre compte.</p>                    
                     </div>
-                    <label>User name</label>
+                    <label>Nom d'utilisateur</label>
                     <input type="text" class="form-control margin-bottom-20" name ="username" id="username">
 
-                    <label>First Name</label>
+                    <label>Prénom</label>
                     <input type="text" class="form-control margin-bottom-20" name ="prenom" id="prenom">
                    
-                    <label>Last Name</label>
+                    <label>Nom de famille</label>
                     <input type="text" class="form-control margin-bottom-20" name="nom" id ="nom">
                    
-                    <label>Email Address <span class="color-red">*</span></label>
+                    <label>Courriel <span class="color-red">*</span></label>
                     <input type="text" class="form-control margin-bottom-20"name="email" id ="email">
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>Password <span class="color-red">*</span></label>
+                            <label>Mot de passe <span class="color-red">*</span></label>
                             <input type="password" class="form-control margin-bottom-20" name="key" id ="key">
                         </div>
                         <div class="col-sm-6">
-                            <label>Confirm Password <span class="color-red">*</span></label>
+                            <label>Confirmer le mot de passe <span class="color-red">*</span></label>
                             <input type="password" class="form-control margin-bottom-20">
                         </div>
                     </div>
@@ -50,11 +50,11 @@
                         <div class="col-lg-6 checkbox">
                             <label>
                                 <input type="checkbox"> 
-                                I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+                                J'ai lu et accepte les <a href="page_terms.html" class="color-green"> Termes et Conditions d'utilisation</a>
                             </label>                        
                         </div>
                         <div class="col-lg-6 text-right">
-                            <button class="btn-u" type="submit">Register</button>                        
+                            <button class="btn-u" type="submit">Inscrivez-vous</button>                        
                         </div>
                     </div>
                 </form>

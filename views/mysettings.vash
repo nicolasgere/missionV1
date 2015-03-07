@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title> AlloChef | Welcome...</title>
+    <title> AlloChef | Bienvenue...</title>
     <link rel="shortcut icon" href="/imgIll/favicon.ico"/>
     @html.include('shared/head', model)
     <!--ICI FICHIER JS PERSO-->
@@ -148,17 +148,18 @@ YUI.add('crop-box', function (Y) {
 {
     requires: [ 'node', 'base' ]
 });
-</script>
-</head>
-<body>
-
-   <script>
-   var nom = "@model.nom";
+ var nom = "@model.nom";
    var prenom = "@model.prenom";
    var desc = "@model.desc";
    var email = "@model.email";
    var ville = "@model.ville";
    var arron = "@model.arron";
+</script>
+</head>
+<body>
+
+   <script>
+  
    </script>
    <div class="wrapper">
     <div class="header">
@@ -177,7 +178,7 @@ YUI.add('crop-box', function (Y) {
                     Remplacer</button>
                              <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                                 <li class="list-group-item active">
-                                    <a href="mysettings"><i class="fa fa-user"></i> Mon Profile</a>
+                                    <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                                 </li>
                                 <li class="list-group-item ">
                                     <a href="myprofil"><i class="fa fa-cubes"></i> Mes plats</a>
@@ -186,7 +187,7 @@ YUI.add('crop-box', function (Y) {
                                     <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
                                 </li>                                        
                                 <li class="list-group-item">
-                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglage</a>
+                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
                                 </li> 
                             </ul>   
                         </div>
@@ -197,13 +198,13 @@ YUI.add('crop-box', function (Y) {
                             <div class="profile-body margin-bottom-20">
                         <div class="tab-v1">
                             <ul class="nav nav-justified nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#profile">Edit Profile</a></li>
-                                <li><a data-toggle="tab" href="#passwordTab">Change Password</a></li>
-                                <li><a data-toggle="tab" href="#settings">Notification Settings</a></li>
+                                <li class="active"><a data-toggle="tab" href="#profile">Modifier le profil</a></li>
+                                <li><a data-toggle="tab" href="#passwordTab">Changer de mot de passe</a></li>
+                                <li><a data-toggle="tab" href="#settings">Paramètres de notifications</a></li>
                             </ul>          
                             <div class="tab-content">
                                 <div id="profile" class="profile-edit tab-pane fade in active">
-                                    <h2 class="heading-md">Gerer vos informations</h2>
+                                    <h2 class="heading-md">Gérer vos informations</h2>
                                     <br>
                                     <dl class="dl-horizontal">
                                         <dt><strong>Votre nom </strong></dt>
@@ -242,7 +243,7 @@ YUI.add('crop-box', function (Y) {
                                             </span>
                                         </dd>
                                         <hr>
-                                        <dt><strong>Votre adresse mail</strong></dt>
+                                        <dt><strong>Votre courriel</strong></dt>
                                         <dd>
                                             <span data-bind="text:email, visible:editEmail">
                                             </span>
@@ -284,17 +285,17 @@ YUI.add('crop-box', function (Y) {
                                         </dd>
                                         <hr>
                                     </dl>
-                                    <button type="button" class="btn-u btn-u-default">Cancel</button>
-                                    <button type="button" class="btn-u" data-bind="click:save">Save Changes</button>
+                                    <button type="button" class="btn-u btn-u-default">Annuler</button>
+                                    <button type="button" class="btn-u" data-bind="click:save">Enregistrer</button>
                                 </div>
 
                                 <div id="passwordTab" class="profile-edit tab-pane fade">
-                                    <h2 class="heading-md">Manage your Security Settings</h2>
-                                    <p>Change your password.</p>
+                                    <h2 class="heading-md">Gérer vos paramètres de sécurité</h2>
+                                    <p>Changer de mot de passe</p>
                                     <br>
                                     <form class="sky-form" id="sky-form4" action="" novalidate="novalidate">
                                         <dl class="dl-horizontal">
-                                            <dt>Email address</dt>
+                                            <dt>Courriel</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
@@ -304,54 +305,54 @@ YUI.add('crop-box', function (Y) {
                                                     </label>
                                                 </section>
                                             </dd>
-                                            <dt>Enter your password</dt>
+                                            <dt>Entrer votre mot de passe</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
                                                         <input type="password" id="password" name="password" placeholder="Password">
-                                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                                        <b class="tooltip tooltip-bottom-right">N'oubliez pas votre mot de passe</b>
                                                     </label>
                                                 </section>
                                             </dd>
-                                            <dt>Confirm Password</dt>
+                                            <dt>Confirmer le mot de passe</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
                                                         <input type="password" name="passwordConfirm" placeholder="Confirm password">
-                                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                                        <b class="tooltip tooltip-bottom-right">N'oubliez pas votre mot de passe</b>
                                                     </label>
                                                 </section>
                                             </dd>    
                                         </dl>
-                                        <label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Remember password</label>
+                                        <label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Se souvenir du mot de passe</label>
                                         <br>
                                         <section>
-                                            <label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">I agree with the Terms and Conditions</a></label>
+                                            <label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">j'ai lu et accepte les Termes et Conditions d'utilisation</a></label>
                                         </section>
-                                        <button type="button" class="btn-u btn-u-default">Cancel</button>
-                                        <button class="btn-u" type="submit">Save Changes</button>
+                                        <button type="button" class="btn-u btn-u-default">Annuler</button>
+                                        <button class="btn-u" type="submit">Enregistrer</button>
                                     </form>    
                                 </div>
 
                                 <div id="settings" class="profile-edit tab-pane fade">
-                                    <h2 class="heading-md">Manage your Notifications.</h2>
-                                    <p>Below are the notifications you may manage.</p>
+                                    <h2 class="heading-md">Gérer vos notifications</h2>
+                                    <p>Ci-dessous les notification que vous pouvez paramétrer</p>
                                     <br>
                                     <form class="sky-form" id="sky-form" action="">
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Email notification</label>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Notifications courriel</label>
                                         <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification when a user comments on my blog</label>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel quand un utilisateur commente mes plats </label>
                                         <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification for the latest update</label>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel pour recevoir les nouvelles mises à jour </label>
                                         <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Send me email notification when a user sends me message</label>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel quand un utilisateur désire me contacter</label>
                                         <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Receive our monthly newsletter</label>
+                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Recevez notre infolettre mensuelle</label>
                                         <hr>    
-                                        <button type="button" class="btn-u btn-u-default">Reset</button>
-                                        <button class="btn-u" type="submit">Save Changes</button>
+                                        <button type="button" class="btn-u btn-u-default">Reinitialiser</button>
+                                        <button class="btn-u" type="submit">Enregistrer</button>
                                     </form>    
                                 </div>
                             </div>
@@ -451,7 +452,7 @@ YUI.add('crop-box', function (Y) {
 
 </body>
                 <div class="modal-footer" style="margin-top:30px">
-                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annulé</button>
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annuler</button>
                     <button class="btn-u" type="button" data-bind="click:test">Enregistrer</button>
                 </div>
             </div>
