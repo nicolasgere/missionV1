@@ -20,18 +20,7 @@ var app = express();
 app.use(session({secret: 'unechainesecreteici', saveUninitialized: true, resave: true}));
 
 // view engine setup
-app.use(multer({ dest: './public/imgProfil',
- rename: function (fieldname, filename) {
-  return filename+Date.now();
-},
-onFileUploadStart: function (file) {
-  console.log(file.originalname + ' is starting ...')
-},
-onFileUploadComplete: function (file) {
-  console.log(file.fieldname + ' uploaded to  ' + file.path)
-  done=true;
-}
-}));
+
 
 
 app.set('views', __dirname + '/views/');

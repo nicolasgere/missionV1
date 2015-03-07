@@ -16,7 +16,7 @@
 				<div class="row">
 					<!--Left Sidebar-->
 					<div class="col-md-3 md-margin-bottom-40">
-                        <img class="img-responsive profile-img margin-bottom-20" src="/imgProfil/@model.user.imageSrc" alt="">
+                        <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
                         <div class="service-block-v3 service-block-u">
                             <i class="icon-users"></i>
                             <span class="service-heading">Plat préparé</span>
@@ -53,7 +53,7 @@
                          <div class="funny-boxes funny-boxes-right-u">
                             <div class="row">
                                <div class="col-md-4 funny-boxes-img">
-                                  <img class="img-responsive" src="/imgPlat/@model.meal.img" alt="">
+                                  <img class="img-responsive" src="https://allochef.s3.amazonaws.com/@model.meal.img" alt="">
                                   <ul class="list-unstyled">
                                      <li><i class="fa fa-briefcase"></i><h4 style="display:inline">@model.meal.price $/ la portion</h4></li>
                                      <li><i class="fa fa-map-marker"></i><h4 style="display:inline">Livraison possible</h4></li>

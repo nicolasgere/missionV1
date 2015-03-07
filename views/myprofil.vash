@@ -164,7 +164,7 @@ YUI.add('crop-box', function (Y) {
             <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
 
-                   <img class="img-responsive profile-img margin-bottom-20" src="imgProfil/@model.imageSrc" alt=""  >
+                   <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.imageSrc" alt=""  >
 <!--
                                 <div class="fileUpload btn btn-primary">
                                     <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
@@ -230,7 +230,7 @@ YUI.add('crop-box', function (Y) {
                         <ul class="row grid-block-v2">        
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal1,with:meal1">
                              <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
                                     <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">
@@ -245,7 +245,7 @@ YUI.add('crop-box', function (Y) {
                             </li>
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal2,with:meal2">
                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
                                     <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">
@@ -263,7 +263,7 @@ YUI.add('crop-box', function (Y) {
                         <ul class="row grid-block-v2" data-bind="visible:meal2()&&meal1()">        
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal3,with:meal3">
                                   <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
                                     <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">
@@ -278,7 +278,7 @@ YUI.add('crop-box', function (Y) {
                             </li>
                                 <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
                                <div class="easy-block-v1">
-                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'imgPlat/'+ realImage()}">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
                                     <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">

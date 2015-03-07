@@ -11,7 +11,7 @@
 
 <body>
 <div class="wrapper">
-                   @html.include('shared/menu', model) 
+                   @html.include('shared/menu', model)
                    <div class="job-img-inputs">
             <div class="container">
                 <div class="row" style="margin-top:10px">
@@ -41,7 +41,7 @@
                     <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img alt="" data-bind="attr:{src: 'imgPlat/'+ image}">
+                                <img alt="" data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ image}">
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <li><span class="color-green">Chef:</span> <a href="#"  data-bind="attr:{href: 'test'}"><span data-bind="text:username"></span></a></li>
                         <li><span class="color-green">Description:</span> <span data-bind="text:description"></span></li>
                     </ul>    
-                    <a class="btn-u btn-u-sm" href="#" data-bind="attr:{href: 'profil/' + userId}">Voir plus</a>
+                    <a class="btn-u btn-u-sm" href="#" data-bind="attr:{href: 'profil/' + mealId}">Voir plus</a>
                 </div>
             </div>             
           

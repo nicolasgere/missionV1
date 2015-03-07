@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Note @model.id</title>
+    @html.include('shared/head', model)
+</head> 
+
+<body>
+<div class="wrapper"> 
+                @html.include('shared/menu', model)
+                @model.id
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-9">
+	   
+           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
+            <form action="POST" class="sky-form">
+                <fieldset>                  
+                    <section>
+                        <div class="rating">
+                            <input type="radio" name="stars-rating" id="stars-rating-5">
+                            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-4">
+                            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-3">
+                            <label for="stars-rating-3"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-2">
+                            <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-1">
+                            <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                            Nourriture
+                        </div>    
+                    </section>
+                    <section>
+                        <div class="rating">
+                            <input type="radio" name="stars-rating" id="stars-rating-5">
+                            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-4">
+                            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-3">
+                            <label for="stars-rating-3"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-2">
+                            <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="stars-rating" id="stars-rating-1">
+                            <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                            Ponctualité
+                        </div>    
+                    </section>
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn-u btn-u-default">Submit</button>
+                    <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
+                </footer>
+            </form>
+    </div>
+    @html.include('shared/foot', model)
+</div>
+</body>
+</html> 

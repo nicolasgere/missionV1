@@ -172,7 +172,7 @@ YUI.add('crop-box', function (Y) {
 
             <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20" id="imgProfil" src="imgProfil/@model.imageSrc" alt=""  >
+                <img class="img-responsive profile-img margin-bottom-20" id="imgProfil" src="https://allochef.s3.amazonaws.com/@model.imageSrc" alt=""  >
                 <button type="button" class="btn-u" style="position: absolute;top: 170px;left: 100px;" data-toggle="modal" data-target="#updateModal">
 
                     Remplacer</button>
