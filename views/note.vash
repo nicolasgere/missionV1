@@ -20,32 +20,32 @@
                 <fieldset>                  
                     <section>
                         <div class="rating">
-                            <input type="radio" name="stars-rating" id="stars-rating-5">
-                            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-4">
-                            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-3">
-                            <label for="stars-rating-3"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-2">
-                            <label for="stars-rating-2"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-1">
-                            <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="nourriture-rating" id="nourriture-rating-5">
+                            <label for="nourriture-rating-5"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="nourriture-rating" id="nourriture-rating-4">
+                            <label for="nourriture-rating-4"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="nourriture-rating" id="nourriture-rating-3">
+                            <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="nourriture-rating" id="nourriture-rating-2">
+                            <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="nourriture-rating" id="nourriture-rating-1">
+                            <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
                             Nourriture
                         </div>    
                     </section>
                     <section>
                         <div class="rating">
-                            <input type="radio" name="stars-rating" id="stars-rating-5">
-                            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-4">
-                            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-3">
-                            <label for="stars-rating-3"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-2">
-                            <label for="stars-rating-2"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="stars-rating" id="stars-rating-1">
-                            <label for="stars-rating-1"><i class="fa fa-star"></i></label>
-                            Ponctualité
+                            <input type="radio" name="service-rating" id="service-rating-5">
+                            <label for="service-rating-5"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="service-rating" id="service-rating-4">
+                            <label for="service-rating-4"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="service-rating" id="service-rating-3">
+                            <label for="service-rating-3"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="service-rating" id="service-rating-2">
+                            <label for="service-rating-2"><i class="fa fa-star"></i></label>
+                            <input type="radio" name="service-rating" id="service-rating-1">
+                            <label for="service-rating-1"><i class="fa fa-star"></i></label>
+                            Service
                         </div>    
                     </section>
                 </fieldset>
