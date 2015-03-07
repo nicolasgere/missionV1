@@ -57,8 +57,6 @@ var ViewModel = function() {
 		}
 
 	});
-	self.desc = ko.observable(desc1);
-	self.descTemp = ko.observable(desc1);
 
 
 

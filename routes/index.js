@@ -1,6 +1,7 @@
 /**INCLUDE**/
 var config = require('../config')
 var express = require('express');
+var fs = require('fs')
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var mongo = require('mongodb');
@@ -12,7 +13,16 @@ var db = new Mongolian(config.mongoDb);
 var users = db.collection("users");
 var meals = db.collection("meals");
 var vash = require('vash');
+var AWS = require('aws-sdk');
+var accessKeyId =  process.env.AWS_ACCESS_KEY || "AKIAJJEU5IAFCV5WHFIA";
+var secretAccessKey = process.env.AWS_SECRET_KEY || "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";
 
+AWS.config.update({
+  accessKeyId: accessKeyId,
+  secretAccessKey: secretAccessKey
+});
+
+var s3 = new AWS.S3();
 
 
 function isConnect (req,res, next){
@@ -142,6 +152,7 @@ router.get('/myprofil', isConnect,function(req,res){
 router.post('/createMeal', function(req, res){
   var data = {}
   var Id = guid();
+  var IdImg = guid();
   data.price = req.body.price;
   data.cat = req.body.cat;
   data.desc = req.body.desc;
@@ -149,38 +160,51 @@ router.post('/createMeal', function(req, res){
   data.UserId = req.session.UserId;
   data.MealId = Id;
   data.username =  req.session.username; 
-  data.img =  Id + "." + req.body.ext;
+ 
   console.log(req.body.ext)
 
-
+  var ext = "";
   if(req.body.ext =="jpeg" || req.body.ext=="jpg"){
     console.log("je suis ici");
+    ext = ".jpeg"
     var base64Data = req.body.img.replace(/^data:image\/jpeg;base64,/, "");
   }
   if(req.body.ext =="png"){
+    ext = ".png"
     var base64Data = req.body.img.replace(/^data:image\/png;base64,/, "");
   }
-
-  require("fs").writeFile("public/imgPlat/"+Id+"."+req.body.ext, base64Data, 'base64', function(err) {
-   meals.insert(data, function(err,rep) {
-    if(err) {
-      console.log(err);
-      res.status(500);
+  var buf = new Buffer(base64Data, 'base64'); 
+  s3.putObject({
+    Bucket: 'allochef',
+    Key: IdImg+ext,
+    Body: buf,
+    ACL:'public-read'
+  }, function (perr, pres) {
+    if (perr) {
+      console.log("Error uploading data: ", perr);
     } else {
-      if(!rep)
-      {
-        res.status(204);
-      }
-      else
-      {
-        res.send({img:Id+"."+req.body.ext,mealId:Id});
-
-      }
+      console.log("Successfully uploaded data to myBucket/myKey");
+          data.img =  IdImg + ext;
+      meals.insert(data, function(err,rep) {
+     
+        if(err) {
+          console.log(err);
+          res.status(500);
+        } else {
+          if(!rep)
+          {
+            res.status(204);
+          }
+          else
+          {
+            res.send({img:IdImg+ext,mealId:Id});
+          }
+        }
+      });
     }
   });
- });
-  
 });
+
 router.post('/loadImage', function(req, res){
  res.send(req.files.fileToUpload.name);
 
@@ -232,23 +256,31 @@ router.get('/mysettings', isConnect,function(req,res){
 }); 
 
 router.post('/test', function(req, res){
-
-  console.log(req.body);
   var base64Data = req.body.blob.replace(/^data:image\/jpeg;base64,/, "");
   var Id = guid();
-  require("fs").writeFile("public/imgProfil/"+Id+".jpeg", base64Data, 'base64', function(err) {
-   users.update(
-  {UserId: req.session.UserId}, // query
-  {$set:{imageSrc:Id+".jpeg"}}, 
-  function(err,rep) {
-   res.send(Id+".jpeg");
- });
- });
+  var buf = new Buffer(base64Data, 'base64'); 
+  s3.putObject({
+    Bucket: 'allochef',
+    Key: Id+'.jpeg',
+    Body: buf,
+    ACL:'public-read'
+  }, function (perr, pres) {
+    if (perr) {
+      console.log("Error uploading data: ", perr);
+    } else {
+      console.log("Successfully uploaded data to myBucket/myKey");
+      users.update(
+    {UserId: req.session.UserId}, // query
+    {$set:{imageSrc:Id+".jpeg"}}, 
+    function(err,rep) {
+      res.send(Id+".jpeg");
+    });
+    }
+  });
 });
-
 router.post('/updateSettings', function(req, res){
   users.update(
-  {UserId: req.session.UserId}, // query
+  {UserId: req.session.UserId}, // query  
   {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
   function(err,rep) {
    res.send("ok");
@@ -290,7 +322,11 @@ router.get('/profil/:id', function(req,res){
     })
   })
 });
-
+/**NOTE CHEF**/
+router.get('/note/:id', function(req, res){
+  console.log(req.params.id);
+  res.render('note',{id:req.params.id});
+});
 
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){

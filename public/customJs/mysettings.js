@@ -57,7 +57,7 @@ self.test= function(){
 		data:{blob:data},
 		success: function(data){
 
-       $("#imgProfil").attr('src',"imgProfil/"+data);
+       $("#imgProfil").attr('src',"https://allochef.s3.amazonaws.com/"+data);
 		$('#updateModal').modal('toggle');
 
 		}
