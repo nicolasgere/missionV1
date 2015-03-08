@@ -48,6 +48,18 @@ border-top: solid 2px #e75967;
     color: #c0392b;
 }
 
+.header .navbar-default .navbar-nav > li > a {
+    color: #e75967;
+}
+.header .navbar-default .navbar-nav > li > a {
+    color: #e75967;
+}
+.header .navbar-default .navbar-nav > .active > a {
+    color: #e75967;
+	
+}
+
+
 .header .navbar .nav > li > .search:hover {
     border-bottom-color: #c0392b;
     color: #c0392b;
