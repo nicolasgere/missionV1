@@ -9,11 +9,11 @@
     <script type="text/javascript" src="/customJs/myprofil.js"></script>
     <script src="assets/js/yui-min.js"></script>
 
-    <script src="/assets/js/cropbox-min.js"></script>
-    <script type="text/javascript">
+<script src="/assets/js/cropbox-min.js"></script>
+<script type="text/javascript">
 
-    YUI.add('crop-box', function (Y) {
-        Y.CropBox = Y.Base.create('crop-box', Y.Base, [],
+YUI.add('crop-box', function (Y) {
+    Y.CropBox = Y.Base.create('crop-box', Y.Base, [],
         {
             initializer: function (options)
             {
@@ -47,8 +47,8 @@
                     self.mouseup = Y.one('body').on('mouseup', self.imgMouseUp, self);
 
                     Y.UA.gecko > 0?
-                    self.imageBox.on('DOMMouseScroll', self.zoomImage, self):
-                    self.imageBox.on('mousewheel', self.zoomImage, self);
+                        self.imageBox.on('DOMMouseScroll', self.zoomImage, self):
+                        self.imageBox.on('mousewheel', self.zoomImage, self);
                 };
                 this.image.src = this.options.imgSrc;
             },
@@ -107,17 +107,17 @@
             getAvatar: function ()
             {
                 var self = this,
-                width = this.thumbBox.get('clientWidth'),
-                height = this.thumbBox.get('clientHeight'),
-                canvas = document.createElement("canvas"),
-                dim = this.imageBox.getStyle('backgroundPosition').split(' '),
-                size = this.imageBox.getStyle('backgroundSize').split(' '),
-                dx = parseInt(dim[0]) - this.imageBox.get('clientWidth')/2 + width/2,
-                dy = parseInt(dim[1]) - this.imageBox.get('clientHeight')/2 + height/2,
-                dw = parseInt(size[0]);
-                dh = parseInt(size[1]);
-                sh = parseInt(this.image.height);
-                sw = parseInt(this.image.width);
+                    width = this.thumbBox.get('clientWidth'),
+                    height = this.thumbBox.get('clientHeight'),
+                    canvas = document.createElement("canvas"),
+                    dim = this.imageBox.getStyle('backgroundPosition').split(' '),
+                    size = this.imageBox.getStyle('backgroundSize').split(' '),
+                    dx = parseInt(dim[0]) - this.imageBox.get('clientWidth')/2 + width/2,
+                    dy = parseInt(dim[1]) - this.imageBox.get('clientHeight')/2 + height/2,
+                    dw = parseInt(size[0]);
+                    dh = parseInt(size[1]);
+                    sh = parseInt(this.image.height);
+                    sw = parseInt(this.image.width);
 
                 console.log(dw);
                 canvas.width = width;
@@ -142,7 +142,7 @@
             {
                 if (this.mouseup) this.mouseup.detach()
             }
-    });
+        });
 }, '1.0',
 {
     requires: [ 'node', 'base' ]
@@ -151,20 +151,20 @@
 </head>
 <body>
 
-   <script>
-   </script>
-   <div class="wrapper">
+ <script>
+ </script>
+ <div class="wrapper">
     <div class="header">
-       @html.include('shared/menu', model)
-   </div>
-   <div class="profile">    
+     @html.include('shared/menu', model)
+ </div>
+ <div class="profile">    
     <div class="container content">
         <div class="row">
 
             <!--Left MENU-->
             <div class="col-md-3 md-margin-bottom-40">
 
-             <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.imageSrc" alt=""  >
+                   <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.imageSrc" alt=""  >
 <!--
                                 <div class="fileUpload btn btn-primary">
                                     <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
@@ -173,78 +173,63 @@
                                      <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
                                  </form>
                              </div>-->
-                             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                                <li class="list-group-item">
-                                    <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
-                                </li>
-                                <li class="list-group-item active">
-                                    <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
-                                </li>                                        
-                                <li class="list-group-item">
-                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
-                                </li> 
-                            </ul>   
-                        </div>
-                        <!--End Left MENU-->
+                <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                    <li class="list-group-item">
+                        <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
+                    </li>
+                    <li class="list-group-item active">
+                        <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
+                    </li>                                        
+                    <li class="list-group-item">
+                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
+                    </li> 
+                </ul>   
+            </div>
+            <!--End Left MENU-->
 
 
-                        <div class="col-md-9">
-                            <div class="row" data-bind="visible:!meal1()">
-                                <div class="one-page-inner one-default">
-                                    <div class="container content">
-                                        <div class="row"  style="margin-bottom:80px">
-                                            <div class="col-md-4">
-                                                <h1>Partager votre cuisine</h1>                        
-                                                <p>Vous désirez faire découvrir votre cuisine à la communauté ? <br>Joignez l'utile à l'agréable, et mettez en ligne votre premier plat ici !</br></p>
-
-                                                <a class="btn-u one-page-btn" data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-cutlery"></i>&nbsp;Créer mon premier plat</a>
-                                            </div>
-                                            <div class="col-md-4">
-                                               <ul class="row grid-block-v2">        
-                                                <li class="col-md-12 col-sm-12" >
-                                                    <div class="easy-block-v1">
-                                                        <img class="img-responsive" src="https://allochef.s3.amazonaws.com/quicheloraine.jpeg" style="height: 240px;" alt="">
-                                                        <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">Exemple</div>
-                                                    </div>
-                                                    <div style="height:250px" class="grid-block-v2-info rounded-bottom">
-                                                        <h3>Quiche lorraine</h3>
-                                                        <ul class="list-inline margin-bottom-5">
-                                                        </ul>
-                                                        <p>Une délicieuse quiche lorraine avec ses lardons, et gratinée par du fromage suisse pour un repas gourmand et rapide !</p>
-                                                        <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
-                                                        <a href="#" style=" position: absolute;left: 200px;top: 450px;"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+            <div class="col-md-9">
+                <div class="row" data-bind="visible:!meal1()">
+                    <div class="one-page-inner one-default">
+            <div class="container content">
+                <div class="row"  style="margin-bottom:80px">
+                    <div class="col-md-4">
+                        <h1>Partager votre cuisine</h1>                        
+                        <p>Vous désirez faire découvrir votre cuisine à la communauté ? <br>Joignez l'utile à l'agréable, et mettez en ligne votre premier plat ici !</br></p>
+                
+                        <a class="btn-u one-page-btn" data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-cutlery"></i>&nbsp;Créer mon premier plat</a>
+                    </div>
+                    <div class="col-md-4">
+                         <ul class="row grid-block-v2">        
+                            <li class="col-md-12 col-sm-12" >
+                                <div class="easy-block-v1">
+                                    <img class="img-responsive" src="/https://allochef.s3.amazonaws.com/illustration1.jpg" style="height: 240px;" alt="">
+                                    <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">Exemple</div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row"  data-bind="visible:meal1">
-                            <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
-                                <h1>Mes plats <button style="margin-left:46%" class="btn-u btn-brd btn-brd-hover rounded-3x btn-u-red btn-u-xs" type="button"  data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-plus-square-o"></i> Ajouter</button></h1> 
-                                <ul class="row grid-block-v2">        
-                                    <li class="col-md-4 col-sm-12" data-bind="visible:meal1,with:meal1">
-                                       <div class="easy-block-v1">
-                                        <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
-                                        <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
-                                    </div>
-                                    <div style="height:250px" class="grid-block-v2-info rounded-bottom">
-                                        <h3 data-bind="text:name"></h3>
-                                        <ul class="list-inline margin-bottom-5">
-                                        </ul>
-                                        <p data-bind="text:description"></p>
-                                        <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
-                                        <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
-
-                                    </div>
-                                </li>
-                                <li class="col-md-4 col-sm-12" data-bind="visible:meal2,with:meal2">
-                                 <div class="easy-block-v1">
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                    <h3>Quiche lorraine</h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p>Une délicieuse quiche lorraine avec ses lardons, et gratinée par du fromage suisse pour un repas gourmand et rapide !</p>
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div class="row"  data-bind="visible:meal1">
+                    <div class="container content-md" style="padding-top:0px; padding-bottom:1%px">
+                        <h1>Mes plats <button style="margin-left:46%" class="btn-u btn-brd btn-brd-hover rounded-3x btn-u-red btn-u-xs" type="button"  data-toggle="modal" data-bind="click:changeCible()" data-target="#myModal"><i class="fa  fa-plus-square-o"></i> Ajouter</button></h1> 
+                        <ul class="row grid-block-v2">        
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal1,with:meal1">
+                             <div class="easy-block-v1">
                                     <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
                                     <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
                                 </div>
@@ -255,62 +240,77 @@
                                     <p data-bind="text:description"></p>
                                     <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
                                     <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
-
+ 
                                 </div>
                             </li>
-
+                            <li class="col-md-4 col-sm-12" data-bind="visible:meal2,with:meal2">
+                               <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
+                                </div>
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
+                                </div>
+                            </li>
+                             
                         </ul>
                         <ul class="row grid-block-v2" data-bind="visible:meal2()&&meal1()">        
                             <li class="col-md-4 col-sm-12" data-bind="visible:meal3,with:meal3">
-                              <div class="easy-block-v1">
-                                <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
-                                <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
-                            </div>
-                            <div style="height:250px" class="grid-block-v2-info rounded-bottom">
-                                <h3 data-bind="text:name"></h3>
-                                <ul class="list-inline margin-bottom-5">
-                                </ul>
-                                <p data-bind="text:description"></p>
-                                <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
-                                <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+                                  <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
+                                </div>
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
+                                </div>
+                            </li>
+                                <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
+                               <div class="easy-block-v1">
+                                    <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
+                                    <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
+                                </div>
+                                <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                    <h3 data-bind="text:name"></h3>
+                                    <ul class="list-inline margin-bottom-5">
+                                    </ul>
+                                    <p data-bind="text:description"></p>
+                                    <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
+                                    <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+ 
+                                </div>
+                            </li>
+                             
+                        </ul>
+                    </div>
+                </div>
 
-                            </div>
-                        </li>
-                        <li class="col-md-4 col-sm-12" data-bind="visible:meal4,with:meal4">
-                         <div class="easy-block-v1">
-                            <img class="img-responsive" style="height: 240px;" alt=""  data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ realImage()}">
-                            <div class="easy-block-v1-badge rgba-red"data-bind="text: price()+' $'" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;"></div>
-                        </div>
-                        <div style="height:250px" class="grid-block-v2-info rounded-bottom">
-                            <h3 data-bind="text:name"></h3>
-                            <ul class="list-inline margin-bottom-5">
-                            </ul>
-                            <p data-bind="text:description"></p>
-                            <a href="#"  style=" position: absolute;left: 170px;top: 450px;"   data-toggle="modal" data-target="#updateModal" data-bind="click:modifyMeal"><i class="expand-list rounded-x fa  fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Modifier"></i></a>
-                            <a href="#" style=" position: absolute;left: 200px;top: 450px;" data-bind="click:supprimer"><i data-toggle="tooltip" data-placement="left" title="Supprimer"class="expand-list rounded-x fa fa-trash-o"></i></a>
+                <!-- COMMENT-->
+              
+                    <!--End Social Icons v3-->
 
-                        </div>
-                    </li>
+                    <!--Skills-->
 
-                </ul>
+                    <!--End Skills-->            
+                </div>
             </div>
+           
         </div>
-
-        <!-- COMMENT-->
-
-        <!--End Social Icons v3-->
-
-        <!--Skills-->
-
-        <!--End Skills-->            
     </div>
-</div>
-
-</div>
-</div>
 </div>   
 </div>
-<!-- MODAL-->
+                <!-- MODAL-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -322,77 +322,150 @@
                 <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
                   <fieldset>
                     <div class="row">
-                        <section class="col col-6" >
+                        <section class="col col-6">
                             <label class="label">Nom du plat</label>
                             <label class="input">
-                                <input type="text" data-bind="value:newName,valueUpdate:'afterkeydown'">
+                                <input type="text" data-bind="value:newName" >
                             </label>
                         </section>  
-                        <section class="col col-4" data-bind="visible:newName">
-                            <label class="label">Prix pour une portion </label>
+                        <section class="col col-4">
+                            <label class="label">Prix pour une portion</label>
                             <label class="input">
                                 <i class="icon-append fa fa-tag"></i>
-                                <input type="text" name="subject" id="subject" data-bind="value:newPrice,valueUpdate:'afterkeydown'">
+                                <input type="text" name="subject" id="subject" data-bind="value:newPrice">
                             </label>
-                             <div ><strong>Exemple:</strong> 9, 7.50</div>
                         </section>
                     </div>
-
-                    <section data-bind="visible:newPrice">
+                 
+                    <section>
                         <label class="label">Catégorie</label>
                         <label class="select">
-                           <select data-bind="options: availableCat,
-                           value: newCategory,
-                           optionsCaption: 'Choisir...'"></select>
-                           <i></i>
-                       </label>
-                   </section>
+                             <select data-bind="options: availableCat,
+                       value: newCategory,
+                       optionsCaption: 'Choose...'"></select>
+                            <i></i>
+                        </label>
+                    </section>
 
-                   <section data-bind="visible:newCategory">
-                    <label class="label">Description</label>
-                    <label class="textarea textarea-resizable" >
-                        <textarea rows="3" data-bind="value: newDescription,valueUpdate:'afterkeydown'"></textarea>
-                    </label>
-                    <div class="note" data-bind="visible:tailleDesc()<150 || tailleDesc()>380"><strong>Note:</strong> La taille de la description doit etre comprise entre 150 et 380 caractere. Actuellement <span data-bind="text:tailleDesc"></span></div>
-                </section>
-            </fieldset>
-        </form>
-       <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" data-bind="visible:newDescription">
-          <fieldset>
-            <section>
-                <label class="label">Choisir une photo</label>
-                <label for="file" class="input input-file">
-                    <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value.substring(12)" data-bind="value:nomImage">Charger</div><input type="text" readonly="">
-                </label>
-            </section>
-            <div class="action" data-bind="visible:nomImage">
+                    <section>
+                        <label class="label">Description</label>
+                        <label class="textarea textarea-resizable" >
+                            <textarea rows="3" data-bind="value: newDescription"></textarea>
+                        </label>
+                    </section>
+                        </fieldset>
+                </form>
+                 <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" >
+                  <fieldset>
+                      <!--<section>
+                        <label class="label">Image</label>
+                        <label for="file" class="input input-file">
+                           <form id="imgForm2" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <div class="button">
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:newImage">Browse</div>
+                                     <input type="submit" data-bind="value:newImage" name="submit">
+                                 </form>      
+                        </label>
+                    </section>  -->
+  <style type="text/css">.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 100%;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
 
-                <input type="button" id="btnZoomIn" style="margin-left:18%" value="+" >
-                <input type="button" id="btnZoomOut" value="-">
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 38%;
+    left: 35%;
+    width: 360px;
+    height: 240px;
+    margin-top: -100px;
+    margin-left: -100px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 300px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 300px;
+    background: rgba(0,0,0,0.7);
+}</style>
+    <section>
+                            <label class="label">Choisir une photo</label>
+                            <label for="file" class="input input-file">
+                                <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value.substring(12)" data-bind="value:nomImage">Charger</div><input type="text" readonly="">
+                            </label>
+                        </section>
+    <div class="action" data-bind="visible:nomImage">
+
+        <input type="button" id="btnZoomIn" style="margin-left:18%" value="+" >
+        <input type="button" id="btnZoomOut" value="-">
+    </div>
+    <div class="imageBox" data-bind="visible:false">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+    
+    <div class="cropped">
+
+    </div>
+<script type="text/javascript">
+        var cropper;
+
+    YUI().use('node', 'crop-box', function(Y){
+        var options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: ''
+        }
+        Y.one('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = new Y.CropBox(options);
+            }
+            reader.readAsDataURL(this.get('files')._nodes[0]);
+            this.get('files')._nodes = [];
+        })
+        Y.one('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        Y.one('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    })
+</script>
+                       </fieldset>
+                  </form>
+               
+                   
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annuler</button>
+                    <button class="btn-u" type="button" data-bind="click:createMeal">Créer</button>
+                </div>
             </div>
-            <div class="imageBox" data-bind="visible:false">
-                <div class="thumbBox"></div>
-                <div class="spinner" style="display: none">Chargement...</div>
-            </div>
-
-            <div class="cropped">
-
-            </div>
-
-        </fieldset>
-    </form> 
-        
-
-</div>
-<div class="modal-footer">
-    <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annuler</button>
-    <button class="btn-u" type="button" data-bind="click:createMeal,visible:newName() && newPrice()&&newCategory()&&nomImage()&&tailleDesc()>150&& tailleDesc()<380">Créer</button>
-</div>
-</div>
-</div>
-</div>
-<!-- MODAL-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        </div>
+    </div>
+    <!-- MODAL-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -403,54 +476,67 @@
                 <form class="sky-form" id="createMeal" action="createMeal" method="post" enctype="multipart/form-data">
                   <fieldset>
                     <div class="row">
-                        <section class="col col-6" >
+                        <section class="col col-6">
                             <label class="label">Nom du plat</label>
                             <label class="input">
                                 <input type="text" data-bind="value:newName" >
                             </label>
                         </section>  
-                        <div>
-                            <section class="col col-4" >
-                                <label class="label">Prix pour une portion</label>
-                                <label class="input">
-                                    <i class="icon-append fa fa-tag"></i>
-                                    <input type="text" name="subject" id="subject" data-bind="value:newPrice">
-                                </label>
-                            </section>
-                        </div>
+                        <section class="col col-4">
+                            <label class="label">Prix pour une portion</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-tag"></i>
+                                <input type="text" name="subject" id="subject" data-bind="value:newPrice">
+                            </label>
+                        </section>
                     </div>
-
+                 
                     <section>
                         <label class="label">Catégorie</label>
                         <label class="select">
-                           <select data-bind="options: availableCat,
-                           value: newCategory,
-                           optionsCaption: 'Choose...'"></select>
-                           <i></i>
-                       </label>
-                   </section>
+                             <select data-bind="options: availableCat,
+                       value: newCategory,
+                       optionsCaption: 'Choose...'"></select>
+                            <i></i>
+                        </label>
+                    </section>
 
-                   <section>
-                    <label class="label">Description</label>
-                    <label class="textarea textarea-resizable" >
-                        <textarea rows="3" data-bind="value: newDescription"></textarea>
-                    </label>
-                </section>
-            </fieldset>
-        </form>
+                    <section>
+                        <label class="label">Description</label>
+                        <label class="textarea textarea-resizable" >
+                            <textarea rows="3" data-bind="value: newDescription"></textarea>
+                        </label>
+                    </section>
+                        </fieldset>
+                </form>
+                <!--
+                 <form class="sky-form" id="imgForm2"  action="updateImage" method="post" enctype="multipart/form-data" >
+                  <fieldset>
+                      <section>
+                        <label class="label">Nouvelle image si besoin</label>
+                        <label for="file" class="input input-file">
+                           <form id="imgForm2" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
+                                     <div class="button">
+                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:newImage">Browse</div>
+                                     <input type="submit" data-bind="value:newImage" name="submit">
+                                 </form>      
+                        </label>
+                    </section>              
+                       </fieldset>
+                  </form> -->
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annuler</button>
+                    <button class="btn-u" type="button" data-bind="click:updateMeal">Enregistrer</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="modal-footer">
-        <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annuler</button>
-        <button class="btn-u" type="button" data-bind="click:updateMeal,visible:newName() && newPrice()&&newCategory()">Enregistrer</button>
-    </div>
-</div>
-</div>
-</div>
 
-<!--End Reg Block-->
+    <!--End Reg Block-->
 </div>
 </div><!--/container-->     
-@html.include('shared/foot', model)
+     @html.include('shared/foot', model)
 </div>     
 </div><!--/End Wrapepr-->
 
@@ -506,70 +592,4 @@
     background-color: #e74c3c;
     filter: alpha(opacity=0);
 }
-.imageBox
-{
-    position: relative;
-    height: 400px;
-    width: 100%;
-    border:1px solid #aaa;
-    background: #fff;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    cursor:move;
-}
-
-.imageBox .thumbBox
-{
-    position: absolute;
-    top: 38%;
-    left: 35%;
-    width: 360px;
-    height: 240px;
-    margin-top: -100px;
-    margin-left: -100px;
-    box-sizing: border-box;
-    border: 1px solid rgb(102, 102, 102);
-    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    background: none repeat scroll 0% 0% transparent;
-}
-
-.imageBox .spinner
-{
-    position: absolute;
-    top: 300px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    line-height: 300px;
-    background: rgba(0,0,0,0.7);
-    }
 </style>
-<script type="text/javascript">
-var cropper;
-
-YUI().use('node', 'crop-box', function(Y){
-    var options =
-    {
-        imageBox: '.imageBox',
-        thumbBox: '.thumbBox',
-        spinner: '.spinner',
-        imgSrc: ''
-    }
-    Y.one('#file').on('change', function(){
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            options.imgSrc = e.target.result;
-            cropper = new Y.CropBox(options);
-        }
-        reader.readAsDataURL(this.get('files')._nodes[0]);
-        this.get('files')._nodes = [];
-    })
-    Y.one('#btnZoomIn').on('click', function(){
-        cropper.zoomIn();
-    })
-    Y.one('#btnZoomOut').on('click', function(){
-        cropper.zoomOut();
-    })
-})
-</script>
