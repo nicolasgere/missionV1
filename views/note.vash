@@ -8,54 +8,71 @@
 </head> 
 
 <body>
-<div class="wrapper"> 
-                @html.include('shared/menu', model)
-                @model.id
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-9">
-	   
-           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
-            <form action="POST" class="sky-form">
-                <fieldset>                  
-                    <section>
-                        <div class="rating">
-                            <input type="radio" name="nourriture-rating" id="nourriture-rating-5">
-                            <label for="nourriture-rating-5"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="nourriture-rating" id="nourriture-rating-4">
-                            <label for="nourriture-rating-4"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="nourriture-rating" id="nourriture-rating-3">
-                            <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="nourriture-rating" id="nourriture-rating-2">
-                            <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="nourriture-rating" id="nourriture-rating-1">
-                            <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
-                            Nourriture
-                        </div>    
-                    </section>
-                    <section>
-                        <div class="rating">
-                            <input type="radio" name="service-rating" id="service-rating-5">
-                            <label for="service-rating-5"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="service-rating" id="service-rating-4">
-                            <label for="service-rating-4"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="service-rating" id="service-rating-3">
-                            <label for="service-rating-3"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="service-rating" id="service-rating-2">
-                            <label for="service-rating-2"><i class="fa fa-star"></i></label>
-                            <input type="radio" name="service-rating" id="service-rating-1">
-                            <label for="service-rating-1"><i class="fa fa-star"></i></label>
-                            Service
-                        </div>    
-                    </section>
-                </fieldset>
-                <footer>
-                    <button type="submit" class="btn-u btn-u-default">Submit</button>
-                    <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
-                </footer>
-            </form>
-    </div>
+    <div class="wrapper">
+    @html.include('shared/menu', model)  
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/d6d04a7f-af04-8149-6c75-af6178fe7b24.jpeg" alt="">
+                </div>
+                <div class="col-md-9">
+                    <div class="service-block-v3 service-block-u">
+                        <i class="icon-users"></i>
+                        <span class="service-heading">Plat préparé</span>
+                        <span class="counter">147</span>
+                        <hr style="margin-top:20px;margin-bottom:10px;">
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> jerome</p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> </p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> , </p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Disponibilité:</b> Soir de la semaine à partir de 18h</p></div>
+                    </div>                        
+                </div>
+            </div>
+            <div class="row margin-bottom-10">
+                <div class="col-md-12">
+                    <form action="" class="sky-form">
+                        <fieldset>                  
+                            <section>
+                                <div class="rating">
+                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-5">
+                                    <label for="nourriture-rating-5"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-4">
+                                    <label for="nourriture-rating-4"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-3">
+                                    <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-2">
+                                    <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-1">
+                                    <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
+                                    Nourriture
+                                </div>    
+                            </section>
+                            <section>
+                                <div class="rating">
+                                    <input type="radio" name="service-rating" id="service-rating-5">
+                                    <label for="service-rating-5"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="service-rating" id="service-rating-4">
+                                    <label for="service-rating-4"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="service-rating" id="service-rating-3">
+                                    <label for="service-rating-3"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="service-rating" id="service-rating-2">
+                                    <label for="service-rating-2"><i class="fa fa-star"></i></label>
+                                    <input type="radio" name="service-rating" id="service-rating-1">
+                                    <label for="service-rating-1"><i class="fa fa-star"></i></label>
+                                    Service
+                                </div>    
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" class="btn-u btn-u-default">Submit</button>
+                            <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+
     @html.include('shared/foot', model)
-</div>
+        </div>
+    </div>
 </body>
 </html> 
