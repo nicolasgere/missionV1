@@ -23,14 +23,14 @@
             <div class="container">
                 <div class="col-md-6 col-md-offset-3">
                     <h1>Découvrez une cuisine <span class="color-green">proche de chez vous</span></h1>
-
+                    <form action="/search" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Recherchez des plats...">
+                        <input type="text" class="form-control" name="recherche" placeholder="Recherchez des plats...">
                         <span class="input-group-btn">
-                            <button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+                            <button class="btn-u btn-u-lg" type="submit"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
-
+                    <form>
                 </div>
             </div>    
         </div><!--/container-->     
@@ -77,8 +77,6 @@
                                     <li><a href="#">#Gateau</a></li>
                                     <li><a href="#">#Chocolat</a></li>
                                     <li><a href="#">#Fruits</a></li>
-
-
                                 </ul>                            
                             </div>
                         </div>
@@ -94,71 +92,40 @@
 
     <!--=== Container Part ===-->
     <div class="container content-md" style="padding-top:0px">
+
         <h1>Plats en vedette</h1>
+
         <ul class="row grid-block-v2">        
+             @model.meals.forEach(function(m){
             <li class="col-md-4 col-sm-6 md-margin-bottom-30">
                 <div class="easy-block-v1">
-                    <img class="img-responsive" src="assets/img/mockup/img1.jpg" alt="">
-                    <div class="easy-block-v1-badge rgba-red">4$/portion</div>
-                </div>
-                <div class="grid-block-v2-info rounded-bottom">
-                    <h3><a href="#">Soupe à la courge et gingembre</a></h3>
-                    <ul class="list-inline margin-bottom-5">
-                        <li>Par <a class="color-green" href="#">Edward Rooster</a></li>
-                        <li><i class="fa fa-clock-o"></i> Février 26, 2015</li>
-                    </ul>
-                    <p> Une soupe onctueuse à la courge relevée par des notes épicées de gingembre. Idéal pour se réchauffer par les temps froid.</p>
-                    <ul class="list-inline star-vote">
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star-half-o"></i></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
-                <div class="easy-block-v1">
-                    <img class="img-responsive" src="assets/img/mockup/img2.jpg" alt="">
-                    <div class="easy-block-v1-badge rgba-red">7$/portion</div>                    
-                </div>
-                <div class="grid-block-v2-info rounded-bottom">
-                    <h3><a href="#">Lasagnes au boeuf et aubergines</a></h3>
-                    <ul class="list-inline margin-bottom-5">
-                        <li>Par <a class="color-green" href="#">Nathalie Lambert</a></li>
-                        <li><i class="fa fa-clock-o"></i> Février 25, 2015</li>
-                    </ul>
-                    <p>De délicieuses lasagnes au boeuf et aux aubergine, crème béchamel et gratinée au fromage suisse. Un repas copieux et gourmand pour les plus gros gourmands !</p>
-                    <ul class="list-inline star-vote">
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star-half-o"></i></li>
-                        <li><i class="color-green fa fa-star-o"></i></li>
-                    </ul>
+                    <div class="easy-block-v1-badge rgba-red"  style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;">@m.price $</div>
+                    <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                               <img alt="" src="https://allochef.s3.amazonaws.com/@m.img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-h">
+                        <h3 data-bind="text:@m.name"></h3>
+                        <ul class="list-inline star-vote">
+
+                            <li><i class=""></i></li>
+                            <li><i class=""></i></li>
+                            <li><i class=""</i></li>
+                            <li><i class=""></i></li>
+                            <li><i class=""></i></li>
+                        </ul>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><span class="color-green">Chef:</span> <a href="#"><span >@m.username</span></a></li>
+                        <li><span class="color-green">Description:</span> <span>@m.desc</span></li>
+                    </ul>    
+                    <a class="btn-u btn-u-sm" href="/profil/@m.MealId">Voir plus</a>
                 </div>
             </li>
-            <li class="col-md-4 col-sm-12">
-                <div class="easy-block-v1">
-                    <img class="img-responsive" src="assets/img/mockup/img4.jpg" alt="">
-                    <div class="easy-block-v1-badge rgba-red">4$/portion</div>
-                </div>
-                <div class="grid-block-v2-info rounded-bottom">
-                    <h3><a href="#">Tarte aux noix</a></h3>
-                    <ul class="list-inline margin-bottom-5">
-                        <li>By <a class="color-green" href="#">Aurélia Turgeot</a></li>
-                        <li><i class="fa fa-clock-o"></i> Février 26,2015</li>
-                    </ul>
-                    <p>Une pate brisée maison avec une délicieuse garniture aux amandes, pacanes, cacahuettes, noix du Brésil concassées et caramélisées au beurre salé. Faites-vous plaisir!</p>
-                    <ul class="list-inline star-vote">
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star"></i></li>
-                        <li><i class="color-green fa fa-star-o"></i></li>
-                    </ul>
-                </div>
-            </li>
+            })
         </ul>
     </div><!--/container-->
 

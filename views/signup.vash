@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>AlloChef | Bienvenue...</title>
+    <title>AlloChef | Inscription...</title>
     @html.include('shared/head', model)
 </head> 
 
@@ -11,8 +11,8 @@
 <div class="wrapper">
     <!--=== Header ===-->    
                    @html.include('shared/menu', model)
-   
-   <div class="container content"  style="margin-bottom:12%; margin-top:4%">
+    <script type="text/javascript" src="/customJs/signin.js"></script>
+   <div class="container content"  style="margin-bottom:12%; margin-top:4%" hidden="hidden" id="main">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <form class="reg-page" role="form" action="/signup" method="post" id="login-form" autocomplete="off">
@@ -21,40 +21,62 @@
                         <h2>S'inscrire</h2>
                         <p>Déjà membre ? Cliquez sur <a href="login" class="color-green">Se connecter</a> pour vous accéder à votre compte.</p>                    
                     </div>
-                    <label>Nom d'utilisateur</label>
-                    <input type="text" class="form-control margin-bottom-20" name ="username" id="username">
+                    <label>Nom d'utilisateur <span class="color-red">*</span></label>
+                    <div class="alert alert-danger fade in" data-bind="visible: usernameError">
+                                <strong>Oups</strong> Ce nom d'utilisateur existe déja, choisis en un autre
+                            </div>
+                            <div class="alert alert-danger fade in" data-bind="visible: usernameMissing">
+                                <strong>Oups</strong> Un nom d'utilisateur est requis
+                            </div>
+                    <input type="text" class="form-control margin-bottom-20" name ="username" id="username" data-bind="value:username">
 
-                    <label>Prénom</label>
-                    <input type="text" class="form-control margin-bottom-20" name ="prenom" id="prenom">
+                    <label>Prénom <span class="color-red">*</span></label>
+                     <div class="alert alert-danger fade in" data-bind="visible: prenomError">
+                                <strong>Oups</strong> Le prénom est obligatoire
+                            </div>
+                    <input type="text" class="form-control margin-bottom-20" name ="prenom" id="prenom" data-bind="value:prenom">
                    
-                    <label>Nom de famille</label>
-                    <input type="text" class="form-control margin-bottom-20" name="nom" id ="nom">
+                    <label>Nom <span class="color-red">*</span></label>
+                     <div class="alert alert-danger fade in" data-bind="visible: nomError">
+                                <strong>Oups</strong> Le nom est obligatoire
+                            </div>
+                    <input type="text" class="form-control margin-bottom-20" name="nom" id ="nom" data-bind="value:nom">
                    
                     <label>Courriel <span class="color-red">*</span></label>
-                    <input type="text" class="form-control margin-bottom-20"name="email" id ="email">
+                     <div class="alert alert-danger fade in" data-bind="visible: emailError">
+                                <strong>Oups</strong> Le couriel est non valide
+                            </div>
+                    <input type="text" class="form-control margin-bottom-20"name="email" id ="email" data-bind="value:email">
 
                     <div class="row">
+
                         <div class="col-sm-6">
                             <label>Mot de passe <span class="color-red">*</span></label>
-                            <input type="password" class="form-control margin-bottom-20" name="key" id ="key">
+                            <input type="password" class="form-control margin-bottom-20" name="key" id ="key" data-bind="value:pwd">
                         </div>
                         <div class="col-sm-6">
                             <label>Confirmer le mot de passe <span class="color-red">*</span></label>
-                            <input type="password" class="form-control margin-bottom-20">
+                            
+                            <input type="password" class="form-control margin-bottom-20" data-bind="value:pwd2" >
                         </div>
+                         <div class="alert alert-danger fade in" data-bind="visible: pwdError">
+                                <strong>Oups</strong> Les mots de passe ne correspondent pas
+                            </div>
                     </div>
-
                     <hr>
 
                     <div class="row">
                         <div class="col-lg-6 checkbox">
                             <label>
-                                <input type="checkbox"> 
+                                <input type="checkbox" value="ok" data-bind="checked:condition"/> 
                                 J'ai lu et accepte les <a href="page_terms.html" class="color-green"> Termes et Conditions d'utilisation</a>
-                            </label>                        
+                            </label> 
+                            <div class="alert alert-danger fade in" data-bind="visible: errorCondition">
+                                <strong>Oups</strong> Il est obligatoire de lire et accepter les condtions d'utilisations
+                            </div>                       
                         </div>
                         <div class="col-lg-6 text-right">
-                            <button class="btn-u" type="submit">Inscrivez-vous</button>                        
+                            <button class="btn-u" data-bind="click:inscrire">Inscrivez-vous</button>                        
                         </div>
                     </div>
                 </form>

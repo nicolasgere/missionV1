@@ -18,12 +18,6 @@
                 <div class="reg-block">
                     <div class="reg-block-header">
                         <h2>Se connecter</h2>
-                        <ul class="social-icons text-center">
-                            <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
-                            <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
-                            <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
-                            <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
-                        </ul>
                         <p>Pas encore membre ? Cliquer sur <a class="color-green" href="signup">S'inscrire</a> pour créer un compte.</p>            
                     </div>
                     <form class="reg-page" role="form" action="login" method="post" id="login-form" autocomplete="off">
@@ -33,8 +27,8 @@
                             <input type="text" class="form-control" placeholder="Courriel" id="email" name="email">
                         </div>
                         <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="text" class="form-control" placeholder="Mot de passe" id="key" name="key">
+                            <span class="input-group-addon" style="font-size: 20px;"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" placeholder="Mot de passe" id="key" name="key">
                         </div>
                         <hr>
 

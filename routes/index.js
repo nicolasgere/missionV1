@@ -48,14 +48,20 @@ var guid = (function() {
 
 /**INDEX**/
 router.get('/', function(req,res){
-  console.log(req.session.nom);
-  if(req.session.connect ==true){
-   res.render('index.vash',{username:req.session.username});
+  var model = {}
+  model.username = req.session.username;
+  meals.find({isVedette:true}).limit(3).toArray(function (err, array) {
+    model.meals = array 
+    console.log(array);
+    if(req.session.connect ==true){
+   res.render('index.vash',model);
  }
  else{
-   res.render('index.vash');
+   res.render('index.vash',model);
  }
 });
+  })
+
 
 /**LOGIN**/
 router.get('/login', function(req,res){
@@ -69,7 +75,7 @@ router.get('/login', function(req,res){
 
 router.get('/signup',function(req,res){
   res.render('signup');
-}); 
+  }); 
 router.post('/login', function(req,res){
   users.findOne({email:req.body.email, key:req.body.key} , function(err,rep) {
    if(err) {
@@ -99,18 +105,20 @@ router.get('/Disconnect', function(req,res){
   req.session.connect = false;
   req.session.nom = "";
   req.session.prenom = "";
+  req.session.username = "";
+
   res.redirect('/');
 });
 
 /**SIGN IN**/
-router.get('/signup', function(req,res){
+router.get('/signup', function (req,res){
   if(req.session.connect !=true){
     res.render('signup',{});
   }else{
     res.redirect('/');
   }
 });
-router.post('/signup',function(req,res){
+router.post('/signup',function (req,res){
   var Id = guid();
   req.body.UserId = Id;
   req.body.imageSrc = "user.jpg";
@@ -141,6 +149,16 @@ router.post('/signup',function(req,res){
     }
   });
 }); 
+router.post('/valideUsername', function (req,res){
+  console.log(req.body.username)
+  users.findOne({username:req.body.username},function(err,rep){
+    if(rep){
+      res.send(false);
+    }else{
+      res.send(true);
+    }
+  })
+})
 
 /**PROFIL**/
 router.get('/myprofil', isConnect,function(req,res){
@@ -288,9 +306,11 @@ router.post('/updateSettings', function(req, res){
 
 
 router.get('/search', function(req,res){
-  res.render('search',{});
+  var model = {};
+model.query = req.query.recherche
+  res.render('search',model);
 });
-
+/**search**/
 router.post('/search', function(req,res){
   if(req.body.arrayRequeste){
    var arrayRequeste = req.body.arrayRequeste;

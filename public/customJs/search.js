@@ -22,7 +22,7 @@ function meal(data,parent){
 
 var ViewModel = function() {
 	var self = this;
-	self.recherche = ko.observable();
+	self.recherche = ko.observable(query);
 	self.ville = ko.observable("Montréal");
 
 	self.arrayRecherche = ko.computed(function(){
@@ -54,6 +54,7 @@ var dataM = {}
 		}
 	} );
 	}
+	self.load();
 }
 
 

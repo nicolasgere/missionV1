@@ -7,6 +7,9 @@
     @html.include('shared/head', model)
     <link rel="stylesheet" href="assets/css/pages/page_job.css">
     <script type="text/javascript" src="/customJs/search.js"></script>
+    <script>
+    var query = "@model.query"
+      </script>
 </head> 
 
 <body>

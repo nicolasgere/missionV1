@@ -206,7 +206,7 @@ YUI.add('crop-box', function (Y) {
                          <ul class="row grid-block-v2">        
                             <li class="col-md-12 col-sm-12" >
                                 <div class="easy-block-v1">
-                                    <img class="img-responsive" src="/imgIll/illustration1.jpg" style="height: 240px;" alt="">
+                                    <img class="img-responsive" src="/https://allochef.s3.amazonaws.com/illustration1.jpg" style="height: 240px;" alt="">
                                     <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">Exemple</div>
                                 </div>
                                 <div style="height:250px" class="grid-block-v2-info rounded-bottom">
