@@ -37,14 +37,28 @@ var ViewModel = function() {
 	self.newName = ko.observable();
 	self.nomImage = ko.observable();
 	self.selectMeal = ko.observable();
+
 	self.newPrice = ko.observable();
+	self.newPrice.subscribe(function(){
+		if(IsNumeric(self.newPrice())){
+
+		}else{
+			self.newPrice("");
+		}
+	});
 	self.newCategory = ko.observable();
 	self.newDescription = ko.observable();
 	self.newImage = ko.observable();
 	self.cible = ko.observable();
 	self.fichier = ko.observable();
 	self.newRealImage = ko.observable();
-
+self.tailleDesc = ko.computed(function(){
+	if(self.newDescription()){
+			return self.newDescription().length;}
+			else {
+				return 0;
+			}
+	});
 	self.descIsModif = ko.observable(false);
 	self.descModif = function (){
 		self.descIsModif(true);	
@@ -167,3 +181,7 @@ window.onload = function(){
 
 	
 };
+function IsNumeric(input)
+{
+    return (input - 0) == input && (''+input).trim().length > 0;
+}

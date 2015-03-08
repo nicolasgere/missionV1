@@ -32,13 +32,6 @@
                         </div>
                         <hr>
 
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> 
-                                <p>Rester connecté(e)</p>
-                            </label>            
-                        </div>
-
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <button type="submit" class="btn-u btn-block">Se connecter</button>
