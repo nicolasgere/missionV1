@@ -302,7 +302,8 @@ router.post('/updateSettings', function(req, res){
   {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
   function(err,rep) {
    res.send("ok");
- });});
+  });
+});
 
 
 router.get('/search', function(req,res){
@@ -348,9 +349,22 @@ router.get('/note/:id', function(req, res){
   var model = {};
   users.findOne({UserId:req.params.id},function(err,rep){
     model.user = rep;
-    console.log(rep);
     res.render('note', model);
   });  
+});
+
+router.post('/note/:id', function(req, res){
+  var nourriture, service, moyenne;
+  nourriture = req.body.nourriture?req.body.nourriture : 0;
+  service = req.body.service?req.body.service : 0;
+  moyenne = (parseInt(nourriture)+parseInt(service))/2;
+  console.log(moyenne);
+  users.update(
+    {UserId: req.params.id},
+    {$set:{note:moyenne}},
+    function(err,rep){
+      res.render('blankpage',{});
+    });
 });
 
 /**PAGE BLANCHE DE TEST**/

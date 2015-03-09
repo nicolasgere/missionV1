@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Note @model.id</title>
+    <title>Note</title>
     @html.include('shared/head', model)
 </head> 
 
@@ -21,43 +21,43 @@
                         <span class="service-heading">Plat préparé</span>
                         <span class="counter">147</span>
                         <hr style="margin-top:20px;margin-bottom:10px;">
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> jerome</p></div>
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> </p></div>
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> , </p></div>
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Disponibilité:</b> Soir de la semaine à partir de 18h</p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>
+                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> @model.user.ville</p></div>
+                        
                     </div>                        
                 </div>
             </div>
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
-                    <form action="" class="sky-form">
+                    <form method="post" action="@model.user.id" class="sky-form" >
                         <fieldset>                  
                             <section>
                                 <div class="rating">
-                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-5">
+                                    <input type="radio" name="nourriture" id="nourriture-rating-5" value="5">
                                     <label for="nourriture-rating-5"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-4">
+                                    <input type="radio" name="nourriture" id="nourriture-rating-4" value="4">
                                     <label for="nourriture-rating-4"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-3">
+                                    <input type="radio" name="nourriture" id="nourriture-rating-3" value="3">
                                     <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-2">
+                                    <input type="radio" name="nourriture" id="nourriture-rating-2" value="2">
                                     <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture-rating" id="nourriture-rating-1">
+                                    <input type="radio" name="nnourriture" id="nourriture-rating-1" value="1">
                                     <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
                                     Nourriture
                                 </div>    
                             </section>
                             <section>
                                 <div class="rating">
-                                    <input type="radio" name="service-rating" id="service-rating-5">
+                                    <input type="radio" name="service" id="service-rating-5" value="5">
                                     <label for="service-rating-5"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service-rating" id="service-rating-4">
+                                    <input type="radio" name="service" id="service-rating-4" value="4">
                                     <label for="service-rating-4"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service-rating" id="service-rating-3">
+                                    <input type="radio" name="service" id="service-rating-3" value="3">
                                     <label for="service-rating-3"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service-rating" id="service-rating-2">
+                                    <input type="radio" name="service" id="service-rating-2" value="2">
                                     <label for="service-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service-rating" id="service-rating-1">
+                                    <input type="radio" name="service" id="service-rating-1" value="1">
                                     <label for="service-rating-1"><i class="fa fa-star"></i></label>
                                     Service
                                 </div>    
