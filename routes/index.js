@@ -363,7 +363,12 @@ router.post('/note/:id', function(req, res){
     {idtemp: req.params.id},
     {$set:{note:moyenne}},
     function(err,rep){
-      res.redirect('/');
+      users.update(
+        {idtemp: req.params.id},
+        {$unset:{idtemp:""}},
+        function(err, rep){
+          res.redirect('/');
+      });
     });
 });
 
