@@ -347,7 +347,7 @@ router.get('/profil/:id', function(req,res){
 /**NOTE CHEF**/
 router.get('/note/:id', function(req, res){
   var model = {};
-  users.findOne({UserId:req.params.id},function(err,rep){
+  users.findOne({idtemp:req.params.id},function(err,rep){
     model.user = rep;
     res.render('note', model);
   });  
@@ -360,10 +360,10 @@ router.post('/note/:id', function(req, res){
   moyenne = (parseInt(nourriture)+parseInt(service))/2;
   console.log(moyenne);
   users.update(
-    {UserId: req.params.id},
+    {idtemp: req.params.id},
     {$set:{note:moyenne}},
     function(err,rep){
-      res.render('blankpage',{});
+      res.redirect('/');
     });
 });
 

@@ -162,13 +162,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa  fa-shopping-cart"></i> Commande:</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa  fa-shopping-cart"></i> Commande: @model.meal.userid</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12" >
                     <!-- Grey Panel -->            
-                    <form action="/newCommand" method="POST" id="new"class="sky-form">
+                    <form action="/newCommand/@model.user.UserId" method="POST" id="new"class="sky-form">
                                     <input type="text" name="chef" hidden="hidden" value="@model.user.username">
 
 

@@ -30,7 +30,7 @@
             </div>
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
-                    <form method="post" action="@model.user.id" class="sky-form" >
+                    <form method="post" action="/note/@model.user.idtemp" class="sky-form" >
                         <fieldset>                  
                             <section>
                                 <div class="rating">
