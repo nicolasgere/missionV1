@@ -359,9 +359,19 @@ router.post('/note/:id', function(req, res){
   service = req.body.service?req.body.service : 0;
   moyenne = (parseInt(nourriture)+parseInt(service))/2;
   console.log(moyenne);
-  users.update(
+  users.findOne({idtemp: req.params.id},function(err,rep){
+    var noteFinale, nbreVote;
+    if(rep.nbrenote){
+      noteFinale=(parseInt(rep.note)*parseInt(rep.nbrenote)+(moyenne))/(parseInt(rep.nbrenote)+1);
+      nbreVote = parseInt(rep.nbrenote)+1;
+    }else{
+      noteFinale = moyenne;
+      nbreVote = 1;
+    }
+    noteFinale=roundHalf(noteFinale);
+    users.update(
     {idtemp: req.params.id},
-    {$set:{note:moyenne}},
+    {$set:{note:noteFinale, nbrenote:nbreVote}},
     function(err,rep){
       users.update(
         {idtemp: req.params.id},
@@ -370,6 +380,8 @@ router.post('/note/:id', function(req, res){
           res.redirect('/');
       });
     });
+  });
+  
 });
 
 /**PAGE BLANCHE DE TEST**/
@@ -377,3 +389,9 @@ router.get('/blank', function(req,res){
   res.render('blankpage',{});
 });
 module.exports = router;
+
+/**fonction pour arronir un nombre à 0.5 prêt**/
+function roundHalf(num) {
+    num = Math.round(num*2)/2;
+    return num;
+}
