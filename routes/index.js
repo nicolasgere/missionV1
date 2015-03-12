@@ -338,6 +338,23 @@ router.get('/profil/:id', function(req,res){
     model.meal = rep;
     users.findOne({UserId:rep.UserId},function(err,rep2){
       model.user = rep2;
+      model.etoile1=parseInt(rep2.note)>=1?"fa fa-star" : "fa fa-star-o";
+      model.etoile2=parseInt(rep2.note)>=2?"fa fa-star" : "fa fa-star-o";
+      model.etoile3=parseInt(rep2.note)>=3?"fa fa-star" : "fa fa-star-o";
+      model.etoile4=parseInt(rep2.note)>=4?"fa fa-star" : "fa fa-star-o";
+      model.etoile5=parseInt(rep2.note)>=5?"fa fa-star" : "fa fa-star-o";
+      switch(rep2.note){
+        case 0.5: model.etoile1 = "fa fa-star-half-o";
+          break;
+        case 1.5: model.etoile2 = "fa fa-star-half-o";
+          break;
+        case 2.5: model.etoile3 = "fa fa-star-half-o";
+          break;
+        case 3.5: model.etoile4 = "fa fa-star-half-o";
+          break;
+        case 4.5: model.etoile5 = "fa fa-star-half-o";
+          break;
+      }
       console.log(rep2);
       res.render('profil', model);
     })

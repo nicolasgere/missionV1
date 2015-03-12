@@ -62,11 +62,11 @@
                              <div class="col-md-8">
                               <h2><a href="#">@model.meal.name</a></h2>
                               <ul class="list-unstyled funny-boxes-rating">
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star-o"></i></li>
-                                 <li><i class="fa fa-star-o"></i></li>
+                                 <li><i class="@model.etoile1"></i></li>
+                                 <li><i class="@model.etoile2"></i></li>
+                                 <li><i class="@model.etoile3"></i></li>
+                                 <li><i class="@model.etoile4"></i></li>
+                                 <li><i class="@model.etoile5"></i></li>
                              </ul>
                              <p>@model.meal.desc</p>
                          </div>
