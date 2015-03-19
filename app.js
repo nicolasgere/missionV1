@@ -36,11 +36,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
-app.post('/newCommand', function(req,res){
+app.post('/newCommand/:id', function(req,res){
   var data = req.body;
+  console.log(req.params.id);
   data.id = guid();
   data.confirmationId = guid();
+  data.userid= guid();
   data.isValide = false;
+  users.update(
+    {UserId: req.params.id},
+    {$set:{idtemp:data.userid}},
+    function(err,rep){
+    });
   command.insert(data,function(err,rep){ 
    console.log(rep);
    app.render('emailConfirm',data, function(err, html){

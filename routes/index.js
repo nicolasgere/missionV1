@@ -302,7 +302,8 @@ router.post('/updateSettings', function(req, res){
   {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
   function(err,rep) {
    res.send("ok");
- });});
+  });
+});
 
 
 router.get('/search', function(req,res){
@@ -338,6 +339,23 @@ router.get('/profil/:id', function(req,res){
     model.meal = rep;
     users.findOne({UserId:rep.UserId},function(err,rep2){
       model.user = rep2;
+      model.etoile1=parseInt(rep2.note)>=1?"fa fa-star" : "fa fa-star-o";
+      model.etoile2=parseInt(rep2.note)>=2?"fa fa-star" : "fa fa-star-o";
+      model.etoile3=parseInt(rep2.note)>=3?"fa fa-star" : "fa fa-star-o";
+      model.etoile4=parseInt(rep2.note)>=4?"fa fa-star" : "fa fa-star-o";
+      model.etoile5=parseInt(rep2.note)>=5?"fa fa-star" : "fa fa-star-o";
+      switch(rep2.note){
+        case 0.5: model.etoile1 = "fa fa-star-half-o";
+          break;
+        case 1.5: model.etoile2 = "fa fa-star-half-o";
+          break;
+        case 2.5: model.etoile3 = "fa fa-star-half-o";
+          break;
+        case 3.5: model.etoile4 = "fa fa-star-half-o";
+          break;
+        case 4.5: model.etoile5 = "fa fa-star-half-o";
+          break;
+      }
       console.log(rep2);
       res.render('profil', model);
     })
@@ -360,11 +378,41 @@ router.get('/chef/:username', function(req,res){
 /**NOTE CHEF**/
 router.get('/note/:id', function(req, res){
   var model = {};
-  users.findOne({UserId:req.params.id},function(err,rep){
+  users.findOne({idtemp:req.params.id},function(err,rep){
     model.user = rep;
-    console.log(rep);
     res.render('note', model);
   });  
+});
+
+router.post('/note/:id', function(req, res){
+  var nourriture, service, moyenne;
+  nourriture = req.body.nourriture?req.body.nourriture : 0;
+  service = req.body.service?req.body.service : 0;
+  moyenne = (parseInt(nourriture)+parseInt(service))/2;
+  console.log(moyenne);
+  users.findOne({idtemp: req.params.id},function(err,rep){
+    var noteFinale, nbreVote;
+    if(rep.nbrenote){
+      noteFinale=(parseInt(rep.note)*parseInt(rep.nbrenote)+(moyenne))/(parseInt(rep.nbrenote)+1);
+      nbreVote = parseInt(rep.nbrenote)+1;
+    }else{
+      noteFinale = moyenne;
+      nbreVote = 1;
+    }
+    noteFinale=roundHalf(noteFinale);
+    users.update(
+    {idtemp: req.params.id},
+    {$set:{note:noteFinale, nbrenote:nbreVote}},
+    function(err,rep){
+      users.update(
+        {idtemp: req.params.id},
+        {$unset:{idtemp:""}},
+        function(err, rep){
+          res.redirect('/');
+      });
+    });
+  });
+  
 });
 
 /**PAGE BLANCHE DE TEST**/
@@ -372,3 +420,9 @@ router.get('/blank', function(req,res){
   res.render('blankpage',{});
 });
 module.exports = router;
+
+/**fonction pour arronir un nombre à 0.5 prêt**/
+function roundHalf(num) {
+    num = Math.round(num*2)/2;
+    return num;
+}
