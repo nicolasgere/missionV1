@@ -9,13 +9,13 @@ var BSON = mongo.BSONPure;
 var Validator = require('jsonschema').Validator;
 var v = new Validator();
 var Mongolian = require("mongolian");
-var db = new Mongolian(config.mongoDb);
+var db = new Mongolian(process.env.mongoDB || config.mongoDb);
 var users = db.collection("users");
 var meals = db.collection("meals");
 var vash = require('vash');
 var AWS = require('aws-sdk');
-var accessKeyId =  process.env.AWS_ACCESS_KEY || "AKIAJJEU5IAFCV5WHFIA";
-var secretAccessKey = process.env.AWS_SECRET_KEY || "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";
+var accessKeyId =  process.env.AWS_ACCESS_KEY ||config.accessKeyId;
+var secretAccessKey = process.env.AWS_SECRET_KEY || config.secretAccessKey;
 
 AWS.config.update({
   accessKeyId: accessKeyId,
@@ -333,6 +333,7 @@ router.post('/search', function(req,res){
 router.get('/profil/:id', function(req,res){
   var model = {};
   console.log(req.params.id);
+
   meals.findOne({MealId:req.params.id},function(err,rep){
     model.meal = rep;
     users.findOne({UserId:rep.UserId},function(err,rep2){
@@ -341,6 +342,19 @@ router.get('/profil/:id', function(req,res){
       res.render('profil', model);
     })
   })
+});
+router.get('/chef/:username', function(req,res){
+
+  var model = {};
+    users.findOne({username:req.params.username},function(err,rep2){
+      model.user = rep2;
+      console.log(rep2);
+      meals.find({UserId:rep2.UserId}).toArray(function (err, array){
+        model.meals = array;
+        console.log(model);
+        res.render('chef',model);
+      });
+    });
 });
 
 /**NOTE CHEF**/

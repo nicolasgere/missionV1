@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Chef @model.user.username</title>
+    @html.include('shared/head', model)
+</head> 
+
+<body>
+<div class="wrapper">
+                   @html.include('shared/menu', model)
+	   
+	   <div class="container content" >
+				<div class="row">
+					<!--Left Sidebar-->
+					<div class="col-md-3 md-margin-bottom-40">
+                        <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
+                        <div class="service-block-v3 service-block-u">
+                            <i class="icon-users"></i>
+                            <span class="service-heading">Plat préparé</span>
+                            <span class="counter">147</span>
+                            <hr style="margin-top:20px;margin-bottom:10px;">
+                            <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
+                            <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>
+                            <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> @model.user.ville, @model.user.arron</p></div>
+                            <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Disponibilité:</b> Soir de la semaine à partir de 18h</p></div>
+                            <div class="statistics">
+                                <h3 class="heading-xs">Satisfaction général: <span class="pull-right">97%</span></h3>
+                                <div class="progress progress-u progress-xxs">
+                                    <div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="97" role="progressbar" class="progress-bar progress-bar-light">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <button class="btn-u btn-block btn-brd btn-u-lg" data-toggle="modal" data-target="#responsive"><i class="fa  fa-shopping-cart"></i> Commander</button>
+
+
+                        <br>
+
+
+
+                        <!--End Datepicker-->
+                    </div>
+                    <!--End Left Sidebar-->
+
+                    <div class="col-md-9">
+                    	     <div class="row">
+                            <div class="container content-md" style="padding-top:0px; padding-bottom:0px">
+                                <ul class="row grid-block-v2">   
+                                 @model.meals.forEach(function(m){     
+                                    <li class="col-md-4 col-sm-12" >
+                                       <div class="easy-block-v1">
+                                        <img class="img-responsive" style="height: 240px;" alt=""  src="https://allochef.s3.amazonaws.com/@m.img">
+                                        <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">@m.price $</div>
+                                    </div>
+                                    <div style="height:250px" class="grid-block-v2-info rounded-bottom">
+                                        <h3>@m.name</h3>
+                                        <p>@m.desc</p>
+                                    </div>
+                                </li>})
+                        </ul>
+            </div>
+        </div>
+        <hr>
+                    	     <div class="row">
+ <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Users Comments</h2>
+                        <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                    </div>
+                    <div class="panel-body margin-bottom-50">
+                        <div class="media media-v2">
+                            <a class="pull-left" href="#">
+                                <img class="media-object rounded-x" src="" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <strong><a href="#">Eva Nelson</a></strong> EvaNelson
+                                    <small>About an hour ago</small>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
+                                <ul class="list-inline results-list pull-left">
+                                    <li><a href="#">25 Likes</a></li>
+                                    <li><a href="#">10 Share</a></li>
+                                </ul>    
+                                <ul class="list-inline pull-right">
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                </ul>
+                            </div>
+                        </div><!--/end media media v2--> 
+                        <div class="media media-v2 margin-bottom-20">
+                            <a class="pull-left" href="#">
+                                <img class="media-object rounded-x" src="" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <strong><a href="#">Frank Lennon</a></strong> FLennon 
+                                    <small>4 hours ago</small>
+                                </h4>
+                                <p>I'm incredibly excited to announce that I am joining the amazing <a href="#">Unify</a> team. To be in touch with the latest update, Sign up and get your own Account page fee free :) Like mine: <a href="#">http://www.unify.com/flennon</a></p>
+                                <ul class="list-inline results-list pull-left">
+                                    <li><a href="#">5 Likes</a></li>
+                                    <li><a href="#">1 Share</a></li>
+                                </ul>
+                                <ul class="list-inline pull-right">
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                </ul>
+
+                                <div class="clearfix"></div>
+
+                                <div class="media media-v2">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" src="" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <strong><a href="#">Edward Rooster</a></strong> EdwardRooster 
+                                            <small>5 hours ago</small>
+                                        </h4>
+                                        <p>Welcome to Board! :) Your journey starts here. Wish you all the best!</p>
+                                        <ul class="list-inline results-list pull-left">
+                                            <li><a href="#">0 Likes</a></li>
+                                            <li><a href="#">0 Share</a></li>
+                                        </ul>
+                                        <ul class="list-inline pull-right">
+                                            <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                            <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div><!--/end media media v2-->
+                        <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
+                    </div>
+                </div>
+        
+        </div>   
+        </div><!--/end row-->
+    </div><!--/container-->    
+</div>
+
+           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
+    @html.include('shared/foot', model)
+</div>
+</body>
+<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa  fa-shopping-cart"></i> Commande:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12" >
+                    <!-- Grey Panel -->            
+                    <form action="/newCommand" method="POST" id="new"class="sky-form">
+                                    <input type="text" name="chef" hidden="hidden" value="@model.user.username">
+
+
+                        <fieldset> 
+                        <div class="col-md-6" style="padding-left:0">
+
+                            <section>
+                                <label class="label">Email:</label>
+                                <label class="input">
+                                                <i class="icon-append fa fa-envelope"></i>
+                                                <input type="email" name="email">
+                                            <b class="tooltip tooltip-bottom-right">Un email de confirmation vous sera envoyer</b>
+
+                                            </label>
+                            </section>
+                        </div>
+                        <div class="col-md-6"  style="padding-right:0">
+
+                            <section>
+                                <label class="label">Nom:</label>
+                                <label class="input">
+                                    <input type="text" name="nom">
+                                </label>
+                            </section>
+                        </div>
+
+                            <section>
+                                <label class="label">Commande:</label>
+                                <label class="textarea">
+                                    <textarea rows="6" name="commande"></textarea>
+                                </label>
+                                <div class="note"><strong>Note:</strong> Veuillez resté polie est courtoie dans tout vos messages, un email vous sera envoyer pour confirmer la commande</div>
+                            </section>
+                        </fieldset>
+        </form>
+    </div>
+</div>
+<!-- End Grey Panel -->            
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Annuler</button>
+    <button type="button"id="submit" class="btn-u btn-u-primary">Envoyer</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $("#submit").click(function() {
+           $("#new").submit();
+       });
+    });
+</script>
+</div>
+</div>
+</div>
+</html> 

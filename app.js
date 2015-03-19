@@ -9,10 +9,13 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var multer  = require('multer');
 var Mongolian = require("mongolian");
-var db = new Mongolian(config.mongoDb);
+var db = new Mongolian(process.env.mongoDB || config.mongoDb);
 var command = db.collection("command");
 var users = db.collection("users");
-var sendgrid  = require('sendgrid')("nicolasgere", "090790tfc");
+var keysend = process.env.keysend || config.keysend;
+var usersend = process.env.usersend || config.usersend;
+
+var sendgrid  = require('sendgrid')(usersend, keysend);
 
 // create reusable transporter object using SMTP transport
 
