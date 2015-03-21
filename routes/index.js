@@ -1,5 +1,6 @@
 /**INCLUDE**/
-var config = require('../config')
+var config = require('../config');
+//var config = require('../config2');
 var express = require('express');
 var fs = require('fs')
 var router = express.Router();
@@ -362,9 +363,9 @@ router.get('/profil/:id', function(req,res){
   })
 });
 router.get('/chef/:username', function(req,res){
-
   var model = {};
     users.findOne({username:req.params.username},function(err,rep2){
+      if(rep2){
       model.user = rep2;
       console.log(rep2);
       meals.find({UserId:rep2.UserId}).toArray(function (err, array){
@@ -372,6 +373,9 @@ router.get('/chef/:username', function(req,res){
         console.log(model);
         res.render('chef',model);
       });
+    }else{
+       res.redirect('/');
+    }
     });
 });
 
