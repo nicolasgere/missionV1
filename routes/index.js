@@ -1,6 +1,6 @@
 /**INCLUDE**/
-//var config = require('../config');
-var config = require('../config2');
+var config = require('../config');
+//var config = require('../config2');
 var express = require('express');
 var fs = require('fs')
 var router = express.Router();
