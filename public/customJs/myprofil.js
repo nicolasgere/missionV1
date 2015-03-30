@@ -178,7 +178,7 @@ $.ajax({
 
 window.onload = function(){
 	ko.applyBindings(new ViewModel());
-
+	$("#main").show();
 	
 };
 function IsNumeric(input)

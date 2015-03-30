@@ -1,6 +1,6 @@
 /**INCLUDE**/
-var config = require('../config');
-//var config = require('../config2');
+//var config = require('../config');
+var config = require('../config2');
 var express = require('express');
 var fs = require('fs')
 var router = express.Router();
@@ -17,6 +17,10 @@ var vash = require('vash');
 var AWS = require('aws-sdk');
 var accessKeyId =  process.env.AWS_ACCESS_KEY ||config.accessKeyId;
 var secretAccessKey = process.env.AWS_SECRET_KEY || config.secretAccessKey;
+var geoip = require('geoip-lite');
+
+
+
 
 AWS.config.update({
   accessKeyId: accessKeyId,
@@ -49,18 +53,15 @@ var guid = (function() {
 
 /**INDEX**/
 router.get('/', function(req,res){
+console.log(req.connection.remoteAddress);
+var geo = geoip.lookup(req.connection.remoteAddress);
   var model = {}
   model.username = req.session.username;
   meals.find({isVedette:true}).limit(3).toArray(function (err, array) {
     model.meals = array 
     console.log(array);
-    if(req.session.connect ==true){
    res.render('index.vash',model);
- }
- else{
-   res.render('index.vash',model);
- }
-});
+ });
   })
 
 
@@ -92,6 +93,8 @@ router.post('/login', function(req,res){
      req.session.connect = true;
      req.session.nom = rep.nom;
      req.session.prenom = rep.prenom;
+     req.session.ville = rep.ville;
+     req.session.arron = rep.arron;
      req.session.email = rep.email;
      req.session.username = rep.username;
      console.log(rep);
@@ -163,9 +166,13 @@ router.post('/valideUsername', function (req,res){
 
 /**PROFIL**/
 router.get('/myprofil', isConnect,function(req,res){
-  console.log(req.session.UserId);
   users.findOne({UserId:req.session.UserId},function(err,rep){
-    res.render('myprofil', {nom:rep.nom, prenom: rep.prenom , email:rep.mail, imageSrc:rep.imageSrc, desc:rep.desc, username:rep.username});
+    if(rep.arron && rep.ville && rep.desc){
+    res.render('myprofil', rep);}
+    else{
+      rep.manqueInfo = true;
+      res.render('mysettings',rep);
+    }
   })
 }); 
 router.post('/createMeal', function(req, res){
@@ -176,6 +183,9 @@ router.post('/createMeal', function(req, res){
   data.cat = req.body.cat;
   data.desc = req.body.desc;
   data.name = req.body.name;
+  data.name = req.body.name;
+  data.ville = req.session.ville;
+  data.arron = req.session.arron;
   data.UserId = req.session.UserId;
   data.MealId = Id;
   data.username =  req.session.username; 
@@ -309,7 +319,8 @@ router.post('/updateSettings', function(req, res){
 
 router.get('/search', function(req,res){
   var model = {};
-model.query = req.query.recherche
+model.query = req.query.recherche;
+model.query = req.query.city;
   res.render('search',model);
 });
 /**search**/
@@ -391,7 +402,7 @@ router.get('/note/:id', function(req, res){
 router.post('/note/:id', function(req, res){
   var nourriture, service, moyenne;
   nourriture = req.body.nourriture?req.body.nourriture : 0;
-  service = req.body.service?req.body.service : 0;
+  service = req.body.service?   req.body.service : 0;
   moyenne = (parseInt(nourriture)+parseInt(service))/2;
   console.log(moyenne);
   users.findOne({idtemp: req.params.id},function(err,rep){

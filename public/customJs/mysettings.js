@@ -5,6 +5,10 @@ var ViewModel = function() {
 	self.prenom=ko.observable(prenom);
 	self.email=ko.observable(email);
 	self.ville=ko.observable(ville);
+	self.mdp=ko.observable();
+	self.nmdp=ko.observable();
+	self.nmdp2=ko.observable();
+
 	self.arron=ko.observable(arron);
 	self.desc=ko.observable(desc);
 	self.newNom=ko.observable(nom);
@@ -18,7 +22,25 @@ var ViewModel = function() {
 	self.editVille = ko.observable(true);
 	self.editDesc = ko.observable(true);
 	self.editEmail = ko.observable(true);
+	
+self.savemdp = function(){
+	var dataP = {};
+	data
+	$.ajax( {
+		url: 'changePwd',
+		type: 'POST',
+		data:dataM,
+		success: function(data){
+			self.editNom(true);
+			self.editPrenom(true);
+			self.editVille(true);
+			self.editDesc(true);
+			self.editEmail(true);
+			self.editArron(true);
 
+		}
+	} );
+}
 self.save = function(){
 var dataM = {"nom":self.nom(),
 		"prenom":self.prenom(),
@@ -86,6 +108,8 @@ self.changeEmail = function(){
 
 window.onload = function(){
 	ko.applyBindings(new ViewModel());
+	$("#main").show();
+
 
 
 };

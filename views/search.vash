@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>BlankPage</title>
+    <title>Recherche</title>
     @html.include('shared/head', model)
     <link rel="stylesheet" href="assets/css/pages/page_job.css">
     <script type="text/javascript" src="/customJs/search.js"></script>
@@ -27,7 +27,12 @@
                     <div class="col-sm-4 md-margin-bottom-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                            <input type="text" placeholder="Où cherchez vous?" class="form-control" data-bind="value:ville">
+                                <input type="text" list="list" class="form-control" data-bind="value:ville">
+                                <datalist id="list">
+                                    <option value="Québec"></option>
+                                    <option value="Montréal"></option>
+                                    <option value="Toronto"></option>
+                                </datalist>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -63,7 +68,7 @@
                         <li><span class="color-green">Chef:</span> <a href="#"  data-bind="attr:{href: 'test'}"><span data-bind="text:username"></span></a></li>
                         <li><span class="color-green">Description:</span> <span data-bind="text:description"></span></li>
                     </ul>    
-                    <a class="btn-u btn-u-sm" href="#" data-bind="attr:{href: 'profil/' + mealId}">Voir plus</a>
+                    <a class="btn-u btn-u-sm" href="#" data-bind="attr:{href: 'chef/' + username}">Voir plus</a>
                 </div>
             </div>             
           

@@ -2,7 +2,8 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var config = require('./config');
+var config = require('./config2');
+//var config = require('./config');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -36,15 +37,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
-app.post('/newCommand/:id', function(req,res){
+app.post('/newCommand/', function(req,res){
   var data = req.body;
+  console.log(req.body);
   console.log(req.params.id);
   data.id = guid();
   data.confirmationId = guid();
   data.userid= guid();
   data.isValide = false;
   users.update(
-    {UserId: req.params.id},
+    {chef: data.chef},
     {$set:{idtemp:data.userid}},
     function(err,rep){
     });

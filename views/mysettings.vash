@@ -194,18 +194,22 @@ YUI.add('crop-box', function (Y) {
                         <!--End Left MENU-->
 
 
-                        <div class="col-md-9" style="margin-bottom:210px">
+                        <div id="main"class="col-md-9" style="margin-bottom:210px" hidden="hidden">
                             <div class="profile-body margin-bottom-20">
                         <div class="tab-v1">
                             <ul class="nav nav-justified nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#profile">Modifier le profil</a></li>
                                 <li><a data-toggle="tab" href="#passwordTab">Changer de mot de passe</a></li>
-                                <li><a data-toggle="tab" href="#settings">Paramètres de notifications</a></li>
                             </ul>          
                             <div class="tab-content">
                                 <div id="profile" class="profile-edit tab-pane fade in active">
                                     <h2 class="heading-md">Gérer vos informations</h2>
                                     <br>
+                                    @if(model.manqueInfo){
+                                        <div class="alert alert-danger fade in">
+                                <strong>Attention!</strong> Toute les informations sont nécessaires pour pouvoir ajouter un plat.
+                            </div>
+                                        }
                                     <dl class="dl-horizontal">
                                         <dt><strong>Votre nom </strong></dt>
                                         <dd>
@@ -295,23 +299,22 @@ YUI.add('crop-box', function (Y) {
                                     <br>
                                     <form class="sky-form" id="sky-form4" action="" novalidate="novalidate">
                                         <dl class="dl-horizontal">
-                                            <dt>Courriel</dt>
+                                            <dt>Ancien mot de passe</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-envelope"></i>
-                                                        <input type="email" placeholder="Email address" name="email">
-                                                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                                        <input type="password" placeholder="Ancien mot de passe" data-bind="mdp"/>
+                                                        <b class="tooltip tooltip-bottom-right">Ancien mot de passe</b>
                                                     </label>
                                                 </section>
                                             </dd>
-                                            <dt>Entrer votre mot de passe</dt>
+                                            <dt>Nouveau mot de passe</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
-                                                        <input type="password" id="password" name="password" placeholder="Password">
-                                                        <b class="tooltip tooltip-bottom-right">N'oubliez pas votre mot de passe</b>
+                                                        <input type="password" id="password" name="password" data-bind="nmdp">
                                                     </label>
                                                 </section>
                                             </dd>
@@ -320,23 +323,17 @@ YUI.add('crop-box', function (Y) {
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
-                                                        <input type="password" name="passwordConfirm" placeholder="Confirm password">
-                                                        <b class="tooltip tooltip-bottom-right">N'oubliez pas votre mot de passe</b>
+                                                        <input type="password" name="passwordConfirm" placeholder="Confirm password" data-bind="nmdp2">
                                                     </label>
                                                 </section>
                                             </dd>    
                                         </dl>
-                                        <label class="toggle toggle-change"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Se souvenir du mot de passe</label>
-                                        <br>
-                                        <section>
-                                            <label class="checkbox"><input type="checkbox" id="terms" name="terms"><i></i><a href="#">j'ai lu et accepte les Termes et Conditions d'utilisation</a></label>
-                                        </section>
                                         <button type="button" class="btn-u btn-u-default">Annuler</button>
                                         <button class="btn-u" type="submit">Enregistrer</button>
                                     </form>    
                                 </div>
 
-                                <div id="settings" class="profile-edit tab-pane fade">
+                                <div id="settings" class="profile-edit tab-pane fade" hidden="hidden">
                                     <h2 class="heading-md">Gérer vos notifications</h2>
                                     <p>Ci-dessous les notification que vous pouvez paramétrer</p>
                                     <br>

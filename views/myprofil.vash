@@ -191,7 +191,7 @@
                         <!--End Left MENU-->
 
 
-                        <div class="col-md-9">
+                        <div class="col-md-9" id="main" hidden="hidden">
                             <div class="row" data-bind="visible:!meal1()">
                                 <div class="one-page-inner one-default">
                                     <div class="container content">

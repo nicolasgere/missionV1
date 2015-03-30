@@ -6,10 +6,10 @@
     <title>AlloChef | Bienvenue...</title>
     
     @html.include('shared/head', model)
-   
 
 
-<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
+
+    <script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
 
 </head> 
 
@@ -18,173 +18,198 @@
         <!--=== Header ===-->    
         @html.include('shared/menu', model)
         <!--=== Search Block ===-->
-
+<style type="text/css">
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}</style>
         <div class="search-block parallaxBg">
             <div class="container">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-7 col-md-offset-2">
                     <h1>Découvrez une cuisine <span class="color-green">proche de chez vous</span></h1>
-                    <form action="/search" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="recherche" placeholder="Recherchez des plats...">
-                        <span class="input-group-btn">
-                            <button class="btn-u btn-u-lg" type="submit"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                    <form>
-                </div>
-            </div>    
-        </div><!--/container-->     
-        <!--=== End Search Block ===-->
-
-        <!--=== Content ===-->
-        <div class="container content">
-            <div class="one-page-inner one-default">
-                <div class="container content">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h1>AlloChef c'est quoi ?</h1>                        
-                            <p> AlloChef est le premier site communautaire de partage de plats fait maison.</p>
-                            <p style="text-align:justify;"> C’est simple, les amateurs de cuisine et les gourmands sont réunis ici pour partager un amour commun pour la cuisine. Vous avez envie de faire découvrir vos meilleurs plats ? Vous n’avez pas le goût de cuisiner ? Rejoignez la communauté ! C’est simple, rapide et gratuit.</p>
-                            
-                            <a class="btn-u btn-u-red one-page-btn" href="/signup"><i class="fa fa-bolt"></i> Inscrivez-vous</a>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="section-block">
-                                <div class="text-center">
-                    
-                                    <h2> Recherches populaires</h2>  
-                                
-                                </div>    
-                               </div>  
-                            </br>
-
-                            <div class="clearfix"></div>
-
-                            <div class="section-block-info">
-                                <ul class="list-inline tags-v1">
-                                    <li><a href="#">#Lasagnes</a></li>
-                                    <li><a href="#">#Pate</a></li>
-                                    <li><a href="#">#Soupe</a></li>
-                                    <li><a href="#">#Salade</a></li>
-                                    <li><a href="#">#Purée</a></li>
-                                    <li><a href="#">#Boeuf</a></li>
-                                    <li><a href="#">#Gratin</a></li>
-                                    <li><a href="#">#Poulet</a></li>
-                                    <li><a href="#">#Porc</a></li>
-                                    <li><a href="#">#Poisson</a></li>
-                                    <li><a href="#">#Légumes</a></li>
-                                    <li><a href="#">#Tarte</a></li>
-                                    <li><a href="#">#Gateau</a></li>
-                                    <li><a href="#">#Chocolat</a></li>
-                                    <li><a href="#">#Fruits</a></li>
-                                </ul>                            
+                    <form  action ="/search" autocomplete="off">
+                        <div class="col-md-12">
+                            <div class="col-md-4" style="padding:0">
+                             <div class="input-group">
+                                <span class="input-group-addon" style="border:none"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" placeholder="City" class="form-control" name="city"  autocomplete="off" list="list"/>
+                                <datalist id="list">
+                                    <option value="Montréal"></option>
+                                    <option value="Québec"></option>
+                                    <option value="Sherbrook"></option>
+                                </datalist>
                             </div>
                         </div>
+                        <div class="col-md-7" style="padding:0;">
+
+                            <div class="input-group">
+                                <input type="text" name="recherche" placeholder="What do you want to eat" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn-u btn-u-lg" type="submit"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>    
+        </div>
+    </div>
+
+    <!--/container-->     
+    <!--=== End Search Block ===-->
+
+    <!--=== Content ===-->
+    <div class="container content">
+        <div class="one-page-inner one-default">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>AlloChef c'est quoi ?</h1>                        
+                        <p> AlloChef est le premier site communautaire de partage de plats fait maison.</p>
+                        <p style="text-align:justify;"> C’est simple, les amateurs de cuisine et les gourmands sont réunis ici pour partager un amour commun pour la cuisine. Vous avez envie de faire découvrir vos meilleurs plats ? Vous n’avez pas le goût de cuisiner ? Rejoignez la communauté ! C’est simple, rapide et gratuit.</p>
+
+                        <a class="btn-u btn-u-red one-page-btn" href="/signup"><i class="fa fa-bolt"></i> Inscrivez-vous</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="section-block">
+                            <div class="text-center">
+
+                                <h2> Recherches populaires</h2>  
+                                
+                            </div>    
+                        </div>  
+                    </br>
+
+                    <div class="clearfix"></div>
+
+                    <div class="section-block-info">
+                        <ul class="list-inline tags-v1">
+                            <li><a href="#">#Lasagnes</a></li>
+                            <li><a href="#">#Pate</a></li>
+                            <li><a href="#">#Soupe</a></li>
+                            <li><a href="#">#Salade</a></li>
+                            <li><a href="#">#Purée</a></li>
+                            <li><a href="#">#Boeuf</a></li>
+                            <li><a href="#">#Gratin</a></li>
+                            <li><a href="#">#Poulet</a></li>
+                            <li><a href="#">#Porc</a></li>
+                            <li><a href="#">#Poisson</a></li>
+                            <li><a href="#">#Légumes</a></li>
+                            <li><a href="#">#Tarte</a></li>
+                            <li><a href="#">#Gateau</a></li>
+                            <li><a href="#">#Chocolat</a></li>
+                            <li><a href="#">#Fruits</a></li>
+                        </ul>                            
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Top Categories -->
+    </div>
+</div>
+<!-- Top Categories -->
 
-        <!-- End Top Categories -->
-    </div><!--/container-->     
-    <!--=== End Content ===-->
+<!-- End Top Categories -->
+</div><!--/container-->     
+<!--=== End Content ===-->
 
-    <!--=== Container Part ===-->
-    <div class="container content-md" style="padding-top:0px">
+<!--=== Container Part ===-->
+<div class="container content-md" style="padding-top:0px">
 
-        <h1>Plats en vedette</h1>
+    <h1>Plats en vedette</h1>
 
-        <ul class="row grid-block-v2">        
-             @model.meals.forEach(function(m){
-            <li class="col-md-4 col-sm-6 md-margin-bottom-30">
-                <div class="easy-block-v1">
-                    <div class="easy-block-v1-badge rgba-red"  style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;">@m.price $</div>
-                    <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                               <img alt="" src="https://allochef.s3.amazonaws.com/@m.img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="overflow-h">
-                        <h3 data-bind="text:@m.name"></h3>
-                        <ul class="list-inline star-vote">
+    <ul class="row grid-block-v2">        
+       @model.meals.forEach(function(m){
+       <li class="col-md-4 col-sm-6 md-margin-bottom-30">
+        <div class="easy-block-v1">
+            <div class="easy-block-v1-badge rgba-red"  style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;">@m.price $</div>
+            <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                     <img alt="" src="https://allochef.s3.amazonaws.com/@m.img">
+                 </div>
+             </div>
+         </div>
+         <div class="overflow-h">
+            <h3 data-bind="text:@m.name"></h3>
+            <ul class="list-inline star-vote">
 
-                            <li><i class=""></i></li>
-                            <li><i class=""></i></li>
-                            <li><i class=""</i></li>
-                            <li><i class=""></i></li>
-                            <li><i class=""></i></li>
-                        </ul>
-                    </div>
-                    <ul class="list-unstyled">
-                        <li><span class="color-green">Chef:</span> <a href="#"><span >@m.username</span></a></li>
-                        <li><span class="color-green">Description:</span> <span>@m.desc</span></li>
-                    </ul>    
-                    <a class="btn-u btn-u-sm" href="/profil/@m.MealId">Voir plus</a>
-                </div>
-            </li>
-            })
-        </ul>
-    </div><!--/container-->
+                <li><i class=""></i></li>
+                <li><i class=""></i></li>
+                <li><i class=""</i></li>
+                <li><i class=""></i></li>
+                <li><i class=""></i></li>
+            </ul>
+        </div>
+        <ul class="list-inline margin-bottom-5">
+                                <li>By <a class="color-green" href="/chef/@m.username">@m.username</a></li>
+                                <li class="pull-right"><i class="fa fa-map-marker push-right"></i> @m.ville</li>
+                            </ul>
+        <ul class="list-unstyled">
+            <li><span class="color-green">Description:</span> <span>@m.desc</span></li>
+        </ul>    
+        <a class="btn-u btn-u-sm" href="/chef/@m.username">Voir plus</a>
+    </div>
+</li>
+})
+</ul>
+</div><!--/container-->
 
-    <!--=== Footer ==-->
+<!--=== Footer ==-->
 
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">                     
-                    <p>
-                        2014 &copy; All Rights Reserved.
-                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                    </p>
-                </div>
-
-                <!-- Social Links -->
-                <div class="col-md-6">
-                    <ul class="footer-socials list-inline">
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                                <i class="fa fa-skype"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                                <i class="fa fa-pinterest"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                                <i class="fa fa-dribbble"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Social Links -->
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">                     
+                <p>
+                    2014 &copy; All Rights Reserved.
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                </p>
             </div>
-        </div> 
-    </div><!--/copyright-->
+
+            <!-- Social Links -->
+            <div class="col-md-6">
+                <ul class="footer-socials list-inline">
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                            <i class="fa fa-skype"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Social Links -->
+        </div>
+    </div> 
+</div><!--/copyright-->
 </div>     
 <!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapepr-->
