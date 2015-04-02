@@ -83,21 +83,20 @@ input:-webkit-autofill {
 
                     <div class="section-block-info">
                         <ul class="list-inline tags-v1">
-                            <li><a href="#">#Lasagnes</a></li>
-                            <li><a href="#">#Pate</a></li>
-                            <li><a href="#">#Soupe</a></li>
-                            <li><a href="#">#Salade</a></li>
-                            <li><a href="#">#Purée</a></li>
-                            <li><a href="#">#Boeuf</a></li>
-                            <li><a href="#">#Gratin</a></li>
-                            <li><a href="#">#Poulet</a></li>
-                            <li><a href="#">#Porc</a></li>
-                            <li><a href="#">#Poisson</a></li>
-                            <li><a href="#">#Légumes</a></li>
-                            <li><a href="#">#Tarte</a></li>
-                            <li><a href="#">#Gateau</a></li>
-                            <li><a href="#">#Chocolat</a></li>
-                            <li><a href="#">#Fruits</a></li>
+                            <li><a href="/search?city=&recherche=Lasagnes">#Lasagnes</a></li>
+                            <li><a href="/search?city=&recherche=Pate">#Pate</a></li>
+                            <li><a href="/search?city=&recherche=Soupe">#Soupe</a></li>
+                            <li><a href="/search?city=&recherche=Salade">#Salade</a></li>
+                            <li><a href="/search?city=&recherche=Purée">#Purée</a></li>
+                            <li><a href="/search?city=&recherche=Boeuf">#Boeuf</a></li>
+                            <li><a href="/search?city=&recherche=Gratin">#Gratin</a></li>
+                            <li><a href="/search?city=&recherche=Poulet">#Poulet</a></li>
+                            <li><a href="/search?city=&recherche=Poisson">#Poisson</a></li>
+                            <li><a href="/search?city=&recherche=Légumes">#Légumes</a></li>
+                            <li><a href="/search?city=&recherche=Tarte">#Tarte</a></li>
+                            <li><a href="/search?city=&recherche=Gateau">#Gateau</a></li>
+                            <li><a href="/search?city=&recherche=Chocolat">#Chocolat</a></li>
+                            <li><a href="/search?city=&recherche=Fruits">#Fruits</a></li>
                         </ul>                            
                     </div>
                 </div>

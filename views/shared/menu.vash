@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <!-- Home -->
-                        <li><a href="/">Acceuil</a>
+                        <li><a href="/">Accueil</a>
                         </li>
                         <li><a href="/">Comment ça marche ?</a>
                         </li>
