@@ -42,7 +42,7 @@
                                     <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
                                     <input type="radio" name="nourriture" id="nourriture-rating-2" value="2">
                                     <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nnourriture" id="nourriture-rating-1" value="1">
+                                    <input type="radio" name="nourriture" id="nourriture-rating-1" value="1">
                                     <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
                                     Nourriture
                                 </div>    
@@ -63,9 +63,31 @@
                                 </div>    
                             </section>
                         </fieldset>
+                        <fieldset>                  
+                        <div class="row">
+                            <section class="col col-4">
+                                <label class="label">Name</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-user"></i>
+                                    <input type="text" name="name">
+                                </label>
+                            </section>
+                        </div>
+                        
+                        <section>
+                            <label class="label">Comment</label>
+                            <label class="textarea">
+                                <i class="icon-append fa fa-comment"></i>
+                                <textarea rows="4" name="comment"></textarea>
+                            </label>
+                            
+                        </section>
+                        
+                        
+                    </fieldset>
                         <footer>
-                            <button type="submit" class="btn-u btn-u-default">Submit</button>
-                            <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
+                            <button type="submit" class="btn-u btn-u">Submit</button>
+                            <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">Back</button>
                         </footer>
                     </form>
                 </div>

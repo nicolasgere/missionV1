@@ -43,11 +43,11 @@ app.post('/newCommand/', function(req,res){
   console.log(req.params.id);
   data.id = guid();
   data.confirmationId = guid();
-  data.userid= guid();
+  data.tempid= guid();
   data.isValide = false;
   users.update(
-    {chef: data.chef},
-    {$set:{idtemp:data.userid}},
+    {username: data.chef},
+    {$push:{idtemp : data.tempid}},
     function(err,rep){
     });
   command.insert(data,function(err,rep){ 
