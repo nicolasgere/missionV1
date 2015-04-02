@@ -25,7 +25,7 @@
                         <div class="service-block-v3 service-block-u">
                             <i class="icon-users"></i>
                             <span class="service-heading">Commande:</span>
-                            <span class="counter">147</span>
+                            <span class="counter">@model.user.nbrecomm</span>
                             <hr style="margin-top:20px;margin-bottom:10px;">
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>

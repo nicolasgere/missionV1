@@ -92,7 +92,13 @@ app.get('/confirme/:id', function(req,res){
             sendgrid.send(mailOptions2, function(err, json) {
               if (err) { return console.error(err); }
               console.log(json);
-             res.render("confirm",{});
+              var nbreCommande = rep2.nbrecomm?rep2.nbrecomm++ : 1;
+              users.update(
+                {username: rep2.username},
+                {$set: {nbrecomm : nbreCommande}},
+                function(err,rep){
+                  res.render("confirm",{});
+                });           
             });
 
           });
