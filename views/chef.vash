@@ -18,7 +18,7 @@
                         <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
                         <div class="service-block-v3 service-block-u">
                             <i class="icon-users"></i>
-                            <span class="service-heading">Commande reçue:</span>
+                            <span class="service-heading">Commande:</span>
                             <span class="counter">147</span>
                             <hr style="margin-top:20px;margin-bottom:10px;">
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
@@ -57,10 +57,11 @@
             </div>
         </div>
         <hr>
+        @if(model.user.comments.length> 0 ){
                     	     <div class="row">
  <div class="panel panel-profile">
                     <div class="panel-heading overflow-h">
-                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Users Comments</h2>
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Commentaire</h2>
                         <a href="#"><i class="fa fa-cog pull-right"></i></a>
                     </div>
                     <div class="panel-body margin-bottom-50">
@@ -68,73 +69,21 @@
                             <a class="pull-left" href="#">
                                 <img class="media-object rounded-x" src="" alt="">
                             </a>
+                            @model.user.comments.forEach(function(m){    
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <strong><a href="#">Eva Nelson</a></strong> EvaNelson
-                                    <small>About an hour ago</small>
+                                    <strong><a>@m.author</a></strong> 
+                                    <small>@m.date.getDate()/@(m.date.getMonth()+1)/@(m.date.getYear()+1900)</small>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
-                                <ul class="list-inline results-list pull-left">
-                                    <li><a href="#">25 Likes</a></li>
-                                    <li><a href="#">10 Share</a></li>
-                                </ul>    
-                                <ul class="list-inline pull-right">
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                </ul>
+                                <p>@m.comment</p>
+                                <hr>
                             </div>
+                        })
                         </div><!--/end media media v2--> 
-                        <div class="media media-v2 margin-bottom-20">
-                            <a class="pull-left" href="#">
-                                <img class="media-object rounded-x" src="" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <strong><a href="#">Frank Lennon</a></strong> FLennon 
-                                    <small>4 hours ago</small>
-                                </h4>
-                                <p>I'm incredibly excited to announce that I am joining the amazing <a href="#">Unify</a> team. To be in touch with the latest update, Sign up and get your own Account page fee free :) Like mine: <a href="#">http://www.unify.com/flennon</a></p>
-                                <ul class="list-inline results-list pull-left">
-                                    <li><a href="#">5 Likes</a></li>
-                                    <li><a href="#">1 Share</a></li>
-                                </ul>
-                                <ul class="list-inline pull-right">
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                </ul>
-
-                                <div class="clearfix"></div>
-
-                                <div class="media media-v2">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object rounded-x" src="" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <strong><a href="#">Edward Rooster</a></strong> EdwardRooster 
-                                            <small>5 hours ago</small>
-                                        </h4>
-                                        <p>Welcome to Board! :) Your journey starts here. Wish you all the best!</p>
-                                        <ul class="list-inline results-list pull-left">
-                                            <li><a href="#">0 Likes</a></li>
-                                            <li><a href="#">0 Share</a></li>
-                                        </ul>
-                                        <ul class="list-inline pull-right">
-                                            <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                            <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>    
-                        </div><!--/end media media v2-->
-                        <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
                     </div>
                 </div>
         
-        </div>   
+        </div>  } 
         </div><!--/end row-->
     </div><!--/container-->    
 </div>

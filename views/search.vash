@@ -33,7 +33,6 @@
                                 <datalist id="list">
                                     <option value="Québec"></option>
                                     <option value="Montréal"></option>
-                                    <option value="Toronto"></option>
                                 </datalist>
                         </div>
                     </div>
@@ -55,17 +54,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="overflow-h">
+                   <!-- <div class="overflow-h">
                         <h3 data-bind="text:name"></h3>
                         <ul class="list-inline star-vote">
-
                             <li><i class="" data-bind="css: getClass(1)"></i></li>
                             <li><i class="" data-bind="css: getClass(2)"></i></li>
                             <li><i class="" data-bind="css: getClass(3)"></i></li>
                             <li><i class="" data-bind="css: getClass(4)"></i></li>
                             <li><i class="" data-bind="css: getClass(5)"></i></li>
                         </ul>
-                    </div>
+                    </div> -->
                     <ul class="list-unstyled">
                         <li><span class="color-green">Chef:</span> <a href="#"  data-bind="attr:{href: 'test'}"><span data-bind="text:username"></span></a></li>
                         <li><span class="color-green">Description:</span> <span data-bind="text:description"></span></li>

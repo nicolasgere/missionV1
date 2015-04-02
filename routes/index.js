@@ -125,6 +125,7 @@ router.post('/signup',function (req,res){
   var Id = guid();
   req.body.UserId = Id;
   req.body.nbrCommande = 0;
+  req.body.comments = [];
   req.body.imageSrc = "e6e464ed-5893-0d28-8c41-67eb2cc892ef.jpeg";
   console.log( req.body);
   users.insert(req.body, function(err,rep) {
@@ -312,6 +313,8 @@ router.post('/updateSettings', function(req, res){
 
 router.get('/search', function(req,res){
   var model = {};
+  model.username = req.session.username;
+
 model.recherche = req.query.recherche;
 model.city = req.query.city;
   res.render('search',model);
@@ -369,6 +372,8 @@ router.get('/profil/:id', function(req,res){
 });
 router.get('/chef/:username', function(req,res){
   var model = {};
+  model.username = req.session.username;
+
     users.findOne({username:req.params.username},function(err,rep2){
       if(rep2){
       model.user = rep2;
@@ -387,6 +392,8 @@ router.get('/chef/:username', function(req,res){
 /**NOTE CHEF**/
 router.get('/note/:id', function(req, res){
   var model = {};
+  model.username = req.session.username;
+  
   users.findOne({idtemp:req.params.id},function(err,rep){
     model.user = rep;
     res.render('note', model);

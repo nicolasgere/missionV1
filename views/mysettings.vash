@@ -177,18 +177,15 @@ YUI.add('crop-box', function (Y) {
 
                     Remplacer</button>
                              <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                                <li class="list-group-item active">
+                                 <li class="list-group-item">
                                     <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                                 </li>
-                                <li class="list-group-item ">
-                                    <a href="myprofil"><i class="fa fa-cubes"></i> Mes plats</a>
+                                <li class="list-group-item active">
+                                    <a href="#"><i class="fa  fa-cutlery"></i>  Mes plats</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
-                                </li>                                        
-                                <li class="list-group-item">
-                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
-                                </li> 
+                                    <a href="/chef/@model.username"><i class="fa fa-comments"></i> Ma page</a>
+                                </li>            
                             </ul>   
                         </div>
                         <!--End Left MENU-->
