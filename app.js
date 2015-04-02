@@ -45,8 +45,9 @@ app.post('/newCommand/', function(req,res){
   data.confirmationId = guid();
   data.userid= guid();
   data.isValide = false;
+  console.log("UserName = "+data.username);
   users.update(
-    {chef: data.chef},
+    {username: data.chef},
     {$set:{idtemp:data.userid}},
     function(err,rep){
     });
