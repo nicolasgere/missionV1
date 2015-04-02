@@ -400,12 +400,21 @@ router.get('/note/:id', function(req, res){
 });
 
 router.post('/note/:id', function(req, res){
-  var nourriture, service, moyenne;
+  var nourriture, service, moyenne, comment, author, commentaire;
+  comment = req.body.comment?req.body.comment : 0;
+  author = req.body.name?req.body.name : "Anonyme";
   nourriture = req.body.nourriture?req.body.nourriture : 0;
   service = req.body.service?   req.body.service : 0;
   moyenne = (parseInt(nourriture)+parseInt(service))/2;
-  console.log(moyenne);
-  users.findOne({idtemp: req.params.id},function(err,rep){
+  if(comment!=0){
+    commentaire = {
+      author: author,
+      comment: comment,
+      date: new Date()
+    };
+  }
+
+  users.findOne({idtemp:req.params.id},function(err,rep){
     var noteFinale, nbreVote;
     if(rep.nbrenote){
       noteFinale=(parseInt(rep.note)*parseInt(rep.nbrenote)+(moyenne))/(parseInt(rep.nbrenote)+1);
@@ -421,9 +430,14 @@ router.post('/note/:id', function(req, res){
     function(err,rep){
       users.update(
         {idtemp: req.params.id},
-        {$unset:{idtemp:""}},
+        {$push:{comments: commentaire}},
         function(err, rep){
-          res.redirect('/');
+          users.update(
+            {idtemp: req.params.id},
+            {$pull:{idtemp: req.params.id}},
+            function(err, rep){
+              res.redirect('/');
+          });
       });
     });
   });

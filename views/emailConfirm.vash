@@ -31,7 +31,7 @@
                                         <br>
                                         Votre Avis est important pour nous. Veuillez prendre quelques minutes pour nous donner vos impressions en cliquant sur le lien suivant:
                                         <br>
-                                        <a href ="http://allochef.net/note/@model.userid"> Give a feedback</a>
+                                        <a href ="http://allochef.net/note/@model.tempid"> Give a feedback</a>
                                         <br>
                                         le chef @model.chef prendra contact avec vous, <br>
                                         Cordialament bonne journée
