@@ -64,7 +64,7 @@
                         <li><a href="/">Comment ça marche ?</a>
                         </li>
                         @if(model.username){ 
-                        <li><a href="/">Mon profil</a>
+                        <li><a href="/myprofil">Mon profil</a>
                         </li>}
                         
                         <!-- End Search Block -->
