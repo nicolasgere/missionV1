@@ -177,10 +177,10 @@ YUI.add('crop-box', function (Y) {
 
                     Remplacer</button>
                              <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                                 <li class="list-group-item">
+                                 <li class="list-group-item active">
                                     <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                                 </li>
-                                <li class="list-group-item active">
+                                <li class="list-group-item">
                                     <a href="#"><i class="fa  fa-cutlery"></i>  Mes plats</a>
                                 </li>
                                 <li class="list-group-item">

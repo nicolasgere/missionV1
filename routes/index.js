@@ -75,9 +75,6 @@ router.get('/login', function(req,res){
  }
 });
 
-router.get('/signup',function(req,res){
-  res.render('signup');
-  }); 
 router.post('/login', function(req,res){
   users.findOne({email:req.body.email, key:req.body.key} , function(err,rep) {
    if(err) {
@@ -393,7 +390,7 @@ router.get('/chef/:username', function(req,res){
 router.get('/note/:id', function(req, res){
   var model = {};
   model.username = req.session.username;
-  
+
   users.findOne({idtemp:req.params.id},function(err,rep){
     model.user = rep;
     res.render('note', model);

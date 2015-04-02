@@ -13,20 +13,18 @@
                             <li class="active">
                                 <a href="#">Francais <i class="fa fa-check"></i></a> 
                             </li>
-                            <li><a href="#">English</a></li>
                            
                         </ul>
                     </li>
                     <li class="topbar-devider"></li>   
-                    <li><a href="page_faq.html">Help</a></li>  
-                    <li class="topbar-devider"></li>  
+                    
                     @if(model.username){ 
                     <li><a href="myprofil">@model.username</a>
                     <li class="topbar-devider"></li>   
                     </li>
-                     <li><a href="Disconnect">Disconnect</a></li>
+                     <li><a href="Disconnect">Déconnexion</a></li>
                     }else{
-                   <li><a href="/login">Login</a></li>
+                   <li><a href="/login">Connexion</a></li>
                    }
                 </ul>
                 <!-- End Topbar Navigation -->
@@ -52,22 +50,14 @@
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <!-- Home -->
-                        <li class="dropdown active">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Home
-                            </a>
+                        <li><a href="/">Acceuil</a>
                         </li>
-                            <li>
-                            <i class="search fa fa-search search-btn"></i>
-                            <div class="search-open">
-                                <div class="input-group animated fadeInDown">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn">
-                                        <button class="btn-u" type="button">Go</button>
-                                    </span>
-                                </div>
-                            </div>    
+                        <li><a href="/">Comment ça marche ?</a>
                         </li>
+                        @if(model.username){ 
+                        <li><a href="/">Mon profil</a>
+                        </li>}
+                        
                         <!-- End Search Block -->
                     </ul>
                 </div><!--/navbar-collapse-->

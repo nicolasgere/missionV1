@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Responsive Email Template</title>
+    <title>Confirmation commande</title>
                                                                                                                                                                                                                                                                                                                                                                                                             
     <style type="text/css">
         .ReadMsgBody {width: 100%; background-color: #ffffff;}
@@ -19,21 +19,16 @@
                 }
     </style>
     </head>
-    <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" yahoo="fix" style="font-family: Arial, Helvetica, sans-serif">
+    <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" yahoo="fix" style="font-family: Arial, Helvetica, sans-serif, font-color:black">
 
     <!-- Wrapper -->
-                                        <a href="#"><img class="deviceWidth" width="120"  src="http://allochef.net/assets/img/logo.png"></a>
                                         <h5>Bonjour @model.nom,</h5>
-                                        Pour confirmer votre commande, veuillez cliquer sur le lien suivent:
-                                        <br>
-                                        <a href ="http://allochef.net/confirme/@model.confirmationId"> Confirmer commande</a>
-                                        <br>
+                                        Pour confirmer votre commande, veuillez cliquer sur le lien suivant:<a href ="http://www.allochef.net/confirme/@model.confirmationId"> Confirmer commande</a>
                                         <br>
                                         Votre Avis est important pour nous. Veuillez prendre quelques minutes pour nous donner vos impressions en cliquant sur le lien suivant:
+                                        <a href ="http://www.allochef.net/note/@model.tempid">Commentaires</a>
                                         <br>
-                                        <a href ="http://allochef.net/note/@model.tempid"> Give a feedback</a>
-                                        <br>
-                                        le chef @model.chef prendra contact avec vous, <br>
+                                        Le chef @model.chef prendra contact avec vous, <br>
                                         Cordialament bonne journée
                                         
     <!-- End Wrapper -->
