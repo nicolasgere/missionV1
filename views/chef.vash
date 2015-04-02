@@ -5,6 +5,12 @@
 <head>
     <title>Chef @model.user.username</title>
     @html.include('shared/head', model)
+    <style type="text/css">
+        .icone{
+            font-size:20px !important;
+            margin: 0 0px 0 0 !important;
+        }
+    </style>
 </head> 
 
 <body>
@@ -25,7 +31,47 @@
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> @model.user.ville, @model.user.arron</p></div>
 <!-- ICI LES ETOILES -->
+                            <div class="clearfix margin-bottom-10; position:inline">
+                                <div class="row">
+                                    <div class="col-md-2 md-margin-bottom-40">
+                                        <b style="color:#fff">Note:</b> 
+                                    </div>
+                                    <div class="col-md-10 md-margin-bottom-40">
+                                        <ul class="list-inline star-vote" style=";">
+                                        @{
+                                            var etoile1=parseInt(model.user.note)>=1?"fa fa-star" : "fa fa-star-o";
+                                            var etoile2=parseInt(model.user.note)>=2?"fa fa-star" : "fa fa-star-o";
+                                            var etoile3=parseInt(model.user.note)>=3?"fa fa-star" : "fa fa-star-o";
+                                            var etoile4=parseInt(model.user.note)>=4?"fa fa-star" : "fa fa-star-o";
+                                            var etoile5=parseInt(model.user.note)>=5?"fa fa-star" : "fa fa-star-o";
+                                            switch(model.user.note){
+                                                case 0.5: etoile1 = "fa fa-star-half-o";
+                                                  break;
+                                                case 1.5: etoile2 = "fa fa-star-half-o";
+                                                  break;
+                                                case 2.5: etoile3 = "fa fa-star-half-o";
+                                                  break;
+                                                case 3.5: etoile4 = "fa fa-star-half-o";
+                                                  break;
+                                                case 4.5: etoile5 = "fa fa-star-half-o";
+                                                  break;
+                                            } 
+                                        }
+
+                                            <li><i class="@etoile1 icone" ></i></li>
+                                            <li><i class="@etoile2 icone" ></i></li>
+                                            <li><i class="@etoile3 icone" ></i></li>
+                                            <li><i class="@etoile4 icone" ></i></li>
+                                            <li><i class="@etoile5 icone" ></i></li>
+                                        </ul></p> 
+                                    </div>
+                                </div>
+                            </div> 
+                             
                         </div>
+                        
+                            
+                      
                         <br>
                         <button class="btn-u btn-block btn-brd btn-u-lg" data-toggle="modal" data-target="#responsive"><i class="fa  fa-shopping-cart"></i> Commander</button>
 
