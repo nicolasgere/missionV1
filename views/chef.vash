@@ -18,21 +18,13 @@
                         <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
                         <div class="service-block-v3 service-block-u">
                             <i class="icon-users"></i>
-                            <span class="service-heading">Plat préparé</span>
+                            <span class="service-heading">Commande reçue:</span>
                             <span class="counter">147</span>
                             <hr style="margin-top:20px;margin-bottom:10px;">
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>
                             <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> @model.user.ville, @model.user.arron</p></div>
-                            <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Disponibilité:</b> Soir de la semaine à partir de 18h</p></div>
-                            <div class="statistics">
-                                <h3 class="heading-xs">Satisfaction général: <span class="pull-right">97%</span></h3>
-                                <div class="progress progress-u progress-xxs">
-                                    <div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="97" role="progressbar" class="progress-bar progress-bar-light">
-                                    </div>
-                                </div>
-                            </div>
-
+<!-- ICI LES ETOILES -->
                         </div>
                         <br>
                         <button class="btn-u btn-block btn-brd btn-u-lg" data-toggle="modal" data-target="#responsive"><i class="fa  fa-shopping-cart"></i> Commander</button>

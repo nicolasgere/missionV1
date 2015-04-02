@@ -85,8 +85,7 @@ router.post('/login', function(req,res){
   } else {
     if(!rep)
     {
-     console.log("PAS BON LOG");
-     res.status(204);
+     res.render('login',{valide:false});
    }
    else
    {
@@ -125,7 +124,8 @@ router.get('/signup', function (req,res){
 router.post('/signup',function (req,res){
   var Id = guid();
   req.body.UserId = Id;
-  req.body.imageSrc = "user.jpg";
+  req.body.nbrCommande = 0;
+  req.body.imageSrc = "e6e464ed-5893-0d28-8c41-67eb2cc892ef.jpeg";
   console.log( req.body);
   users.insert(req.body, function(err,rep) {
     if(err) {
@@ -190,22 +190,15 @@ router.post('/createMeal', function(req, res){
   data.MealId = Id;
   data.username =  req.session.username; 
  
-  console.log(req.body.ext)
 
-  var ext = "";
-  if(req.body.ext =="jpeg" || req.body.ext=="jpg"){
-    console.log("je suis ici");
-    ext = ".jpeg"
-    var base64Data = req.body.img.replace(/^data:image\/jpeg;base64,/, "");
-  }
-  if(req.body.ext =="png"){
-    ext = ".png"
-    var base64Data = req.body.img.replace(/^data:image\/png;base64,/, "");
-  }
+
+ 
+  var base64Data = req.body.img.replace(/^data:image\/jpeg;base64,/, "");
+  var Id = guid();
   var buf = new Buffer(base64Data, 'base64'); 
   s3.putObject({
     Bucket: 'allochef',
-    Key: IdImg+ext,
+    Key: IdImg+".jpg",
     Body: buf,
     ACL:'public-read'
   }, function (perr, pres) {
@@ -213,7 +206,7 @@ router.post('/createMeal', function(req, res){
       console.log("Error uploading data: ", perr);
     } else {
       console.log("Successfully uploaded data to myBucket/myKey");
-          data.img =  IdImg + ext;
+          data.img =  IdImg + ".jpg";
       meals.insert(data, function(err,rep) {
      
         if(err) {
@@ -226,7 +219,7 @@ router.post('/createMeal', function(req, res){
           }
           else
           {
-            res.send({img:IdImg+ext,mealId:Id});
+            res.send({img:IdImg+".jpg",mealId:Id});
           }
         }
       });
@@ -319,8 +312,8 @@ router.post('/updateSettings', function(req, res){
 
 router.get('/search', function(req,res){
   var model = {};
-model.query = req.query.recherche;
-model.query = req.query.city;
+model.recherche = req.query.recherche;
+model.city = req.query.city;
   res.render('search',model);
 });
 /**search**/
@@ -343,6 +336,7 @@ router.post('/search', function(req,res){
     res.send(array);
   });
 }});
+
 router.get('/profil/:id', function(req,res){
   var model = {};
   console.log(req.params.id);

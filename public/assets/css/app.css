@@ -999,7 +999,7 @@ a.btn-u-xs {
 .btn-u.btn-u-red:active, 
 .btn-u.btn-u-red.active, 
 .open .dropdown-toggle.btn-u.btn-u-red {
-   background: #c0392b;
+   background: #e75967;
 }
 .btn-u.btn-u-split-red.dropdown-toggle {
    border-left: solid 1px #c0392b;
@@ -3237,7 +3237,7 @@ img.image-md {
 .bg-color-light-grey { background-color: #585f69 !important;}
 .bg-color-light-green { background-color: #79d5b3 !important;}
 
-.rgba-red { background-color: rgba(231,76,60,0.8);}
+.rgba-red { background-color: #e75967;}
 .rgba-blue{ background-color: rgba(52,152,219,0.8);}
 .rgba-aqua { background-color: rgba(39,215,231,0.8);}
 .rgba-yellow { background-color: rgba(241,196,15,0.8);}

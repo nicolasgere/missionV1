@@ -266,8 +266,7 @@ YUI.add('crop-box', function (Y) {
                                             <input type="text"  list="list" data-bind="value:ville,visible:!editVille()">
                                             <datalist id="list">
                                     <option value="Montréal"></option>
-                                    <option value="Laval"></option>
-                                    <option value="Longeuil"></option>
+                                    <option value="Québec"></option>
                                 </datalist>
                                             <span>
                                                 <a class="pull-right" href="#" data-bind="click:changeVille">

@@ -10,6 +10,7 @@ function meal(data,parent){
 	self.mealId = data.MealId;
 	self.userId = data.UserId;
 	self.note = 4;
+	
 	self.getClass = function(val){
 		if((val-0.5)<=self.note){
 		return "color-green fa fa-star";
@@ -22,8 +23,8 @@ function meal(data,parent){
 
 var ViewModel = function() {
 	var self = this;
-	self.recherche = ko.observable(query);
-	self.ville = ko.observable("Montréal");
+	self.recherche = ko.observable(recherche);
+	self.ville = ko.observable(city);
 
 	self.arrayRecherche = ko.computed(function(){
 		if(self.recherche()){

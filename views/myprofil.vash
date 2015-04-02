@@ -165,27 +165,16 @@
             <div class="col-md-3 md-margin-bottom-40">
 
              <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.imageSrc" alt=""  >
-<!--
-                                <div class="fileUpload btn btn-primary">
-                                    <form id="imgForm" name="imgForm" action="updateImage" method="post" enctype="multipart/form-data" style="height: 24px;">
-                                     <span>Remplacer</span>
-                                     <input type="file" name="fileToUpload" class="upload" id="fileToUpload" data-bind="value:imageSrc">
-                                     <input type="submit" value="Upload Image" name="submit"  style="visibility:hidden">
-                                 </form>
-                             </div>-->
                              <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                                 <li class="list-group-item">
                                     <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                                 </li>
                                 <li class="list-group-item active">
-                                    <a href="profile_projects.html"><i class="fa fa-cubes"></i> Mes plats</a>
+                                    <a href="profile_projects.html"><i class="fa  fa-cutlery"></i>  Mes plats</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="profile_comments.html"><i class="fa fa-comments"></i> Mes commentaires</a>
                                 </li>                                        
-                                <li class="list-group-item">
-                                    <a href="profile_settings.html"><i class="fa fa-cog"></i> Réglages</a>
-                                </li> 
                             </ul>   
                         </div>
                         <!--End Left MENU-->
@@ -332,13 +321,13 @@
                             <label class="label">Prix pour une portion </label>
                             <label class="input">
                                 <i class="icon-append fa fa-tag"></i>
-                                <input type="text" name="subject" id="subject" data-bind="value:newPrice,valueUpdate:'afterkeydown'">
+                                <input type="text" name="subject" id="subject" data-bind="value:newPrice,valueUpdate:'afterkeydown' " placeholder="Ex: 9, 7.50">
                             </label>
-                             <div ><strong>Exemple:</strong> 9, 7.50</div>
+                             <div ><strong>Portion:</strong> Quantité pour un repas</div>
                         </section>
                     </div>
 
-                    <section data-bind="visible:newPrice">
+                    <!--<section data-bind="visible:newPrice">
                         <label class="label">Catégorie</label>
                         <label class="select">
                            <select data-bind="options: availableCat,
@@ -346,9 +335,9 @@
                            optionsCaption: 'Choisir...'"></select>
                            <i></i>
                        </label>
-                   </section>
+                   </section> -->
 
-                   <section data-bind="visible:newCategory">
+                   <section data-bind="visible:newPrice">
                     <label class="label">Description</label>
                     <label class="textarea textarea-resizable" >
                         <textarea rows="3" data-bind="value: newDescription,valueUpdate:'afterkeydown'"></textarea>
@@ -386,7 +375,7 @@
 </div>
 <div class="modal-footer">
     <button data-dismiss="modal" class="btn-u btn-u-default" type="button" >Annuler</button>
-    <button class="btn-u" type="button" data-bind="click:createMeal,visible:newName() && newPrice()&&newCategory()&&nomImage()&&tailleDesc()>150&& tailleDesc()<380">Créer</button>
+    <button class="btn-u" type="button" data-bind="click:createMeal,visible:newName() && newPrice()&&nomImage()&&tailleDesc()>150&& tailleDesc()<380">Créer</button>
 </div>
 </div>
 </div>
@@ -420,16 +409,6 @@
                         </div>
                     </div>
 
-                    <section>
-                        <label class="label">Catégorie</label>
-                        <label class="select">
-                           <select data-bind="options: availableCat,
-                           value: newCategory,
-                           optionsCaption: 'Choose...'"></select>
-                           <i></i>
-                       </label>
-                   </section>
-
                    <section>
                     <label class="label">Description</label>
                     <label class="textarea textarea-resizable" >
@@ -441,7 +420,7 @@
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Annuler</button>
-        <button class="btn-u" type="button" data-bind="click:updateMeal,visible:newName() && newPrice()&&newCategory()">Enregistrer</button>
+        <button class="btn-u" type="button" data-bind="click:updateMeal,visible:newName() && newPrice()">Enregistrer</button>
     </div>
 </div>
 </div>

@@ -21,7 +21,11 @@
                         <p>Pas encore membre ? Cliquer sur <a class="color-green" href="signup">S'inscrire</a> pour créer un compte.</p>            
                     </div>
                     <form class="reg-page" role="form" action="login" method="post" id="login-form" autocomplete="off">
-
+                        @if(model.valide == false){
+                                        <div class="alert alert-danger fade in">
+                                <strong>Attention!</strong> information erronées.
+                            </div>
+                        }
                         <div class="input-group margin-bottom-20">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             <input type="text" class="form-control" placeholder="Courriel" id="email" name="email">

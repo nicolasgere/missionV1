@@ -31,18 +31,17 @@ input:-webkit-autofill {
                             <div class="col-md-4" style="padding:0">
                              <div class="input-group">
                                 <span class="input-group-addon" style="border:none"><i class="fa fa-map-marker"></i></span>
-                                <input type="text" placeholder="City" class="form-control" name="city"  autocomplete="off" list="list"/>
+                                <input type="text" placeholder="Ville" class="form-control" name="city"  autocomplete="off" list="list"/>
                                 <datalist id="list">
                                     <option value="Montréal"></option>
                                     <option value="Québec"></option>
-                                    <option value="Sherbrook"></option>
                                 </datalist>
                             </div>
                         </div>
                         <div class="col-md-7" style="padding:0;">
 
                             <div class="input-group">
-                                <input type="text" name="recherche" placeholder="What do you want to eat" class="form-control">
+                                <input type="text" name="recherche" placeholder="De quoi avez vous envie?" class="form-control" style="border-left:solid">
                                 <span class="input-group-btn">
                                     <button class="btn-u btn-u-lg" type="submit"><i class="fa fa-search"></i></button>
                                 </span>
@@ -68,7 +67,7 @@ input:-webkit-autofill {
                         <p> AlloChef est le premier site communautaire de partage de plats fait maison.</p>
                         <p style="text-align:justify;"> C’est simple, les amateurs de cuisine et les gourmands sont réunis ici pour partager un amour commun pour la cuisine. Vous avez envie de faire découvrir vos meilleurs plats ? Vous n’avez pas le goût de cuisiner ? Rejoignez la communauté ! C’est simple, rapide et gratuit.</p>
 
-                        <a class="btn-u btn-u-red one-page-btn" href="/signup"><i class="fa fa-bolt"></i> Inscrivez-vous</a>
+                        <a class="btn-u " href="/signup"><i class="fa fa-bolt"></i> Inscrivez-vous</a>
                     </div>
                     <div class="col-md-6">
                         <div class="section-block">
