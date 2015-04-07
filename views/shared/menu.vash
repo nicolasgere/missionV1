@@ -61,7 +61,7 @@
                         <!-- Home -->
                         <li><a href="/">Accueil</a>
                         </li>
-                        <li><a href="/">Comment ça marche ?</a>
+                        <li><a href="/comment-ca-marche">Comment ça marche ?</a>
                         </li>
                         @if(model.username){ 
                         <li><a href="/myprofil">Mon profil</a>

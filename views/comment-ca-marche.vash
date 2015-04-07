@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>BlankPage</title>
+    @html.include('shared/head', model)
+</head> 
+
+<body>
+<div class="wrapper">
+    @html.include('shared/menu', model)
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-9">
+                <ul class="timeline-v2">
+                    <li>
+                        <time class="cbp_tmtime" datetime=""><span>Step 1</span></time>
+                        <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                        <div class="cbp_tmlabel">
+                            <h2>Inscription chef</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img-responsive" src="/imgIll/inscription.jpg" alt=""> 
+                                    <div class="md-margin-bottom-20"></div>
+                                </div>
+                                <div class="col-md-8">    
+                                   <p>
+                                   Vous voulez faire profiter les gens de vos délicieuses recettes? Rien de plus simple inscrivez-vous en cliquant sur ce bouton.
+                                   </p>
+                                   <p>Complétez les champs requis.</p>
+                                </div>
+                            </div>        
+                        </div>
+                    </li>
+                    <li>
+                        <time class="cbp_tmtime" datetime=""><span>Step 2</span></time>
+                        <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                        <div class="cbp_tmlabel">
+                            <h2>Modifier profil</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img-responsive" src="/imgIll/inscription.jpg" alt=""> 
+                                    <div class="md-margin-bottom-20"></div>
+                                </div>
+                                <div class="col-md-8">    
+                                   <p>
+                                   Vous voulez faire profiter les gens de vos délicieuses recettes? Rien de plus simple inscrivez-vous en cliquant sur ce bouton.
+                                   </p>
+                                   <p>Complétez les champs requis.</p>
+                                </div>
+                            </div>        
+                        </div>
+                    </li>
+                </ul>
+            </div>
+		</div>
+	</div>  
+    @html.include('shared/foot', model)
+</div>
+</body>
+</html> 

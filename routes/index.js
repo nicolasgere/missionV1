@@ -442,6 +442,11 @@ router.post('/note/:id', function(req, res){
   
 });
 
+/**Page Comment ça marche**/
+router.get('/comment-ca-marche', function(req, res){
+  res.render('comment-ca-marche', {});
+});
+
 /**PAGE BLANCHE DE TEST**/
 router.get('/blank', function(req,res){
   res.render('blankpage',{});
