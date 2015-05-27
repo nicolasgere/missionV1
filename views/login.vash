@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="/customJs/login.js"></script>
     <div class="wrapper">
         <!--=== Header ===-->    
         @html.include('shared/menu', model)
@@ -28,7 +29,7 @@
                         }
                         <div class="input-group margin-bottom-20">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input type="text" class="form-control" placeholder="Courriel" id="email" name="email">
+                            <input type="text" class="form-control" data-bind="value:email" placeholder="Courriel" id="email" name="email">
                         </div>
                         <div class="input-group margin-bottom-20">
                             <span class="input-group-addon" style="font-size: 20px;"><i class="fa fa-lock"></i></span>
@@ -41,6 +42,15 @@
                                 <button type="submit" class="btn-u btn-block">Se connecter</button>
                             </div>
                         </div>
+                        <hr>
+                        <h4>Mot de passe oublier ?</h4>
+                        <p>Pas de problemes, cliquer <a href="#" data-bind="click:changePwd">ici</a> pour le reinitialiser</p>
+                         <div class="alert alert-danger fade in" data-bind="visible: mailError">
+                                <strong>Oups</strong> Le mail est obligatoire pour pouvoir reinitialiser le mot de passe
+                            </div>
+                             <div class="alert alert-success fade in" data-bind="visible: mailOk">
+                                <strong>Ok</strong> Un mail avec ton nouveau mot de passe a ete envoyer.
+                            </div>
                     </form>
                 </div>
             </div>

@@ -295,22 +295,12 @@ YUI.add('crop-box', function (Y) {
                                     <br>
                                     <form class="sky-form" id="sky-form4" action="" novalidate="novalidate">
                                         <dl class="dl-horizontal">
-                                            <dt>Ancien mot de passe</dt>
-                                            <dd>
-                                                <section>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-envelope"></i>
-                                                        <input type="password" placeholder="Ancien mot de passe" data-bind="mdp"/>
-                                                        <b class="tooltip tooltip-bottom-right">Ancien mot de passe</b>
-                                                    </label>
-                                                </section>
-                                            </dd>
                                             <dt>Nouveau mot de passe</dt>
                                             <dd>
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
-                                                        <input type="password" id="password" name="password" data-bind="nmdp">
+                                                        <input type="password" id="password" name="password" data-bind="value:nmdp">
                                                     </label>
                                                 </section>
                                             </dd>
@@ -319,33 +309,19 @@ YUI.add('crop-box', function (Y) {
                                                 <section>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-lock"></i>
-                                                        <input type="password" name="passwordConfirm" placeholder="Confirm password" data-bind="nmdp2">
+                                                        <input type="password" name="passwordConfirm" placeholder="Confirm password" data-bind="value:nmdp2">
                                                     </label>
                                                 </section>
                                             </dd>    
                                         </dl>
+                                         <div class="alert alert-success fade in" data-bind="visible:successPwd">
+                                <strong>Ok</strong> Ton mot de passe a ete changer.
+                            </div>
+                             <div class="alert alert-danger fade in" data-bind="visible: errorPwd">
+                                <strong>Oups</strong> Les mots de passes doivent etre identique.
+                            </div>
                                         <button type="button" class="btn-u btn-u-default">Annuler</button>
-                                        <button class="btn-u" type="submit">Enregistrer</button>
-                                    </form>    
-                                </div>
-
-                                <div id="settings" class="profile-edit tab-pane fade" hidden="hidden">
-                                    <h2 class="heading-md">Gérer vos notifications</h2>
-                                    <p>Ci-dessous les notification que vous pouvez paramétrer</p>
-                                    <br>
-                                    <form class="sky-form" id="sky-form" action="">
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Notifications courriel</label>
-                                        <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel quand un utilisateur commente mes plats </label>
-                                        <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel pour recevoir les nouvelles mises à jour </label>
-                                        <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Envoyer une notification par courriel quand un utilisateur désire me contacter</label>
-                                        <hr>
-                                        <label class="toggle"><input type="checkbox" checked="" name="checkbox-toggle-1"><i></i>Recevez notre infolettre mensuelle</label>
-                                        <hr>    
-                                        <button type="button" class="btn-u btn-u-default">Reinitialiser</button>
-                                        <button class="btn-u" type="submit">Enregistrer</button>
+                                        <button class="btn-u" type="submit" data-bind="click:changeMdp">Enregistrer</button>
                                     </form>    
                                 </div>
                             </div>

@@ -28,17 +28,17 @@ input:-webkit-autofill {
                     <h1>Découvrez une cuisine <span class="color-green">proche de chez vous</span></h1>
                     <form  action ="/search" autocomplete="off">
                         <div class="col-md-12">
-                            <div class="col-md-4" style="padding:0">
-                             <div class="input-group">
+                           <!--  <div class="col-md-4" style="padding:0">
+                            <div class="input-group">
                                 <span class="input-group-addon" style="border:none"><i class="fa fa-map-marker"></i></span>
                                 <input type="text" placeholder="Ville" class="form-control" name="city"  autocomplete="off" list="list"/>
                                 <datalist id="list">
                                     <option value="Montréal"></option>
                                     <option value="Québec"></option>
                                 </datalist>
-                            </div>
-                        </div>
-                        <div class="col-md-7" style="padding:0;">
+                            </div> 
+                        </div>-->
+                        <div class="col-md-8 col-md-offset-2" style="padding:0;">
 
                             <div class="input-group">
                                 <input type="text" name="recherche" placeholder="De quoi avez vous envie?" class="form-control" style="border-left:solid">

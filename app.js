@@ -11,6 +11,8 @@ var routes = require('./routes/index');
 var multer  = require('multer');
 var Mongolian = require("mongolian");
 var db = new Mongolian(process.env.mongoDB || config.mongoDb);
+//var db = new Mongolian('localhost', 27017).db( "test" );
+
 var command = db.collection("command");
 var users = db.collection("users");
 var keysend = process.env.keysend || config.keysend;
@@ -66,8 +68,35 @@ app.post('/newCommand/', function(req,res){
   });
 });
  });
-});
+}); 
 
+app.post ('/forgotpwd', function(req,res){
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for( var i=0; i < 5; i++ )
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  users.update({email:req.body.email},{$set:{key:text}},function(err,rep){
+    if(rep){
+       app.render('emailPwd',{pwd:text}, function(err, html){
+    var mailOptions = {
+      from: 'no_reply@allochef.net', 
+    to: req.body.email, // list of receivers
+    subject: 'Reinitialisation de votre mot de passe', // Subject line
+    html:  html// html body
+  };
+  sendgrid.send(mailOptions, function(err, json) {
+    if (err) { return console.error(err); }
+    console.log(json);
+  });
+});
+    }
+    res.status(200).end()
+  });
+
+
+});
 
 app.get('/confirme/:id', function(req,res){
   var data = req.params.id;
@@ -75,15 +104,15 @@ app.get('/confirme/:id', function(req,res){
     command.update({confirmationId:data},{$set:{isValide:true, confirmationId:"confirmer"}},function(err,rep3){
       if(rep){
         users.findOne({username:rep.chef}, function(err,rep2){
-            var data1 = {};
-            data1.user = rep2;
-            data1.mail = rep;
-            console.log(data1);
-            app.render('emailCommand',data1, function(err, html){
-              console.log(err);
-              console.log(html);
-              var mailOptions2 = {
-                from: 'no_reply@allochef.net',
+          var data1 = {};
+          data1.user = rep2;
+          data1.mail = rep;
+          console.log(data1);
+          app.render('emailCommand',data1, function(err, html){
+            console.log(err);
+            console.log(html);
+            var mailOptions2 = {
+              from: 'no_reply@allochef.net',
               replyto:rep.email, // sender address
               to: rep2.email, // list of receivers
               subject: 'Nouvelle commande', // Subject line
@@ -103,25 +132,17 @@ app.get('/confirme/:id', function(req,res){
 
           });
 
-           });
-      }else{
-       res.render("confirm",{});
-     }
-   });
+        });
+}else{
+ res.render("confirm",{});
+}
+});
 })
 });
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
+
 // error handlers
 
 // development error handler

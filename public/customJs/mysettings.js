@@ -17,12 +17,17 @@ var ViewModel = function() {
 	self.newEVlle=ko.observable(ville);
 	self.newArron=ko.observable(arron);
 	self.newDesc=ko.observable(desc);
+	self.newPwD = ko.observable();
+	self.newPwD2 = ko.observable();
+
 	self.editNom = ko.observable(true);
 	self.editPrenom = ko.observable(true);
 	self.editVille = ko.observable(true);
 	self.editDesc = ko.observable(true);
 	self.editEmail = ko.observable(true);
-	
+	self.successPwd = ko.observable(false);
+	self.errorPwd = ko.observable(false);
+
 self.savemdp = function(){
 	var dataP = {};
 	data
@@ -69,6 +74,25 @@ var dataM = {"nom":self.nom(),
 self.editArron = ko.observable(true);
 self.changeNom = function(){
 	self.editNom(false)
+}
+self.changeMdp = function(){
+	self.successPwd(false);
+	self.errorPwd(false);
+
+	if(self.nmdp() && self.nmdp2()== self.nmdp()){
+
+$.ajax( {
+		url: '/changePwd',
+		type: 'POST',
+		data:{pwd:self.nmdp()},
+		success: function(data){
+		self.successPwd(true);
+
+		}
+	} );}else{
+	self.errorPwd(true);
+}
+
 }
 self.test= function(){
             var img = cropper.getAvatar()

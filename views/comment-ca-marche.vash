@@ -10,52 +10,218 @@
 <body>
 <div class="wrapper">
     @html.include('shared/menu', model)
-	<div class="container content">
-		<div class="row">
-			<div class="col-md-9">
-                <ul class="timeline-v2">
-                    <li>
-                        <time class="cbp_tmtime" datetime=""><span>Step 1</span></time>
-                        <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                        <div class="cbp_tmlabel">
-                            <h2>Inscription chef</h2>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img-responsive" src="/imgIll/inscription.jpg" alt=""> 
-                                    <div class="md-margin-bottom-20"></div>
-                                </div>
-                                <div class="col-md-8">    
-                                   <p>
-                                   Vous voulez faire profiter les gens de vos délicieuses recettes? Rien de plus simple inscrivez-vous en cliquant sur ce bouton.
-                                   </p>
-                                   <p>Complétez les champs requis.</p>
-                                </div>
-                            </div>        
+	<div class="container content">        
+        <div class="row">            
+            <div class="col-md-9">
+                <!-- General Questions -->
+                <div class="headline"><h2>Questions general:</h2></div>
+                <div class="panel-group acc-v1 margin-bottom-40" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">
+                                    1. Quel est le principe exactement?
+                                </a>
+                            </h4>
                         </div>
-                    </li>
-                    <li>
-                        <time class="cbp_tmtime" datetime=""><span>Step 2</span></time>
-                        <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                        <div class="cbp_tmlabel">
-                            <h2>Modifier profil</h2>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img-responsive" src="/imgIll/inscription.jpg" alt=""> 
-                                    <div class="md-margin-bottom-20"></div>
-                                </div>
-                                <div class="col-md-8">    
-                                   <p>
-                                   Vous voulez faire profiter les gens de vos délicieuses recettes? Rien de plus simple inscrivez-vous en cliquant sur ce bouton.
-                                   </p>
-                                   <p>Complétez les champs requis.</p>
-                                </div>
-                            </div>        
+                        <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                            </div>
                         </div>
-                    </li>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
+                                    2. Qui cuisine, et quel sont les conditions principales a respecter?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false">
+                                    3. Est ce que il y a une livraison possible?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Food truck quinoa nesciunt laborum eiusmodolf moon tempor, sunt aliqua put a bird.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                </ul>                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false">
+                                    4. Comment je peux mettre en vente mes plats?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                Olif moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false">
+                                    5. Est t'il possible de faire des demandes special?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Keffiyeh anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                </ul>                            
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div><!--/acc-v1-->
+                <!-- End General Questions -->
+
+                <!-- Other Questions -->
+                <div class="headline"><h2>Je veux etre un chef:</h2></div>
+                <div class="panel-group acc-v1" id="accordion-1">
+                   <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">
+                                    Comment faire, quel sont les conditions pour proposer mes plats?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Keffiyeh anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                </ul>                            
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false">
+                                    Il y a t'il un contrat ou tout autre chose a signer?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Keffiyeh anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                </ul>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false">
+                                    Quel type de plat peuvent etre proposer?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <p>Keffiyeh anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida at eget metus..</li>
+                                    <li><i class="fa fa-check color-green"></i> Fusce dapibus, tellus ac cursus comodo egetine..</li>
+                                    <li><i class="fa fa-check color-green"></i> Food truck quinoa nesciunt laborum eiusmod runch..</li>
+                                </ul>                            
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/acc-v1-->
+                <!-- End Other Questions -->
+            </div><!--/col-md-9-->
+            
+            <div class="col-md-3">
+                <!-- Contacts -->
+                <div class="headline"><h2>Contacts</h2></div>
+                <ul class="list-unstyled who margin-bottom-30">
+                    <li><a href="#"><i class="fa fa-home"></i>Montréal</a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i>allochef@gmail.com</a></li>
                 </ul>
-            </div>
-		</div>
-	</div>  
+                <!-- End Contacts -->
+
+
+                <!-- Info Block -->
+                <div class="headline"><h2>Qui nous sommes?</h2></div>
+                <p>Nous sommes une start up qui a decider blabla bla</p>
+                <ul class="list-unstyled margin-bottom-30">
+                    <li><i class="fa fa-check color-green"></i> Odio dignissimos ducimus</li>
+                    <li><i class="fa fa-check color-green"></i> Blanditiis praesentium volup</li>
+                    <li><i class="fa fa-check color-green"></i> Eos et accusamus</li>
+                </ul>
+                <!-- End Info Block -->
+
+                <!-- Social -->
+                <div class="magazine-sb-social margin-bottom-20">
+                    <div class="headline headline-md"><h2>Social Icons</h2></div>
+                    <ul class="social-icons social-icons-color">
+                        <li><a href="#" data-original-title="Facebook" class="social_facebook"></a></li>
+                        <li><a href="#" data-original-title="Twitter" class="social_twitter"></a></li>
+                        <li><a href="#" data-original-title="Goole Plus" class="social_googleplus"></a></li>
+                        <li><a href="#" data-original-title="Pinterest" class="social_pintrest"></a></li>
+                    </ul>
+                    <div class="clearfix"></div>                
+                </div>
+                <!-- End Social -->
+            </div><!--/col-md-3-->                  
+        </div><!--/row-->
+    </div> 
     @html.include('shared/foot', model)
 </div>
 </body>

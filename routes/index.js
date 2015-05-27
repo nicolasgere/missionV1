@@ -11,6 +11,7 @@ var Validator = require('jsonschema').Validator;
 var v = new Validator();
 var Mongolian = require("mongolian");
 var db = new Mongolian(process.env.mongoDB || config.mongoDb);
+//var db = new Mongolian('localhost', 27017).db( "test" );
 var users = db.collection("users");
 var meals = db.collection("meals");
 var vash = require('vash');
@@ -20,7 +21,7 @@ var secretAccessKey = process.env.AWS_SECRET_KEY || config.secretAccessKey;
 var geoip = require('geoip-lite');
 
 
-
+  
 
 AWS.config.update({
   accessKeyId: accessKeyId,
@@ -73,7 +74,7 @@ router.get('/login', function(req,res){
    res.redirect('/');
 
  }
-});
+})
 
 router.post('/login', function(req,res){
   users.findOne({email:req.body.email, key:req.body.key} , function(err,rep) {
@@ -99,8 +100,11 @@ router.post('/login', function(req,res){
    }
  }
 });
+});
+router.post('/pushLike',isConnect,function(req,res){
 
 });
+
 router.get('/Disconnect', function(req,res){
   req.session.connect = false;
   req.session.nom = "";
@@ -112,6 +116,7 @@ router.get('/Disconnect', function(req,res){
 
 /**SIGN IN**/
 router.get('/signup', function (req,res){
+  console.log("JE SUIC ICI ");
   if(req.session.connect !=true){
     res.render('signup',{});
   }else{
@@ -439,11 +444,11 @@ router.post('/note/:id', function(req, res){
       });
     });
   });
-  
 });
 
 /**Page Comment ça marche**/
 router.get('/comment-ca-marche', function(req, res){
+  console.log("TEST ON EST LA BABLAJKBKJHFSK JKHK SFJHF KHJDH FKJH");
   res.render('comment-ca-marche', {});
 });
 
@@ -451,6 +456,14 @@ router.get('/comment-ca-marche', function(req, res){
 router.get('/blank', function(req,res){
   res.render('blankpage',{});
 });
+router.post('/changePwd',function(req,res){
+  users.update({username:req.session.username}, {$set:{key:req.body.pwd}},function(err,rep){
+    console.log(rep);
+    console.log(req.body.pwd);
+    res.send(200).end();
+  })
+})
+
 module.exports = router;
 
 /**fonction pour arronir un nombre à 0.5 prêt**/
