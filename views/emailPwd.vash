@@ -25,7 +25,7 @@
                                         <h5>Bonjour,</h5>
                                         <br>
                                         Suite a votre demande, votre nouveau de mot de passe est:
-                                        <b>@model.text</b>
+                                        <b>@model.pwd</b>
                                         <br>
                                         Cordialament bonne journée, Oublier pas de le changer.
                                         
