@@ -11,17 +11,24 @@ var session = require('express-session');
 var multer  = require('multer');
 var keysend = process.env.keysend || config.keysend;
 var usersend = process.env.usersend || config.usersend;
-
+var MongoStore = require('connect-mongo')(session);
 
 // create reusable transporter object using SMTP transport
 
 var app = module.exports = express();
 app.sendgrid = require('sendgrid')(usersend, keysend);
 app.db = _db;
-app.use(session({secret: 'unechainesecreteici', saveUninitialized: true, resave: true}));
-
+//app.use(session({secret: 'unechainesecreteici', saveUninitialized: true, resave: true}));
 // view engine setup
-
+console.log(config.MongoStore);
+app.use(session({
+    store: new MongoStore({
+        url: config.mongoDbStore || process.env.mongoDbStore,
+        saveUninitialized: true,
+        resave: true
+    }),
+    secret:'iletaitunechaine'
+}));
 
 
 app.set('views', __dirname + '/views/');
