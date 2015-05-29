@@ -223,7 +223,7 @@ router.get('/note/:id', function(req, res){
   users.findOne({idtemp:req.params.id},function(err,rep){
     model.user = rep;
     res.render('note', model);
-  });  
+  });
 });
 
 router.post('/note/:id', function(req, res){
