@@ -10,7 +10,7 @@ function meal(data,parent){
 	self.mealId = data.MealId;
 	self.userId = data.UserId;
 	self.note = 4;
-	
+	self.city = data.ville;
 	self.getClass = function(val){
 		if((val-0.5)<=self.note){
 		return "color-green fa fa-star";

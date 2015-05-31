@@ -41,11 +41,16 @@
                     </div>
                 </div>
                 <div class="row high-rated margin-bottom-20 margin-top-20">
-
+<style type="text/css">
+.testhov :hover{
+    cursor: pointer;
+cursor: hand;
+}
+</style>
             <!-- Easy Block --> 
              <div data-bind="foreach:allMeal">  
-             <div class="col-md-3 col-sm-6 md-margin-bottom-40">
-                <div class="easy-block-v1">
+             <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
+                <div class="easy-block-v1 thumbnail-style ">
                     <div class="easy-block-v1-badge rgba-red"  data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
                     <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -64,11 +69,12 @@
                             <li><i class="" data-bind="css: getClass(5)"></i></li>
                         </ul>
                     </div> -->
-                    <ul class="list-unstyled">
-                        <li><span class="color-green">Chef:</span> <a href="#"  data-bind="attr:{href: 'test'}"><span data-bind="text:username"></span></a></li>
-                        <li><span class="color-green">Description:</span> <span data-bind="text:description"></span></li>
-                    </ul>    
-                    <a class="btn-u btn-u-sm" href="#" data-bind="attr:{href: 'chef/' + username}">Voir plus</a>
+                      <ul class="list-inline margin-bottom-5">
+                                <li>Chef <span data-bind="text:username"></span></li>
+                                <li class="pull-right"><i class="fa fa-map-marker push-right"></i> <span data-bind="text:city"></span></li>
+                            </ul>
+                        <h3><span data-bind="text:name"></span></h3> 
+                        <p> <span data-bind="text:description"></span>
                 </div>
             </div>             
           

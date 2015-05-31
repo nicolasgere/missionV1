@@ -18,9 +18,7 @@ var MongoStore = require('connect-mongo')(session);
 var app = module.exports = express();
 app.sendgrid = require('sendgrid')(usersend, keysend);
 app.db = _db;
-//app.use(session({secret: 'unechainesecreteici', saveUninitialized: true, resave: true}));
-// view engine setup
-console.log(config.MongoStore);
+
 app.use(session({
     store: new MongoStore({
         url: config.mongoDbStore || process.env.mongoDbStore,
