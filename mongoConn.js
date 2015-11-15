@@ -1,11 +1,8 @@
 var mongoConnec = {};
-if(!process.env.mongoDB){
-var config = require('./config');
-}
 
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.mongoDB|| config.mongoDbStore);
+mongoose.connect(process.env.mongoDB|| require('./config').mongoDbStore);
 
 mongoConnec.users = mongoose.model('users', {
   username: String,
