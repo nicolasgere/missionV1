@@ -1,5 +1,4 @@
 var func = {}
-var config = require('./config');
 func.roundHalf = function (num) {
     num = Math.round(num*2)/2;
     return num;

@@ -1,5 +1,4 @@
 /**INCLUDE**/
-var config = require('../config');
 var app = require('../app');
 var _db = app.db;
 var func = require('../function')
@@ -11,8 +10,8 @@ var router = express.Router();
 var users = _db.users;
 var meals = _db.meals;
 var AWS = require('aws-sdk');
-var accessKeyId =  process.env.AWS_ACCESS_KEY ||config.accessKeyId;
-var secretAccessKey = process.env.AWS_SECRET_KEY || config.secretAccessKey;
+var accessKeyId =  process.env.AWS_ACCESS_KEY ||require('../config').accessKeyId;
+var secretAccessKey = process.env.AWS_SECRET_KEY || require('../config').secretAccessKey;
 AWS.config.update({
   accessKeyId: accessKeyId,
   secretAccessKey: secretAccessKey

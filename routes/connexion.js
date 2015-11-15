@@ -1,5 +1,4 @@
 /**INCLUDE**/
-var config = require('../config');
 var app = require('../app');
 var _db = app.db;
 var func = require('../function')

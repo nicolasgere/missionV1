@@ -2,14 +2,13 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var config = require('./config');
 var _db = require('./mongoConn');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var multer  = require('multer');
-var keysend = process.env.keysend || config.keysend;
-var usersend = process.env.usersend || config.usersend;
+var keysend = process.env.keysend || require('./config').keysend;
+var usersend = process.env.usersend || require('./config').usersend;
 var MongoStore = require('connect-mongo')(session);
 
 // create reusable transporter object using SMTP transport
@@ -19,7 +18,7 @@ app.sendgrid = require('sendgrid')(usersend, keysend);
 app.db = _db;
 app.use(session({
     store: new MongoStore({
-        url: config.mongoDbStore || process.env.mongoDbStore,
+        url:  process.env.mongoDbStore|| require('./config').mongoDbStore,
     }),
     secret:'iletaitunechaine'
 }));

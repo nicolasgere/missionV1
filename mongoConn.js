@@ -1,14 +1,11 @@
-var mongoConnec = {}
+var mongoConnec = {};
+if(!process.env.mongoDB){
 var config = require('./config');
-
-
-/*mongoConnec.command = db.collection("command");;
-mongoConnec.users = db.collection("users");
-mongoConnec.meals = db.collection("meals");*/
+}
 
 
 var mongoose = require('mongoose');
-mongoose.connect(config.mongoDb);
+mongoose.connect(process.env.mongoDB|| config.mongoDbStore);
 
 mongoConnec.users = mongoose.model('users', {
   username: String,
