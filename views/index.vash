@@ -77,7 +77,7 @@ input:-webkit-autofill {
                                 
                             </div>    
                         </div>  
-                    </br>
+                    <br>
 
                     <div class="clearfix"></div>
 
@@ -147,8 +147,8 @@ input:-webkit-autofill {
         </ul>    
         <a class="btn-u btn-u-sm" href="/chef/@m.username">Voir plus</a>
     </div>
-</li>
-})
+    </li>
+    })
 </ul>
 </div><!--/container-->
 

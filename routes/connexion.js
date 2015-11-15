@@ -16,7 +16,6 @@ router.get('/login', function(req,res){
    res.render('login',{});
  }else{
    res.redirect('/');
-
  }
 })
 
@@ -71,7 +70,8 @@ router.post('/signup',function (req,res){
   req.body.comments = [];
   req.body.imageSrc = "e6e464ed-5893-0d28-8c41-67eb2cc892ef.jpeg";
   console.log( req.body);
-  users.insert(req.body, function(err,rep) {
+  var user = new users(req.body);
+  user.save( function(err,rep) {
     if(err) {
       console.log(err);
       res.status(500);
@@ -84,15 +84,13 @@ router.post('/signup',function (req,res){
       {
         console.log(rep);
         req.session.connect = true;
-        req.session.nom = rep.nom;
-        req.session.prenom = rep.prenom;
-        req.session.email = rep.email;
-        req.session.username = rep.username;
-        req.session.UserId = rep.UserId;
+        req.session.nom = user.nom;
+        req.session.prenom = user.prenom;
+        req.session.email = user.email;
+        req.session.username = user.username;
+        req.session.UserId = user.UserId;
         res.status(300);
         res.redirect('/');
-        res.send();
-
       }
     }
   });

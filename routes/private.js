@@ -69,8 +69,9 @@ router.post('/createMeal', function(req, res){
     } else {
       console.log("Successfully uploaded data to myBucket/myKey");
           data.img =  IdImg + ".jpg";
-      meals.insert(data, function(err,rep) {
-     
+          var meal = new meals(data);
+          meal.save( function(err,rep) {
+
         if(err) {
           console.log(err);
           res.status(500);
@@ -90,7 +91,7 @@ router.post('/createMeal', function(req, res){
 });
 router.get('/getMeal', func.isConnect,function(req,res){
   console.log(req.session.UserId);
-  meals.find({UserId:req.session.UserId}).toArray(function (err, array) {
+  meals.find({UserId:req.session.UserId},function (err, array) {
     res.send(array);
   })
 }); 
@@ -155,12 +156,15 @@ router.post('/test', function(req, res){
   });
 });
 router.post('/updateSettings', function(req, res){
-  users.update(
-  {UserId: req.session.UserId}, // query  
-  {$set:{desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron}}, 
-  function(err,rep) {
+  console.log(req.body);
+  var conditions = { UserId: req.session.UserId };
+  var update =  {desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron};
+  var options = { multi: false };
+
+users.findOneAndUpdate(conditions, update, options, function(err,rep) {
+    console.log(rep);
    res.send("ok");
-  });
+  });  
 });
 
 
@@ -196,79 +200,9 @@ router.get('/profil/:id', function(req,res){
     })
   })
 });
-router.get('/chef/:username', function(req,res){
-  var model = {};
-  model.username = req.session.username;
 
-    users.findOne({username:req.params.username},function(err,rep2){
-      if(rep2){
-      model.user = rep2;
-      console.log(rep2);
-      meals.find({UserId:rep2.UserId}).toArray(function (err, array){
-        model.meals = array;
-        console.log(model);
-        res.render('chef',model);
-      });
-    }else{
-       res.redirect('/');
-    }
-    });
-});
 
-/**NOTE CHEF**/
-router.get('/note/:id', function(req, res){
-  var model = {};
-  model.username = req.session.username;
 
-  users.findOne({idtemp:req.params.id},function(err,rep){
-    model.user = rep;
-    res.render('note', model);
-  });
-});
-
-router.post('/note/:id', function(req, res){
-  var nourriture, service, moyenne, comment, author, commentaire;
-  comment = req.body.comment?req.body.comment : 0;
-  author = req.body.name?req.body.name : "Anonyme";
-  nourriture = req.body.nourriture?req.body.nourriture : 0;
-  service = req.body.service?   req.body.service : 0;
-  moyenne = (parseInt(nourriture)+parseInt(service))/2;
-  if(comment!=0){
-    commentaire = {
-      author: author,
-      comment: comment,
-      date: new Date()
-    };
-  }
-
-  users.findOne({idtemp:req.params.id},function(err,rep){
-    var noteFinale, nbreVote;
-    if(rep.nbrenote){
-      noteFinale=(parseInt(rep.note)*parseInt(rep.nbrenote)+(moyenne))/(parseInt(rep.nbrenote)+1);
-      nbreVote = parseInt(rep.nbrenote)+1;
-    }else{
-      noteFinale = moyenne;
-      nbreVote = 1;
-    }
-    noteFinale=roundHalf(noteFinale);
-    users.update(
-    {idtemp: req.params.id},
-    {$set:{note:noteFinale, nbrenote:nbreVote}},
-    function(err,rep){
-      users.update(
-        {idtemp: req.params.id},
-        {$push:{comments: commentaire}},
-        function(err, rep){
-          users.update(
-            {idtemp: req.params.id},
-            {$pull:{idtemp: req.params.id}},
-            function(err, rep){
-              res.redirect('/');
-          });
-      });
-    });
-  });
-});
 
 
 module.exports = router;

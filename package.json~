@@ -22,7 +22,6 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "mongodb": "2.0.48",
-    "mongoose":"4.2.5",
     "jsonschema":"*"	
   }
 }

@@ -37,7 +37,7 @@ console.log(req.connection.remoteAddress);
 var geo = geoip.lookup(req.connection.remoteAddress);
   var model = {}
   model.username = req.session.username;
-  meals.find({isVedette:true}).limit(3).toArray(function (err, array) {
+  meals.find({isVedette:true}).limit(3).exec(function (err, array) {
     model.meals = array 
     console.log(array);
    res.render('index',model);
@@ -69,18 +69,35 @@ router.post('/search', function(req,res){
     dataToFind.push({ name: new RegExp(item, 'i')  });
   });
    console.log(dataToFind);
-   meals.find({ $or:dataToFind }).toArray(function (err, array) {
+   meals.find({ $or:dataToFind },function (err, array) {
     console.log(array);
     res.send(array);
   })
  }else{
-  meals.find().toArray(function (err, array) {
+  meals.find({},function (err, array) {
     console.log(array);
     res.send(array);
   });
 }});
 
+router.get('/chef/:username', function(req,res){
+  var model = {};
+  model.username = req.session.username;
 
+    users.findOne({username:req.params.username},function(err,rep2){
+      if(rep2){
+      model.user = rep2;
+      console.log(rep2);
+      meals.find({UserId:rep2.UserId},function (err, array){
+        model.meals = array;
+        console.log(model);
+        res.render('chef',model);
+      });
+    }else{
+       res.redirect('/');
+    }
+    });
+});
 
 
 module.exports = router;

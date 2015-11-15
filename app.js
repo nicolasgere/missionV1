@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var config = require('./config');
 var _db = require('./mongoConn');
-
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -18,12 +17,9 @@ var MongoStore = require('connect-mongo')(session);
 var app = module.exports = express();
 app.sendgrid = require('sendgrid')(usersend, keysend);
 app.db = _db;
-
 app.use(session({
     store: new MongoStore({
         url: config.mongoDbStore || process.env.mongoDbStore,
-        saveUninitialized: true,
-        resave: true
     }),
     secret:'iletaitunechaine'
 }));

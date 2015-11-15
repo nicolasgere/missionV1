@@ -1,100 +1,103 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
-<head>
-    <title>Note</title>
-    @html.include('shared/head', model)
-</head> 
-
-<body>
-    <div class="wrapper">
-    @html.include('shared/menu', model)  
-        <div class="container content">
-            <div class="row">
-                <div class="col-md-3">
-                    <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/d6d04a7f-af04-8149-6c75-af6178fe7b24.jpeg" alt="">
-                </div>
-                <div class="col-md-9">
-                    <div class="service-block-v3 service-block-u">
-                        <i class="icon-users"></i>
-                        <span class="service-heading">Plat préparé</span>
-                        <span class="counter">147</span>
-                        <hr style="margin-top:20px;margin-bottom:10px;">
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Pseudo:</b> @model.user.username</p></div>
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Description:</b> @model.user.desc</p></div>
-                        <div class="clearfix margin-bottom-10; position:inline"><p style="color:#fff"> <b>Ville:</b> @model.user.ville</p></div>
-                        
-                    </div>                        
-                </div>
-            </div>
-            <div class="row margin-bottom-10">
-                <div class="col-md-12">
-                    <form method="post" action="/note/@model.user.idtemp" class="sky-form" >
-                        <fieldset>                  
-                            <section>
-                                <div class="rating">
-                                    <input type="radio" name="nourriture" id="nourriture-rating-5" value="5">
-                                    <label for="nourriture-rating-5"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture" id="nourriture-rating-4" value="4">
-                                    <label for="nourriture-rating-4"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture" id="nourriture-rating-3" value="3">
-                                    <label for="nourriture-rating-3"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture" id="nourriture-rating-2" value="2">
-                                    <label for="nourriture-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="nourriture" id="nourriture-rating-1" value="1">
-                                    <label for="nourriture-rating-1"><i class="fa fa-star"></i></label>
-                                    Nourriture
-                                </div>    
-                            </section>
-                            <section>
-                                <div class="rating">
-                                    <input type="radio" name="service" id="service-rating-5" value="5">
-                                    <label for="service-rating-5"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service" id="service-rating-4" value="4">
-                                    <label for="service-rating-4"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service" id="service-rating-3" value="3">
-                                    <label for="service-rating-3"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service" id="service-rating-2" value="2">
-                                    <label for="service-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="service" id="service-rating-1" value="1">
-                                    <label for="service-rating-1"><i class="fa fa-star"></i></label>
-                                    Service
-                                </div>    
-                            </section>
-                        </fieldset>
-                        <fieldset>                  
+<!--[if IE 8]>
+    <html lang="en" class="ie8">
+    <![endif]-->
+    <!--[if IE 9]>
+        <html lang="en" class="ie9">
+        <![endif]-->
+        <!--[if !IE]><!-->
+            <html lang="en">
+            <!--<![endif]-->
+            
+            <head>
+                <title>Note</title>@html.include('shared/head', model)</head>
+            
+            <body>
+                <div class="wrapper">@html.include('shared/menu', model)
+                    <div class="container content">
                         <div class="row">
-                            <section class="col col-4">
-                                <label class="label">Name</label>
-                                <label class="input">
-                                    <i class="icon-append fa fa-user"></i>
-                                    <input type="text" name="name">
+                            <div class="col-md-3">
+                                <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="service-block-v3 service-block-u">
+                                    <i class="icon-users"></i>
+                                    <span class="service-heading">Plat préparé</span>
+                                    <span class="counter">@model.user.nbrecomm</span>
+                                    <hr style="margin-top:20px;margin-bottom:10px;">
+                                    <div class="clearfix margin-bottom-10; position:inline">
+                                        <p style="color:#fff">
+                                            <b>Pseudo:</b>@model.user.username</p>
+                                    </div>
+                                    <div class="clearfix margin-bottom-10; position:inline">
+                                        <p style="color:#fff">
+                                            <b>Description:</b>@model.user.desc</p>
+                                    </div>
+                                    <div class="clearfix margin-bottom-10; position:inline">
+                                        <p style="color:#fff">
+                                            <b>Ville:</b>@model.user.ville</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-10">
+                            <div class="col-md-12">
+                                <form method="post" action="/note/@model.user.idtemp" class="sky-form">
+                                    <fieldset></fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-4">
+                                                <label class="label">Name</label>
+                                                <label class="input">
+                                                    <i class="icon-append fa fa-user"></i>
+                                                    <input type="text" name="name" value="@model.username">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="label">Note General</label>
+                                                <div class="rating">
+                                                    <label class="input" style="float:left">
+                                                        <input type="radio" name="nourriture" id="nourriture-rating-5" value="5">
+                                                        <label for="nourriture-rating-5">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input type="radio" name="nourriture" id="nourriture-rating-4" value="4">
+                                                        <label for="nourriture-rating-4">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input type="radio" name="nourriture" id="nourriture-rating-3" value="3">
+                                                        <label for="nourriture-rating-3">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input type="radio" name="nourriture" id="nourriture-rating-2" value="2">
+                                                        <label for="nourriture-rating-2">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input type="radio" name="nourriture" id="nourriture-rating-1" value="1">
+                                                        <label for="nourriture-rating-1">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                        
+                                        </section>
+                            </div>
+                            <section>
+                                <label class="label">Comment</label>
+                                <label class="textarea">
+                                    <i class="icon-append fa fa-comment"></i>
+                                    <textarea rows="4" name="comment"></textarea>
                                 </label>
                             </section>
+                            </fieldset>
+                            <footer>
+                                <button type="submit" class="btn-u btn-u">Submit</button>
+                                <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">Back</button>
+                            </footer>
+                            </form>
                         </div>
-                        
-                        <section>
-                            <label class="label">Comment</label>
-                            <label class="textarea">
-                                <i class="icon-append fa fa-comment"></i>
-                                <textarea rows="4" name="comment"></textarea>
-                            </label>
-                            
-                        </section>
-                        
-                        
-                    </fieldset>
-                        <footer>
-                            <button type="submit" class="btn-u btn-u">Submit</button>
-                            <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">Back</button>
-                        </footer>
-                    </form>
+                    </div>@html.include('shared/foot', model)</div>
                 </div>
-            </div>
-
-    @html.include('shared/foot', model)
-        </div>
-    </div>
-</body>
-</html> 
+            </body>
+            
+            </html>
