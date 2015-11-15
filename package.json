@@ -24,5 +24,8 @@
     "mongodb": "2.0.48",
     "mongoose":"4.2.5",
     "jsonschema":"*"	
+  },
+   "engines": {
+    "node": "v0.10.40"
   }
 }
