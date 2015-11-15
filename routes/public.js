@@ -1,5 +1,4 @@
 /**INCLUDE**/
-var config = require('../config');
 var app = require('../app');
 var _db = app.db;
 
@@ -11,23 +10,7 @@ var router = express.Router();
 var users = _db.users;
 var meals = _db.meals;
 
-var AWS = require('aws-sdk');
-var accessKeyId =  process.env.AWS_ACCESS_KEY ||config.accessKeyId;
-var secretAccessKey = process.env.AWS_SECRET_KEY || config.secretAccessKey;
 var geoip = require('geoip-lite');
-
-
-  
-
-AWS.config.update({
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey
-});
-
-var s3 = new AWS.S3();
-
-
-
 
 
 
@@ -46,7 +29,6 @@ var geo = geoip.lookup(req.connection.remoteAddress);
 
 /**Page Comment ça marche**/
 router.get('/comment-ca-marche', function(req, res){
-  console.log("TEST ON EST LA BABLAJKBKJHFSK JKHK SFJHF KHJDH FKJH");
   res.render('comment-ca-marche', {});
 });
 

@@ -7,21 +7,36 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var multer  = require('multer');
-var keysend = process.env.keysend || require('./config').keysend;
-var usersend = process.env.usersend || require('./config').usersend;
+
 var MongoStore = require('connect-mongo')(session);
+
+var AWS = require('aws-sdk');
+var accessKeyId =  process.env.AWS_ACCESS_KEY ;
+var secretAccessKey = process.env.AWS_SECRET_KEY;
+var keysend = process.env.KEYSEND ;
+var usersend = process.env.USERSEND;
+
+AWS.config.update({
+  accessKeyId: accessKeyId,
+  secretAccessKey: secretAccessKey
+});
+
 
 // create reusable transporter object using SMTP transport
 
 var app = module.exports = express();
+console.log(process.env);
+
 app.sendgrid = require('sendgrid')(usersend, keysend);
+app.s3 = new AWS.S3();
 app.db = _db;
 app.use(session({
     store: new MongoStore({
-        url:  process.env.mongoDbStore|| require('./config').mongoDbStore,
+        url:  process.env.mongoDbStore,
     }),
     secret:'iletaitunechaine'
 }));
+
 
 
 app.set('views', __dirname + '/views/');

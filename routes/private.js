@@ -9,14 +9,8 @@ var router = express.Router();
 /**CUSTOM**/
 var users = _db.users;
 var meals = _db.meals;
-var AWS = require('aws-sdk');
-var accessKeyId =  process.env.AWS_ACCESS_KEY ||require('../config').accessKeyId;
-var secretAccessKey = process.env.AWS_SECRET_KEY || require('../config').secretAccessKey;
-AWS.config.update({
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey
-});
-var s3 = new AWS.S3();
+
+var s3 = app.s3;
 
 
 
