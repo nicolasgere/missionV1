@@ -66,9 +66,8 @@ window.onload = function () {
 	ko.applyBindings(new ViewModel());
 };
 
-
+// permet de créer des row de 4 ! 
 function Table4(array) {
-
     var i = 0;
     var x = 0;
     var y = -1;
