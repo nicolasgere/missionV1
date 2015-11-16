@@ -1,65 +1,76 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
-<head>
-    <title>Recherche</title>
-    @html.include('shared/head', model)
-    <link rel="stylesheet" href="assets/css/pages/page_job.css">
-    <script type="text/javascript" src="/customJs/search.js"></script>
-    <script>
-    var recherche = "@model.recherche";
-    var city = "@model.city";
-
-      </script>
-</head> 
-
-<body>
-<div class="wrapper">
-                   @html.include('shared/menu', model)
-                   <div class="job-img-inputs">
-            <div class="container">
-                <div class="row" style="margin-top:10px">
-                    <div class="col-sm-4 md-margin-bottom-10" >
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
-                            <input type="text" placeholder="Qu'est ce que vous mangerez bien?" class="form-control" data-bind="value:recherche">
-                        </div>
-                    </div>    
-                    <div class="col-sm-4 md-margin-bottom-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                <input type="text" list="list" class="form-control" data-bind="value:ville">
-                                <datalist id="list">
-                                    <option value="Québec"></option>
-                                    <option value="Montréal"></option>
-                                </datalist>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn-u btn-block" data-bind="click:load"> Rechercher</button>
-                    </div>
-                </div>
-                <div class="row high-rated margin-bottom-20 margin-top-20">
-<style type="text/css">
-.testhov :hover{
-    cursor: pointer;
-cursor: hand;
-}
-</style>
-            <!-- Easy Block --> 
-             <div data-bind="foreach:allMeal">  
-             <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
-                <div class="easy-block-v1 thumbnail-style ">
-                    <div class="easy-block-v1-badge rgba-red"  data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
-                    <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img alt="" data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ image}">
+<!--[if IE 8]>
+    <html lang="en" class="ie8">
+    <![endif]-->
+    <!--[if IE 9]>
+        <html lang="en" class="ie9">
+        <![endif]-->
+        <!--[if !IE]><!-->
+            <html lang="en">
+            <!--<![endif]-->
+            
+            <head>
+                <title>Recherche</title>@html.include('shared/head', model)
+                <link rel="stylesheet" href="assets/css/pages/page_job.css">
+                <script type="text/javascript" src="/customJs/search.js"></script>
+                <script>
+                    var recherche = "@model.recherche";
+                    var city = "@model.city";
+                </script>
+            </head>
+            
+            <body>
+                <div class="wrapper">@html.include('shared/menu', model)
+                    <div class="job-img-inputs">
+                        <div class="container">
+                            <div class="row" style="margin-top:10px">
+                                <div class="col-sm-4 md-margin-bottom-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-tag"></i>
+                                        </span>
+                                        <input type="text" placeholder="Qu'est ce que vous mangerez bien?" class="form-control" data-bind="value:recherche">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 md-margin-bottom-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-map-marker"></i>
+                                        </span>
+                                        <input type="text" list="list" class="form-control" data-bind="value:ville" value="Montréal" disabled="disabled">
+                                        <datalist id="list">
+                                            <option value="Québec"></option>
+                                            <option value="Montréal"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn-u btn-block" data-bind="click:load">Rechercher</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                   <!-- <div class="overflow-h">
+                            <div class="row high-rated margin-bottom-20 margin-top-20">
+                                <style type="text/css">
+                                    .testhov :hover{
+                                        cursor: pointer;
+                                    cursor: hand;
+                                    }
+                                </style>
+                                <!-- Easy Block -->
+                                <div data-bind="foreach:allMeal">
+                              
+                                <div>
+                                    
+                                        <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
+                                            <div class="easy-block-v1 thumbnail-style ">
+                                                <div class="easy-block-v1-badge rgba-red" data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
+                                                <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+                                                    <div class="carousel-inner">
+                                                        <div class="item active">
+                                                            <img alt="" data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ image}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="overflow-h">
                         <h3 data-bind="text:name"></h3>
                         <ul class="list-inline star-vote">
                             <li><i class="" data-bind="css: getClass(1)"></i></li>
@@ -69,32 +80,32 @@ cursor: hand;
                             <li><i class="" data-bind="css: getClass(5)"></i></li>
                         </ul>
                     </div> -->
-                      <ul class="list-inline margin-bottom-5">
-                                <li>Chef <span data-bind="text:username"></span></li>
-                                <li class="pull-right"><i class="fa fa-map-marker push-right"></i> <span data-bind="text:city"></span></li>
-                            </ul>
-                        <h3><span data-bind="text:name"></span></h3> 
-                        <p> <span data-bind="text:description"></span>
+                                                <ul class="list-inline margin-bottom-5">
+                                                    <li>Chef
+                                                        <span data-bind="text:username"></span>
+                                                    </li>
+                                                    <li class="pull-right">
+                                                        <i class="fa fa-map-marker push-right"></i>
+                                                        <span data-bind="text:city"></span>
+                                                    </li>
+                                                </ul>
+                                                <h3>
+                                                    <span data-bind="text:name"></span>
+                                                </h3>
+                                                <p>
+                                                    <span data-bind="text:description"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                            <!-- End Easy Block -->
+                            <!-- Easy Block -->
+                            <!-- End Easy Block -->
+                        </div>
+                    </div>
                 </div>
-            </div>             
-          
-                </div>  
-
-            </div>
-            <!-- End Easy Block -->
+                <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->@html.include('shared/foot', model)</div>
+            </body>
             
-            <!-- Easy Block -->
-            
-            <!-- End Easy Block -->
-        </div>
-            </div> 
-
-        </div>
-
-
-	   
-           <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->
-    @html.include('shared/foot', model)
-</div>
-</body>
-</html> 
+            </html>

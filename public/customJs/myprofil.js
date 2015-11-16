@@ -9,8 +9,8 @@ function meal(data,parent){
 	self.mealId = ko.observable(data.MealId);
 	self.supprimer = function(){
 		$.ajax( {
-			url: 'deleteMeal',
-			type: 'POST',
+			url: 'meal',
+			type: 'DELETE',
 			data: {id:self.mealId()},
 			success: function(){
 				location.reload()
@@ -52,7 +52,7 @@ var ViewModel = function() {
 	self.cible = ko.observable();
 	self.fichier = ko.observable();
 	self.newRealImage = ko.observable();
-self.tailleDesc = ko.computed(function(){
+	self.tailleDesc = ko.computed(function(){
 	if(self.newDescription()){
 			return self.newDescription().length;}
 			else {
@@ -102,8 +102,8 @@ self.tailleDesc = ko.computed(function(){
 		"id": self.selectMeal().mealId()
 	}
 	$.ajax( {
-		url: 'updateMeal',
-		type: 'POST',
+		url: 'meal',
+		type: 'PUT',
 		data:dataM,
 		success: function(data){
 			self.selectMeal().name(self.newName());
@@ -126,7 +126,7 @@ self.createMeal = function(){
 
 }
 $.ajax( {
-	url: 'createMeal',
+	url: 'meal',
 	type: 'POST',
 	data:dataM,
 	success: function(data){
@@ -143,20 +143,9 @@ $.ajax( {
 	}
 } );
 };
-self.descEnreg = function(){
-	$.ajax( {
-		url: 'updateDesc',
-		type: 'POST',
-		data: {desc:self.descTemp()},
-		success: function(){
-			self.desc(self.descTemp());
-			self.descIsModif(false);
-		}
-	} );
 
-}
 $.ajax({
-	url: 'getMeal',
+	url: 'meal',
 	type: 'GET',
 	success: function(data){
 		if(data[0]){

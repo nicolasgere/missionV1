@@ -34,8 +34,8 @@ router.post('/loadImage', function(req, res){
 });
 
 /**MEAL**/
-router.post('/createMeal', function(req, res){
-  var data = {}
+router.post('/meal', function(req, res){
+  var data = {};
   var Id = func.guid();
   var IdImg = func.guid();
   data.price = req.body.price;
@@ -82,13 +82,13 @@ router.post('/createMeal', function(req, res){
     }
   });
 });
-router.get('/getMeal', func.isConnect,function(req,res){
+router.get('/meal', func.isConnect,function(req,res){
   console.log(req.session.UserId);
   meals.find({UserId:req.session.UserId},function (err, array) {
     res.send(array);
   })
 }); 
-router.post('/updateMeal', function(req, res){
+router.put('/meal', function(req, res){
   var data = req.body;
   meals.update(
   {UserId: req.session.UserId, MealId:data.id}, // query
@@ -97,7 +97,7 @@ router.post('/updateMeal', function(req, res){
    res.send("ok");
  });
 });
-router.post('/deleteMeal', function(req,res){
+router.delete('/meal', function(req,res){
   console.log(req.body.id);
   meals.remove({MealId:req.body.id, UserId:req.session.UserId} , function(err,rep) {
     if(err) {

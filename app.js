@@ -16,20 +16,24 @@ var secretAccessKey = process.env.AWS_SECRET_KEY;
 var keysend = process.env.KEYSEND ;
 var usersend = process.env.USERSEND;
 
+//aws account
 AWS.config.update({
   accessKeyId: accessKeyId,
   secretAccessKey: secretAccessKey
 });
 
 
-// create reusable transporter object using SMTP transport
 
 var app = module.exports = express();
-console.log(process.env);
-
+//sendgrid account
 app.sendgrid = require('sendgrid')(usersend, keysend);
+
 app.s3 = new AWS.S3();
+
+//mongoose
 app.db = _db;
+
+//session mongodb
 app.use(session({
     store: new MongoStore({
         url:  process.env.mongoDbStore,

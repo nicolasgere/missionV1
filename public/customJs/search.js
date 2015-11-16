@@ -24,7 +24,7 @@ function meal(data,parent){
 var ViewModel = function() {
 	var self = this;
 	self.recherche = ko.observable(recherche);
-	self.ville = ko.observable(city);
+	self.ville = ko.observable("Montréal");
 
 	self.arrayRecherche = ko.computed(function(){
 		if(self.recherche()){
