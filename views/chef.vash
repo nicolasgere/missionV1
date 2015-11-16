@@ -20,7 +20,7 @@
 	   <div class="container content" >
 				<div class="row">
 					<!--Left Sidebar-->
-					<div class="col-md-3 md-margin-bottom-40">
+					<div class="col-md-3  col-sm-3 md-margin-bottom-40">
                         <img class="img-responsive profile-img margin-bottom-20" src="https://allochef.s3.amazonaws.com/@model.user.imageSrc" alt="">
                         <div class="service-block-v3 service-block-u">
                             <i class="icon-users"></i>
@@ -84,12 +84,12 @@
                     </div>
                     <!--End Left Sidebar-->
                   
-                    <div class="col-md-9">
-                    	     <div class="row-fluid">
+                    <div class="col-md-7 col-sm-8">
+                    	     <div class="row">
                             <div class="content-md" style="padding-top:0px; padding-bottom:0px">
-                                <ul>   
+                                <ul class="row grid-block-v2">   
                                  @model.meals.forEach(function(m){     
-                                    <li class="col-md-6 col-sm-6" >
+                                    <li class="col-md-6 col-sm-6" style="margin-top:20px" >
                                        <div class="easy-block-v1">
                                         <img class="img-responsive" style="height: 240px;" alt=""  src="https://allochef.s3.amazonaws.com/@m.img">
                                         <div class="easy-block-v1-badge rgba-red" style="font-family: 'Lobster', cursive;font-size: 25px;font-weight: 400;">@m.price $</div>
@@ -108,10 +108,13 @@
  <div class="panel panel-profile">
                     <div class="panel-heading overflow-h">
                         <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Commentaire</h2>
+                        <a href="#"><i class="fa fa-cog pull-right"></i></a>
                     </div>
                     <div class="panel-body margin-bottom-50">
                         <div class="media media-v2">
-                            
+                            <a class="pull-left" href="#">
+                                <img class="media-object rounded-x" src="" alt="">
+                            </a>
                             @model.user.comments.forEach(function(m){    
                             <div class="media-body">
                                 <h4 class="media-heading">
