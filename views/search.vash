@@ -57,9 +57,8 @@
                                 </style>
                                 <!-- Easy Block -->
                                 <div data-bind="foreach:allMeal">
-                              
-                                <div>
-                                    
+                                    <div class="row">
+                                        <!-- ko foreach: $data -->
                                         <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
                                             <div class="easy-block-v1 thumbnail-style ">
                                                 <div class="easy-block-v1-badge rgba-red" data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
@@ -70,20 +69,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="overflow-h">
-                        <h3 data-bind="text:name"></h3>
-                        <ul class="list-inline star-vote">
-                            <li><i class="" data-bind="css: getClass(1)"></i></li>
-                            <li><i class="" data-bind="css: getClass(2)"></i></li>
-                            <li><i class="" data-bind="css: getClass(3)"></i></li>
-                            <li><i class="" data-bind="css: getClass(4)"></i></li>
-                            <li><i class="" data-bind="css: getClass(5)"></i></li>
-                        </ul>
-                    </div> -->
                                                 <ul class="list-inline margin-bottom-5">
                                                     <li>Chef
                                                         <span data-bind="text:username"></span>
                                                     </li>
+                                                    
                                                     <li class="pull-right">
                                                         <i class="fa fa-map-marker push-right"></i>
                                                         <span data-bind="text:city"></span>
@@ -91,21 +81,23 @@
                                                 </ul>
                                                 <h3>
                                                     <span data-bind="text:name"></span>
+                                               
                                                 </h3>
                                                 <p>
                                                     <span data-bind="text:description"></span>
+                                                </p>
                                             </div>
                                         </div>
+                                        <!-- /ko -->
                                     </div>
-                                
+                                </div>
+                                <!-- End Easy Block -->
+                                <!-- Easy Block -->
+                                <!-- End Easy Block -->
                             </div>
-                            <!-- End Easy Block -->
-                            <!-- Easy Block -->
-                            <!-- End Easy Block -->
                         </div>
                     </div>
-                </div>
-                <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->@html.include('shared/foot', model)</div>
+                    <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->@html.include('shared/foot', model)</div>
             </body>
             
             </html>

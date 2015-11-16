@@ -181,7 +181,7 @@ YUI.add('crop-box', function (Y) {
                                     <a href="mysettings"><i class="fa fa-user"></i> Mon Profil</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="#"><i class="fa  fa-cutlery"></i>  Mes plats</a>
+                                    <a href="/myprofil"><i class="fa  fa-cutlery"></i>  Mes plats</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="/chef/@model.username"><i class="fa fa-comments"></i> Ma page</a>
