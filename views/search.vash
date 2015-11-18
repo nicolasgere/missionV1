@@ -37,7 +37,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-map-marker"></i>
                                         </span>
-                                        <input type="text" list="list" class="form-control" data-bind="value:ville" value="Montréal" disabled="disabled">
+                                        <input type="text" list="list" class="form-control" data-bind="value:ville" value="Montréal" >
                                         <datalist id="list">
                                             <option value="Québec"></option>
                                             <option value="Montréal"></option>

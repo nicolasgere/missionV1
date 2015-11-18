@@ -154,6 +154,10 @@ YUI.add('crop-box', function (Y) {
    var email = "@model.email";
    var ville = "@model.ville";
    var arron = "@model.arron";
+   var loc = "@model.loc";
+   var zip = "@model.zip";
+   var etat = "@model.etat";
+   console.log("@model.zip");
 </script>
 </head>
 <body>
@@ -256,34 +260,29 @@ YUI.add('crop-box', function (Y) {
                                             </span>
                                         </dd>
                                         <hr>
+                                         <dt><strong>Zip code</strong></dt>
+                                        <dd>
+                                            <span data-bind="text:zip, visible:editZip">
+                                            </span>
+                                            <input type="text" type="text" data-bind="value:newZip,visible:!editZip()">
+                                          
+                                            <span>
+                                                <a class="pull-right" href="#" data-bind="click:changeZip">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </dd>
+                                        <hr>
+                                        
                                         <dt><strong>Votre ville</strong></dt>
                                         <dd>
-                                            <span data-bind="text:ville, visible:editVille">
+                                            <span data-bind="text:arron">
+                                            </span>,
+                                            <span data-bind="text:ville">
                                             </span>
-                                            <input type="text"  list="list" data-bind="value:ville,visible:!editVille()">
-                                            <datalist id="list">
-                                    <option value="Montréal"></option>
-                                    <option value="Québec"></option>
-                                </datalist>
-                                            <span>
-                                                <a class="pull-right" href="#" data-bind="click:changeVille">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
+                                            <span data-bind="text:etat">
                                             </span>
                                         </dd>
-                                        <hr>
-                                        <dt><strong>Votre arrondissement </strong></dt>
-                                        <dd>
-                                            <span data-bind="text:arron, visible:editArron">
-                                            </span>
-                                            <input type="text" data-bind="value:arron,visible:!editArron()">
-                                            <span>
-                                                <a class="pull-right" href="#" data-bind="click:changeArron">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                            </span>
-                                        </dd>
-                                        <hr>
                                     </dl>
                                     <button type="button" class="btn-u btn-u-default">Annuler</button>
                                     <button type="button" class="btn-u" data-bind="click:save">Enregistrer</button>

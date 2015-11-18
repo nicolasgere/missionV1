@@ -10,6 +10,12 @@ mongoConnec.users = mongoose.model('users', {
   nom: String,
   email: String,
   desc: String,
+  zip:String,
+  loc: {
+    type: [Number],  // [<longitude>, <latitude>]
+    index: '2d'      // create the geospatial index
+  },
+  etat:String,
   ville: String,
   arron: String,
   key: String,
@@ -30,6 +36,12 @@ mongoConnec.meals = mongoose.model('meals', {
   cat: String,
   desc: String,
   name: String,
+  
+  loc: {
+    type: [Number],  // [<longitude>, <latitude>]
+    index: '2d'      // create the geospatial index
+  },
+  etat:String,
   ville: String,
   arron: String,
   UserId: String,

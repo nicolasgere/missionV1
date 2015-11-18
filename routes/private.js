@@ -121,7 +121,7 @@ router.get('/mysettings', func.isConnect,function(req,res){
   console.log(req.session.UserId);
   users.findOne({UserId:req.session.UserId},function(err,rep){
     console.log(rep);
-    res.render('mysettings', {nom:rep.nom, prenom: rep.prenom , email:rep.email, imageSrc:rep.imageSrc, desc:rep.desc,ville:rep.ville,arron:rep.arron,username:rep.username});
+    res.render('mysettings', rep);
   })
 }); 
 
@@ -149,15 +149,17 @@ router.post('/test', function(req, res){
   });
 });
 router.post('/updateSettings', function(req, res){
-  console.log(req.body);
+  
   var conditions = { UserId: req.session.UserId };
-  var update =  {desc:req.body.desc, nom:req.body.nom,prenom:req.body.prenom,email: req.body.email, ville:req.body.ville, arron: req.body.arron};
+  var update =  req.body;
   var options = { multi: false };
-
-users.findOneAndUpdate(conditions, update, options, function(err,rep) {
+  console.log(req.body);
+  users.findOneAndUpdate(conditions, update, options, function(err,rep) {
+    res.send("ok");
+  }); 
+  meals.update(conditions,{$set:{loc:req.body.loc,ville:req.body.ville,arron:req.body.arron,etat:req.body.etat}},{ multi: true },function(err,rep){
     console.log(rep);
-   res.send("ok");
-  });  
+  }); 
 });
 
 

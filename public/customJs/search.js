@@ -22,6 +22,7 @@ function meal(data, parent) {
 };
 
 var ViewModel = function () {
+
 	var self = this;
 	self.recherche = ko.observable(recherche);
 	self.ville = ko.observable("Montréal");
@@ -32,16 +33,18 @@ var ViewModel = function () {
 		};
 
 	});
+	self.loc = [0, 0];
 	self.allMeal = ko.observableArray();
 	self.load = function () {
 		if (self.arrayRecherche()) {
 			var dataM = {
 				arrayRequeste: self.arrayRecherche().filter(function (item) {
 					return item.length > 3;
-				})
+				}),
+				loc: self.loc
 			};
 		} else {
-			var dataM = {}
+			var dataM = { loc: self.loc }
 		}
 		$.ajax({
 			url: 'search',
@@ -58,7 +61,37 @@ var ViewModel = function () {
 			}
 		});
 	}
-	self.load();
+
+	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (data) {
+			self.loc = [data.coords.longitude, data.coords.latitude];
+			$.get("http://maps.googleapis.com/maps/api/geocode/json",
+				{ latlng: self.loc[1] + ',' + self.loc[0], sensor: true },
+				function (data) {
+					var res = data.results[0];
+					var city = "";
+					res.address_components.forEach(function (item) {
+						if (item.types.indexOf("sublocality") != -1) {
+							city = item.short_name;
+						} else if (item.types.indexOf("locality") != -1) {
+							city = city + ', ' + item.short_name;
+						}
+					})
+					self.ville(city);
+				}
+				);
+			/*if(item.types.indexOf("sublocality") != -1){
+				self.arron(item.short_name);
+			}else if(item.types.indexOf("locality")!= -1){
+				self.ville(item.short_name);
+			}else if(item.types.indexOf("administrative_area_level_1")!= -1){
+				self.etat(item.short_name);
+			}
+			self.*/
+			self.load();
+		});
+    }
+
 }
 
 
