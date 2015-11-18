@@ -51,19 +51,28 @@ router.post('/search', function (req, res) {
     arrayRequeste.forEach(function (item) {
       dataToFind.push({ name: new RegExp(item, 'i') });
     });
-    meals.find({ $or: dataToFind, loc: {
+    var conditions ={};
+    conditions.$or = dataToFind;
+    if(req.body.loc[0] !=0){
+      conditions.loc = {
         $near: req.body.loc,
         $maxDistance: 1
-      }}, function (err, array) {
+      }
+    }
+    meals.find(conditions, function (err, array) {
       res.send(array);
     });
   } else {
-    var maxDistance = 400 /111.12 ;
-    meals.find({
+    var maxDistance = 100 /111.12 ;
+    var conditions = {};
+    if(req.body.loc[0] !=0){
+      conditions = {
       loc: {
         $near: req.body.loc,
         $maxDistance: maxDistance
-      }}, function (err, array) {
+      }};
+    }
+    meals.find(conditions, function (err, array) {
         console.log("iici");
       res.send(array);
     });

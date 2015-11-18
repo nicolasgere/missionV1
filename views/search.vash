@@ -37,11 +37,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-map-marker"></i>
                                         </span>
-                                        <input type="text" list="list" class="form-control" data-bind="value:ville" value="Montréal" >
-                                        <datalist id="list">
-                                            <option value="Québec"></option>
-                                            <option value="Montréal"></option>
-                                        </datalist>
+                                        <input type="text" class="form-control" data-bind="value:ville" placeholder="Zip Code, City or adresse">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -56,48 +52,58 @@
                                     }
                                 </style>
                                 <!-- Easy Block -->
-                                <div data-bind="foreach:allMeal">
-                                    <div class="row">
-                                        <!-- ko foreach: $data -->
-                                        <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
-                                            <div class="easy-block-v1 thumbnail-style ">
-                                                <div class="easy-block-v1-badge rgba-red" data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
-                                                <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
-                                                    <div class="carousel-inner">
-                                                        <div class="item active">
-                                                            <img alt="" data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ image}">
+                                <div>
+                                    <div data-bind="if: state() == 'loading'">
+                                        <div class="spinner" class="background-color:red">
+                                            <div class="rect1"></div>
+                                            <div class="rect2"></div>
+                                            <div class="rect3"></div>
+                                            <div class="rect4"></div>
+                                            <div class="rect5"></div>
+                                        </div>
+                                    </div>
+                                    <h1  data-bind="if: state() == 'none'">Malheuresement aucune recherche ne correspond a votre recherche...</h1>
+                                    <div  data-bind="if: state() == 'result'">
+                                        <div data-bind="foreach:allMeal">
+                                            <div class="row">
+                                                <!-- ko foreach: $data -->
+                                                <div class="col-md-3 col-sm-6 md-margin-bottom-40 testhov" data-bind="click:function(){window.location = '/chef/' + username;}">
+                                                    <div class="easy-block-v1 thumbnail-style ">
+                                                        <div class="easy-block-v1-badge rgba-red" data-bind="text: price +' $'" style="font-family: 'Lobster', cursive; font-size: 25px;font-weight: 400;"></div>
+                                                        <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                <div class="item active">
+                                                                    <img alt="" data-bind="attr:{src: 'https://allochef.s3.amazonaws.com/'+ image}">
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                        <ul class="list-inline margin-bottom-5">
+                                                            <li>Chef
+                                                                <span data-bind="text:username"></span>
+                                                            </li>
+                                                            <li class="pull-right">
+                                                                <i class="fa fa-map-marker push-right"></i>
+                                                                <span data-bind="text:city"></span>
+                                                            </li>
+                                                        </ul>
+                                                        <h3>
+                                                            <span data-bind="text:name"></span>
+                                                        </h3>
+                                                        <p>
+                                                            <span data-bind="text:description"></span>
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <ul class="list-inline margin-bottom-5">
-                                                    <li>Chef
-                                                        <span data-bind="text:username"></span>
-                                                    </li>
-                                                    
-                                                    <li class="pull-right">
-                                                        <i class="fa fa-map-marker push-right"></i>
-                                                        <span data-bind="text:city"></span>
-                                                    </li>
-                                                </ul>
-                                                <h3>
-                                                    <span data-bind="text:name"></span>
-                                               
-                                                </h3>
-                                                <p>
-                                                    <span data-bind="text:description"></span>
-                                                </p>
+                                                <!-- /ko -->
                                             </div>
                                         </div>
-                                        <!-- /ko -->
+                                        <!-- End Easy Block -->
+                                        <!-- Easy Block -->
+                                        <!-- End Easy Block -->
                                     </div>
                                 </div>
-                                <!-- End Easy Block -->
-                                <!-- Easy Block -->
-                                <!-- End Easy Block -->
                             </div>
                         </div>
-                    </div>
-                    <!--ICI LE CONTENUE DE LA PAGE OU ON FAIT CE QUE ON VEUT EN BOOTRAP-->@html.include('shared/foot', model)</div>
             </body>
             
             </html>

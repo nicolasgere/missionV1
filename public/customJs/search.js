@@ -24,18 +24,36 @@ function meal(data, parent) {
 var ViewModel = function () {
 
 	var self = this;
-	self.recherche = ko.observable(recherche);
-	self.ville = ko.observable("Montréal");
+	self.state = ko.observable("");
 
+	self.recherche = ko.observable(recherche);
+	self.ville = ko.observable();
+	self.ville.subscribe(function () {
+		$.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + self.ville(), function (data) {
+			console.log(data.results);
+			if (data.status == "OK") {
+				if (data.results.length == 1) {
+					self.ville(data.results[0].formatted_address);
+					self.loc = [data.results[0].geometry.location.lng, data.results[0].geometry.location.lat];
+				} else {
+
+				}
+			} else {
+				//todo
+			}
+		});
+	});
 	self.arrayRecherche = ko.computed(function () {
 		if (self.recherche()) {
 			return self.recherche().split(" ");
 		};
 
 	});
+
 	self.loc = [0, 0];
 	self.allMeal = ko.observableArray();
 	self.load = function () {
+		self.state("loading");
 		if (self.arrayRecherche()) {
 			var dataM = {
 				arrayRequeste: self.arrayRecherche().filter(function (item) {
@@ -51,18 +69,23 @@ var ViewModel = function () {
 			type: 'POST',
 			data: dataM,
 			success: function (data) {
-				self.allMeal([]);
-				var dataTemp = [];
-				data.forEach(function (item) {
-					dataTemp.push(new meal(item, self));
-				});
-				var temp = Table4(dataTemp);
-				self.allMeal(temp);
+				if (data.length == 0) {
+					self.state("none");
+				} else {
+					self.allMeal([]);
+					var dataTemp = [];
+					data.forEach(function (item) {
+						dataTemp.push(new meal(item, self));
+					});
+					var temp = Table4(dataTemp);
+					self.allMeal(temp);
+					self.state("result");
+				}
 			}
 		});
 	}
 
-	if (navigator.geolocation) {
+	if ( navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (data) {
 			self.loc = [data.coords.longitude, data.coords.latitude];
 			$.get("http://maps.googleapis.com/maps/api/geocode/json",
@@ -90,13 +113,25 @@ var ViewModel = function () {
 			self.*/
 			self.load();
 		});
-    }
+    } else {
+		self.load();
+	}
+
 
 }
 
 
 window.onload = function () {
-	ko.applyBindings(new ViewModel());
+	var viewModel = new ViewModel();
+	ko.applyBindings(viewModel);
+
+	$(document).keypress(function (e) {
+
+		if (e.which == 13) {
+			viewModel.state("loading");
+			setTimeout(viewModel.load, 1200);
+		}
+	})
 };
 
 // permet de créer des row de 4 ! 
