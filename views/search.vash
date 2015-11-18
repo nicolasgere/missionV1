@@ -52,9 +52,9 @@
                                     }
                                 </style>
                                 <!-- Easy Block -->
-                                <div>
+                                <div hidden="hidden" id="content">
                                     <div data-bind="if: state() == 'loading'">
-                                        <div class="spinner" class="background-color:red">
+                                        <div class="spinner">
                                             <div class="rect1"></div>
                                             <div class="rect2"></div>
                                             <div class="rect3"></div>
@@ -62,7 +62,7 @@
                                             <div class="rect5"></div>
                                         </div>
                                     </div>
-                                    <h1  data-bind="if: state() == 'none'">Malheuresement aucune recherche ne correspond a votre recherche...</h1>
+                                    <h1  data-bind="if: state() == 'none'">Malheuresement aucun plat ne correspond à votre recherche...</h1>
                                     <div  data-bind="if: state() == 'result'">
                                         <div data-bind="foreach:allMeal">
                                             <div class="row">

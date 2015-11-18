@@ -29,6 +29,9 @@ var ViewModel = function () {
 	self.recherche = ko.observable(recherche);
 	self.ville = ko.observable();
 	self.ville.subscribe(function () {
+		if(!self.ville() || self.ville().length >3){
+			self.loc =[0,0];
+		}else{
 		$.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + self.ville(), function (data) {
 			console.log(data.results);
 			if (data.status == "OK") {
@@ -42,6 +45,7 @@ var ViewModel = function () {
 				//todo
 			}
 		});
+		}
 	});
 	self.arrayRecherche = ko.computed(function () {
 		if (self.recherche()) {
@@ -132,6 +136,7 @@ window.onload = function () {
 			setTimeout(viewModel.load, 1200);
 		}
 	})
+	$("#content").show();
 };
 
 // permet de créer des row de 4 ! 
