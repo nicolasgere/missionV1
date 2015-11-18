@@ -29,7 +29,7 @@ var ViewModel = function () {
 	self.recherche = ko.observable(recherche);
 	self.ville = ko.observable();
 	self.ville.subscribe(function () {
-		if(!self.ville() || self.ville().length >3){
+		if(!self.ville() || self.ville().length < 3){
 			self.loc =[0,0];
 		}else{
 		$.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + self.ville(), function (data) {
